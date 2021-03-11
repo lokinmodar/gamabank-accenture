@@ -7,6 +7,7 @@ class User extends Model {
       {
         /// colunas modificáveis pelo usuário
         full_name: Sequelize.STRING,
+        user_type: Sequelize.INTEGER,
         username: Sequelize.STRING,
         gender: Sequelize.STRING,
         rg: Sequelize.STRING,

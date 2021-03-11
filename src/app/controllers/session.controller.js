@@ -44,7 +44,7 @@ class SessionController {
       token: jwt.sign({ id }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,
       }), // enviando Payload (informações que serão incorporadas ao token,
-      // chave única do app gerada em MD5online.org e data de expiração)
+      // chave única do app)
     });
   }
 }

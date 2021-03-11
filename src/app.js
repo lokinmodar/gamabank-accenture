@@ -45,4 +45,4 @@ class App {
   }
 }
 
-export default new App().server; // sempre instanciará um novo objeto App
+export default new App().server;

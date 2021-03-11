@@ -1,5 +1,5 @@
 // para verificação se o usuário está autenticado usando o token
-// token será enviado no Bearer do Header da requisição PUT
+// token será enviado no Bearer do Header da requisição POST
 
 import jwt from 'jsonwebtoken'; // para usar o token na validação
 
@@ -15,7 +15,7 @@ export default async (req, res, next) => {
     // checando se o token veio na requisição
     return res
       .status(401)
-      .json({ error: 'Token not present in the requisition.' });
+      .json({ error: 'Token not present in the Request.' });
   }
 
   const [, token] = authHeader.split(' '); // captando somente o token em si da string 'Bearer'

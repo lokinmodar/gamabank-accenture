@@ -5,8 +5,9 @@ class UserController {
   async store(req, res) {
     // validações do Schema
     const schema = Yup.object().shape({
-      customer_name: Yup.string().required(),
+      full_name: Yup.string().required(),
       username: Yup.string().required(),
+      user_type: Yup.number().required(),
       user_email: Yup.string()
         .email()
         .required(),
@@ -21,24 +22,25 @@ class UserController {
     if (!(await schema.isValid(req.body))) {
       return res
         .status(400)
-        .json({ error: 'Requisition fields validation failed.' });
+        .json({ error: 'Request fields validation failed.' });
     }
 
     // como um Middleware
-    const userExists = await User.findOne({ where: { email: req.body.email } });
+    const userWithEmailExists = await User.findOne({ where: { user_email: req.body.user_email } });
+    const userWithCpfExists = await User.findOne({ where: { cpf: req.body.cpf } });
     // acima: pegando o e-mail do novo usuário a cadastrar
 
-    if (userExists) {
+    if (userWithEmailExists || userWithCpfExists) {
       // checando se um usuário com o email cadastrado já existe
       return res.status(400).json({ error: 'User already exists.' });
     }
 
-    const { id, username, email, user_type } = await User.create(req.body); // passados os atributos no corpo da requisição em JSON
+    const { id, username, user_email, user_type } = await User.create(req.body); // passados os atributos no corpo da requisição em JSON
 
     return res.json({
       id,
       username,
-      email,
+      user_email,
       user_type,
     });
   }
@@ -46,8 +48,8 @@ class UserController {
   async update(req, res) {
     const schema = Yup.object().shape({
       username: Yup.string(),
-      email: Yup.string().email(),
-      user_type: Yup.int().email(),
+      user_email: Yup.string().email(),
+      user_type: Yup.int(),
       oldPassword: Yup.string().min(6),
       password: Yup.string()
         .min(6)
