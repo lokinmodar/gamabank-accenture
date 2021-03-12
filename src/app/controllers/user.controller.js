@@ -1,12 +1,13 @@
 import * as Yup from 'yup';
 import User from '../models/user.model';
+import User_types from '../models/user_types.model';
 
 class UserController {
   async store(req, res) {
     // validações do Schema
     const schema = Yup.object().shape({
       full_name: Yup.string().required(),
-      username: Yup.string().required(),
+      user_name: Yup.string().required(),
       user_type: Yup.number().required(),
       user_email: Yup.string()
         .email()
@@ -35,19 +36,22 @@ class UserController {
       return res.status(400).json({ error: 'User already exists.' });
     }
 
-    const { id, username, user_email, user_type } = await User.create(req.body); // passados os atributos no corpo da requisição em JSON
+    const { id, user_name, user_email, user_type, gender, rg, cpf } = await User.create(req.body); // passados os atributos no corpo da requisição em JSON
 
     return res.json({
       id,
-      username,
+      user_name,
       user_email,
       user_type,
+      gender,
+      rg,
+      cpf
     });
   }
 
   async update(req, res) {
     const schema = Yup.object().shape({
-      username: Yup.string(),
+      user_name: Yup.string(),
       user_email: Yup.string().email(),
       user_type: Yup.int(),
       oldPassword: Yup.string().min(6),
@@ -64,7 +68,7 @@ class UserController {
     if (!(await schema.isValid(req.body))) {
       return res
         .status(400)
-        .json({ error: 'Requisiton fields validation failed.' });
+        .json({ error: 'Request fields validation failed.' });
     }
 
     const { email, oldPassword } = req.body;
@@ -86,15 +90,15 @@ class UserController {
       return res.status(401).json({ error: 'Incorrect old password.' });
     }
 
-    const { id, username, user_type } = await user.update(req.body);
+    const { id, user_name, user_type } = await user.update(req.body);
 
     // console.log(req.userId);
 
     return res.json({
       updated: {
         id,
-        username,
-        email,
+        user_name,
+        user_email,
         user_type,
       },
     });
