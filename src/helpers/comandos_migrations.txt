@@ -1,0 +1,5 @@
+Comando para criação de model+migration
+
+- Usar nomes em minúsculo
+
+npx sequelize-cli model:generate --name contacts  --attributes contact_type:integer,contact_value:string,user_id:integer
