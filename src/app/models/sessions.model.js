@@ -1,24 +1,18 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class sessions extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  };
-  sessions.init({
-    user_id: DataTypes.INTEGER,
-    token: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'sessions',
-  });
-  return sessions;
-};
+import Sequelize, { Model } from 'sequelize';
+
+class Sessions extends Model {
+  static init(sequelize) {
+    super.init(
+      {
+        user_id: Sequelize.INTEGER,
+        token: Sequelize.STRING,
+      },
+      {
+        // configurações adicionais do sequelize
+        sequelize,
+      }
+    );
+    return this;
+  }
+}
+export default Sessions;

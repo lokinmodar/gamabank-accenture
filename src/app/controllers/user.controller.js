@@ -8,15 +8,11 @@ class UserController {
     const schema = Yup.object().shape({
       full_name: Yup.string().required(),
       user_name: Yup.string().required(),
-      user_type: Yup.number(),
-      user_email: Yup.string()
-        .email()
-        .required(),
+      user_email: Yup.string().email().required(),
       password: Yup.string()
         .required()
-        .min(6),
-      gender: Yup.string(),
-      rg: Yup.string().required(),
+        .min(8).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, "Password must contain at least 8 characters, one uppercase, one number and one special case character!"),
+      telephone: Yup.string(),
       cpf: Yup.string().required()
     });
 
@@ -91,9 +87,6 @@ class UserController {
       full_name,
       user_name,
       user_email,
-      user_type,
-      gender,
-      rg,
       cpf
     });
 
@@ -117,10 +110,9 @@ class UserController {
     const schema = Yup.object().shape({
       user_name: Yup.string(),
       user_email: Yup.string().email(),
-      user_type: Yup.int(),
-      oldPassword: Yup.string().min(6),
+      oldPassword: Yup.string(),
       password: Yup.string()
-        .min(6)
+        .min(8).matches("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/")
         .when('oldPassword', (oldPassword, field) =>
           oldPassword ? field.required() : field
         ),
@@ -135,12 +127,12 @@ class UserController {
         .json({ error: 'PUT Request fields validation failed.' });
     }
 
-    const { email, oldPassword } = req.body;
+    const { user_email, oldPassword } = req.body;
 
     const user = await User.findByPk(req.userId); // usando userId proveniente do middleware auth.js
 
     // checando se o email novo já existe na base
-    if (email && email !== user.email) {
+    if (email && email !== user.user_email) {
       const userExists = await User.findOne({ where: { email } });
       // acima: pegando o e-mail novo a ser atualizado
       if (userExists) {
@@ -154,7 +146,7 @@ class UserController {
       return res.status(401).json({ error: 'Incorrect old password.' });
     }
 
-    const { id, user_name, user_type } = await user.update(req.body);
+    const { id, user_name } = await user.update(req.body);
 
     // console.log(req.userId);
 
@@ -162,8 +154,7 @@ class UserController {
       updated: {
         id,
         user_name,
-        user_email,
-        user_type,
+        user_email
       },
     });
   }

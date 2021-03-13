@@ -9,13 +9,13 @@ class User extends Model {
         // colunas modificáveis pelo usuário
         full_name: Sequelize.STRING,
         user_name: Sequelize.STRING,
-        gender: Sequelize.STRING,
-        rg: Sequelize.STRING,
-        cpf: Sequelize.STRING,
         user_email: Sequelize.STRING,
         password: Sequelize.VIRTUAL, // campo não-refletido na tabela do BD
         password_hash: Sequelize.STRING,
         salt: Sequelize.STRING,
+        cpf: Sequelize.STRING,
+        telephone: Sequelize.STRING
+
       },
       {
         // configurações adicionais do sequelize
@@ -43,7 +43,7 @@ class User extends Model {
 
   // criando método que associa models
   static associate(models) {
-    this.belongsTo(models.User_types, { foreignKey: 'id', as: 'user_type' });
+    //this.belongsTo(models.User_types, { foreignKey: 'id', as: 'user_type' });
   }
 
   checkPassword(password, salt) {

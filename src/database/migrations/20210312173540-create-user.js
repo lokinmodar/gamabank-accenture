@@ -23,23 +23,6 @@ module.exports = {
         allowNull: false,
         type:   Sequelize.STRING
       },
-      user_type: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        defaultValue: 1,
-      },
-      gender: {
-        allowNull: false,
-        type:  Sequelize.STRING
-      },
-      rg: {
-        type:  Sequelize.STRING
-      },
-      cpf:{
-        allowNull: false,
-        unique: true,
-        type:   Sequelize.STRING
-      },
       user_email:{
         allowNull: false,
         unique: true,
@@ -53,6 +36,15 @@ module.exports = {
         allowNull: false,
         type:  Sequelize.STRING
       },
+      telephone: {
+        allowNull: false,
+        type:  Sequelize.STRING
+      },
+      cpf:{
+        allowNull: false,
+        unique: true,
+        type:   Sequelize.STRING
+      },
       created_at: {
         allowNull: false,
         type: Sequelize.DATE
@@ -61,17 +53,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }
-    }).then(() => queryInterface.addConstraint('users', {
-      fields: ['user_type'],
-      type: 'FOREIGN KEY',
-      name: 'FK_userType_user', // useful if using queryInterface.removeConstraint
-      references: {
-        table: 'user_types',
-        field: 'id'
-        },
-      onDelete: 'no action',
-      onUpdate: 'no action',
-    }));
+    });
   },
 
   down: async (queryInterface, Sequelize) => {
