@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import User from '../models/user.model';
 import User_types from '../models/user_types.model';
+import ValidarCPF from '../helpers/validateCPF.helpers'
 
 class UserController {
   async store(req, res) {
@@ -25,6 +26,11 @@ class UserController {
         .status(400)
         .json({ error: 'Request fields validation failed.' });
     }
+    // TODO: checagem de validade do cpf
+
+    if (!ValidarCPF(req.body.cpf)){
+      return res.status(400).json({ error: 'Invalid CPF.' })
+    }
 
     // como um Middleware
     const userWithEmailExists = await User.findOne({ where: { user_email: req.body.user_email } });
@@ -36,17 +42,24 @@ class UserController {
       return res.status(400).json({ error: 'User already exists.' });
     }
 
-    const { id, full_name, user_name, user_type, user_email, gender, rg, cpf } = await User.create(req.body); // passados os atributos no corpo da requisição em JSON
-
-    return res.json({
+   /* const {
       id,
       full_name,
       user_name,
-      user_email,
       user_type,
+      user_email,
       gender,
       rg,
-      cpf
+      cpf } */
+
+      const createdUser = await User.create(req.body); // passados os atributos no corpo da requisição em JSON
+      createdUser.password = undefined;
+      createdUser.password_hash = undefined;
+      createdUser.salt = undefined;
+
+
+    return res.json({
+      createdUser
     });
   }
 

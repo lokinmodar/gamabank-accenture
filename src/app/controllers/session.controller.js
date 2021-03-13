@@ -7,7 +7,7 @@ import authConfig from '../../configs/auth'; // gerar arquivo exportando chave s
 class SessionController {
   async store(req, res) {
     const schema = Yup.object().shape({
-      email: Yup.string()
+      user_email: Yup.string()
         .email()
         .required(),
       password: Yup.string().required()
@@ -19,9 +19,9 @@ class SessionController {
         .json({ error: 'Email and/or password validation failed.' });
     }
 
-    const { email, password } = req.body;
+    const { user_email, password } = req.body;
 
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({ where: { user_email } });
 
     if (!user) {
       // checa se usuário do email fornecido está cadastrado
@@ -39,7 +39,7 @@ class SessionController {
       user: {
         id,
         name,
-        email,
+        user_email,
       },
       token: jwt.sign({ id }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,

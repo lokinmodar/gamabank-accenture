@@ -6,7 +6,7 @@ class User extends Model {
   static init(sequelize) {
     super.init(
       {
-        /// colunas modificáveis pelo usuário
+        // colunas modificáveis pelo usuário
         full_name: Sequelize.STRING,
         user_name: Sequelize.STRING,
         gender: Sequelize.STRING,
@@ -23,14 +23,16 @@ class User extends Model {
       }
     );
     // adicionando um Hook do Sequelize para geração do hash ANTES do salvamento no BD
-    this.addHook('beforeSave', async user => {
+    this.addHook('beforeSave', async (user) => {
       // assíncrono
 
-       if (user.password) {
-
-        console.log(user.password);
-         const { encryptedPassword, salt } = await encryptPassword(user.password, user.salt);
-         console.log(encryptedPassword);
+      if (user.password) {
+        // console.log(user.password);
+        const { encryptedPassword, salt } = await encryptPassword(
+          user.password,
+          user.salt
+        );
+        // console.log(encryptedPassword);
         user.password_hash = encryptedPassword;
         user.salt = salt;
         // geração do hash de senha - usando força 8 (n de rounds)
@@ -40,12 +42,12 @@ class User extends Model {
   }
 
   // criando método que associa models
- static associate(models) {
+  static associate(models) {
     this.belongsTo(models.User_types, { foreignKey: 'id', as: 'user_type' });
   }
 
   checkPassword(password, salt) {
-    console.log()
+    console.log();
     // compara informação inserida na senha de login com hash do cadastro
     return comparePassword(password, salt, this.password_hash);
   }
