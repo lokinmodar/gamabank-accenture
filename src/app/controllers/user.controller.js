@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
 import User from '../models/user.model';
-import User_types from '../models/user_types.model';
-import ValidarCPF from '../helpers/validateCPF.helpers'
+import ValidarCPF from '../../helpers/validateCPF.helper'
 
 class UserController {
   async store(req, res) {
@@ -9,7 +8,7 @@ class UserController {
     const schema = Yup.object().shape({
       full_name: Yup.string().required(),
       user_name: Yup.string().required(),
-      user_type: Yup.number().required(),
+      user_type: Yup.number(),
       user_email: Yup.string()
         .email()
         .required(),

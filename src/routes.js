@@ -6,7 +6,7 @@ import UserController from './app/controllers/user.controller';
 import authMiddleware from './app/middlewares/auth.middleware';
 
 const routes = new Router();
-
+// Store - armazenar
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
@@ -14,9 +14,9 @@ routes.use(authMiddleware); // como está definido aqui, somente rotas que estiv
 
 routes.put('/users', UserController.update);
 
-routes.get('/users', UserController.listUser);
+//routes.get('/users', UserController.listUser);
 
-routes.get('/users', UserController.listAllUsers);
+//routes.get('/users', UserController.listAllUsers);
 
 
 

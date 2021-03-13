@@ -8,8 +8,6 @@ import databaseConfig from '../configs/database'; // configurações da base de 
 import User from '../app/models/user.model';
 import User_types from '../app/models/user_types.model';
 
-
-
 // Criando um Array com todos os models da aplicação
 const models = [User, User_types];
 
