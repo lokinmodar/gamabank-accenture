@@ -1,28 +1,87 @@
-
 'use strict';
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('user_types', {
+    /**
+     * Add altering commands here.
+     *
+     * Example:
+     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
+     */
+     await queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_type_description: {
-        type: Sequelize.STRING
+      full_name: {
+        allowNull: false,
+        type:  Sequelize.STRING
       },
-      createdAt: {
+      user_name:{
+        allowNull: false,
+        type:   Sequelize.STRING
+      },
+      user_type: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        defaultValue: 1,
+      },
+      gender: {
+        allowNull: false,
+        type:  Sequelize.STRING
+      },
+      rg: {
+        type:  Sequelize.STRING
+      },
+      cpf:{
+        allowNull: false,
+        unique: true,
+        type:   Sequelize.STRING
+      },
+      user_email:{
+        allowNull: false,
+        unique: true,
+        type:   Sequelize.STRING
+      },
+      password_hash:{
+        allowNull: false,
+        type:   Sequelize.STRING
+      },
+      salt: {
+        allowNull: false,
+        type:  Sequelize.STRING
+      },
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    }).then(() => queryInterface.addConstraint('users', {
+      fields: ['user_type'],
+      type: 'FOREIGN KEY',
+      name: 'FK_userType_user', // useful if using queryInterface.removeConstraint
+      references: {
+        table: 'user_types',
+        field: 'id'
+        },
+      onDelete: 'no action',
+      onUpdate: 'no action',
+    }));
   },
+
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('user_types');
+    /**
+     * Add reverting commands here.
+     *
+     * Example:
+     * await queryInterface.dropTable('users');
+     */
+     await queryInterface.dropTable('users');
   }
 };
+

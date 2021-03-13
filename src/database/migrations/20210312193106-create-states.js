@@ -14,15 +14,25 @@ module.exports = {
       country_id: {
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
-    });
+    }).then(() => queryInterface.addConstraint('states', {
+      fields: ['country_id'],
+      type: 'FOREIGN KEY',
+      name: 'FK_statesCountryId_countries', // useful if using queryInterface.removeConstraint
+      references: {
+        table: 'countries',
+        field: 'id'
+        },
+      onDelete: 'no action',
+      onUpdate: 'no action',
+    }));
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('states');

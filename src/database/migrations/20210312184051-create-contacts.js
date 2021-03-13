@@ -9,19 +9,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       contact_type: {
-        type: Sequelize.INTEGER
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        defaultValue: 1
       },
       contact_value: {
         type: Sequelize.STRING
       },
       user_id: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE
       }
@@ -35,7 +38,17 @@ module.exports = {
         },
       onDelete: 'no action',
       onUpdate: 'no action',
-    }));;
+    })).then(() => queryInterface.addConstraint('contacts', {
+      fields: ['contact_type'],
+      type: 'FOREIGN KEY',
+      name: 'FK_contactType_contact', // useful if using queryInterface.removeConstraint
+      references: {
+        table: 'contact_types',
+        field: 'id'
+        },
+      onDelete: 'no action',
+      onUpdate: 'no action',
+    }));
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('contacts');

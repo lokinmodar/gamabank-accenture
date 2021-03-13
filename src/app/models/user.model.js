@@ -27,8 +27,10 @@ class User extends Model {
       // assíncrono
 
        if (user.password) {
-         const { encryptedPassword } = await encryptPassword(user.password, user.salt);
-         const { salt } = await encryptPassword(user.password, user.salt);
+
+        console.log(user.password);
+         const { encryptedPassword, salt } = await encryptPassword(user.password, user.salt);
+         console.log(encryptedPassword);
         user.password_hash = encryptedPassword;
         user.salt = salt;
         // geração do hash de senha - usando força 8 (n de rounds)
@@ -39,7 +41,7 @@ class User extends Model {
 
   // criando método que associa models
  static associate(models) {
-    this.belongsTo(models.User_types, { foreignKey: 'id', as: 'user_typen' });
+    this.belongsTo(models.User_types, { foreignKey: 'id', as: 'user_type' });
   }
 
   checkPassword(password) {
