@@ -50,6 +50,57 @@ class UserController {
     });
   }
 
+  async listUser(req, res) {
+    const schema = Yup.object().shape({
+      user_email: Yup.string().email(),
+      cpf: Yup.string(),
+
+
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res
+        .status(400)
+        .json({ error: 'Request fields validation failed.' });
+    }
+
+
+    const userByMail = await User.findOne({ where: { user_email: req.body.user_email } });
+
+    const userByCPF = await User.findOne({ where: { user_email: req.body.user_email } });
+
+    if (!userByMail || !userByCPF) {
+      // checando se um usuário com o email cadastrado já existe
+      return res.status(400).json({ error: 'User not found.' });
+    }
+
+    return res.json({
+      id,
+      full_name,
+      user_name,
+      user_email,
+      user_type,
+      gender,
+      rg,
+      cpf
+    });
+
+
+  }
+
+  async listAllUsers(req, res) {
+    const allUsers = await User.findAll();
+
+    if (!allUsers) {
+      // checando se um usuário com o email cadastrado já existe
+      return res.status(400).json({ error: 'No users found.' });
+    }
+
+    return res.json(allUsers);
+
+
+  }
+
   async update(req, res) {
     const schema = Yup.object().shape({
       user_name: Yup.string(),
@@ -69,7 +120,7 @@ class UserController {
     if (!(await schema.isValid(req.body))) {
       return res
         .status(400)
-        .json({ error: 'Request fields validation failed.' });
+        .json({ error: 'PUT Request fields validation failed.' });
     }
 
     const { email, oldPassword } = req.body;
@@ -86,7 +137,7 @@ class UserController {
       }
     }
 
-    if (oldPassword && !(await user.checkPassword(oldPassword))) {
+    if (oldPassword && !(await user.checkPassword(oldPassword, salt))) {
       // checando se a senha informada está correta
       return res.status(401).json({ error: 'Incorrect old password.' });
     }

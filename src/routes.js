@@ -14,6 +14,10 @@ routes.use(authMiddleware); // como está definido aqui, somente rotas que estiv
 
 routes.put('/users', UserController.update);
 
+routes.get('/users', UserController.listUser);
+
+routes.get('/users', UserController.listAllUsers);
+
 
 
 export default routes;

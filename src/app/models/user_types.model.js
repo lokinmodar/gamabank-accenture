@@ -25,7 +25,7 @@ class User_types extends Model {
 
   // criando método que associa models
  static associate(models) {
-    //this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
+    //this.belongsTo(models., { foreignKey: ''?'_id', as: 'campo' });
   }
 
 }

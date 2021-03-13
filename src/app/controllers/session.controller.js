@@ -10,7 +10,7 @@ class SessionController {
       email: Yup.string()
         .email()
         .required(),
-      password: Yup.string().required(),
+      password: Yup.string().required()
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -28,7 +28,7 @@ class SessionController {
       return res.status(401).json({ error: 'User not found.' });
     }
 
-    if (!(await user.checkPassword(password))) {
+    if (!(await user.checkPassword(password, user.salt))) {
       // checa se a senha está correta
       return res.status(401).json({ error: 'Incorrect password.' });
     }

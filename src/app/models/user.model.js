@@ -1,6 +1,6 @@
 import Sequelize, { Model } from 'sequelize';
 // rotinas de criptografia
-import { encryptPassword } from '../../helpers/crypto.helper';
+import { encryptPassword, comparePassword } from '../../helpers/crypto.helper';
 
 class User extends Model {
   static init(sequelize) {
@@ -44,9 +44,10 @@ class User extends Model {
     this.belongsTo(models.User_types, { foreignKey: 'id', as: 'user_type' });
   }
 
-  checkPassword(password) {
+  checkPassword(password, salt) {
+    console.log()
     // compara informação inserida na senha de login com hash do cadastro
-    return bcrypt.compare(password, this.password_hash);
+    return comparePassword(password, salt, this.password_hash);
   }
 }
 
