@@ -12,12 +12,10 @@ routes.post('/sessions', SessionController.store);
 
 routes.use(authMiddleware); // como está definido aqui, somente rotas que estiverem abaixo dele no código irão usar esse middleware
 
-routes.put('/users', UserController.update);
+// routes.put('/users', UserController.update);
 
-//routes.get('/users', UserController.listUser);
+// routes.get('/users', UserController.listUser);
 
-//routes.get('/users', UserController.listAllUsers);
-
-
+// routes.get('/users', UserController.listAllUsers);
 
 export default routes;
