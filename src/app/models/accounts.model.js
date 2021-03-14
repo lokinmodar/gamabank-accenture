@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       user_id: DataTypes.INTEGER,
       balance: DataTypes.DECIMAL,
       credit_limit: DataTypes.DECIMAL,
-      card_due_date: DataTypes.DATE,
+      card_due_day: DataTypes.INTEGER,
     },
     {
       sequelize,

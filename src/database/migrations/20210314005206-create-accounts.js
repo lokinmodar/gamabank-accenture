@@ -17,9 +17,9 @@ module.exports = {
         credit_limit: {
           type: Sequelize.DECIMAL,
         },
-        card_due_date: {
-          // data de vencimento da fatura do cartão
-          type: Sequelize.DATE,
+        card_due_day: {
+          // dia de vencimento da fatura do cartão
+          type: Sequelize.INTEGER,
         },
         created_at: {
           allowNull: false,
