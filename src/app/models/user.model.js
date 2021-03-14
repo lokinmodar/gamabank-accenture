@@ -14,8 +14,7 @@ class User extends Model {
         password_hash: Sequelize.STRING,
         salt: Sequelize.STRING,
         cpf: Sequelize.STRING,
-        telephone: Sequelize.STRING
-
+        telephone: Sequelize.STRING,
       },
       {
         // configurações adicionais do sequelize
@@ -43,7 +42,7 @@ class User extends Model {
 
   // criando método que associa models
   static associate(models) {
-    //this.belongsTo(models.User_types, { foreignKey: 'id', as: 'user_type' });
+    this.hasMany(models.Session);
   }
 
   checkPassword(password, salt) {

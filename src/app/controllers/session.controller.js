@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import * as Yup from 'yup';
 
 import User from '../models/user.model';
-import Sessions from '../models/sessions.model';
+import Session from '../models/session.model';
 import authConfig from '../../configs/auth'; // gerar arquivo exportando chave secreta e data de expiração
 
 class SessionController {
@@ -21,6 +21,7 @@ class SessionController {
     const { user_email, password } = req.body;
 
     const user = await User.findOne({ where: { user_email } });
+    console.log(user);
 
     if (!user) {
       // checa se usuário do email fornecido está cadastrado
@@ -33,12 +34,15 @@ class SessionController {
     }
 
     //
-    const { user_id } = user;
-    const token = await jwt.sign({ user_id }, authConfig.secret, {
+
+    const { id } = user;
+    const token = await jwt.sign({ id }, authConfig.secret, {
       expiresIn: authConfig.expiresIn,
     });
 
-    const createdSession = await Sessions.create({ user_id, token });
+    const sessionToCreate = { user_id: id, token };
+
+    const createdSession = await Session.create(sessionToCreate);
 
     return res.json({
       createdSession,

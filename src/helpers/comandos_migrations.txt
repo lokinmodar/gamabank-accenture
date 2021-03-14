@@ -1,4 +1,4 @@
-Comando para criação de model+migration
+/* Comandos para criação de model+migration
 
 - Usar nomes em minúsculo
 
@@ -13,3 +13,9 @@ npx sequelize-cli model:generate --name transactions  --attributes account_id:in
 
 
 npx sequelize-cli model:generate --name sessions  --attributes user_id:integer,token:string
+
+*/
+
+// Com as migrations na pasta, rodar o comando abaixo para criar as tabelas no banco
+
+// npx sequelize-cli db:migrate

@@ -6,12 +6,10 @@ import databaseConfig from '../configs/database'; // configurações da base de 
 
 // importando os Models
 import User from '../app/models/user.model';
-import Sessions from '../app/models/sessions.model';
-
-
+import Session from '../app/models/session.model';
 
 // Criando um Array com todos os models da aplicação
-const models = [User, Sessions];
+const models = [User, Session];
 
 class Database {
   constructor() {
@@ -24,12 +22,13 @@ class Database {
 
     // Depois da conexão com o banco de dados, percorrer o array de models
     models
-      .map(model => model.init(this.connection))
+      .map((model) => model.init(this.connection))
 
       // Associações
-      .map(model => model.associate && model.associate(this.connection.models));
+      .map(
+        (model) => model.associate && model.associate(this.connection.models)
+      );
   }
-
 }
 
 export default new Database();
