@@ -1,7 +1,7 @@
 import User from '../models/user.model';
 import ValidarCPF from '../../helpers/validateCPF.helper';
 import userDto from '../models/dto/user.dto';
-import checkUserExists from '../services/checkuserexists.service';
+import UserExists from '../services/checkuserexists.service';
 
 class UserController {
   async store(req, res) {
@@ -20,7 +20,7 @@ class UserController {
       return res.status(400).json({ error: 'Invalid CPF.' });
     }
 
-    if (await checkUserExists(req.body.user_email, req.body.cpf)) {
+    if (await UserExists.checkUserExists(req.body.user_email, req.body.cpf)) {
       return res.status(400).json({ error: 'User already exists.' });
     }
 

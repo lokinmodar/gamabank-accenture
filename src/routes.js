@@ -12,6 +12,7 @@ routes.post('/sessions', SessionController.store); // login
 
 routes.use(authMiddleware); // como está definido aqui, somente rotas que estiverem abaixo dele no código irão usar esse middleware
 
+// TODO: Verificar se não há necessidade de criar Conta corrente separando do User
 routes.post('/accounts', AccountController.store); // criação de conta bancária
 
 export default routes;

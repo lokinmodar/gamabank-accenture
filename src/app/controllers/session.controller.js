@@ -21,7 +21,6 @@ class SessionController {
     const { user_email, password } = req.body;
 
     const user = await User.findOne({ where: { user_email } });
-    console.log(user);
 
     if (!user) {
       // checa se usuário do email fornecido está cadastrado
