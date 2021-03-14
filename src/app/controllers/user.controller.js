@@ -8,6 +8,7 @@ class UserController {
     // validações do Schema
     const schema = userDto;
 
+    // TODO: Transformar em função helper
     if (!(await schema.isValid(req.body))) {
       return res
         .status(400)
