@@ -3,10 +3,13 @@ Comando para criação de model+migration
 - Usar nomes em minúsculo
 
 
+npx sequelize-cli model:generate --name accounts  --attributes user_id:integer,balance:decimal,credit_limit:decimal,card_due_date:date
+
+npx sequelize-cli model:generate --name transaction_types  --attributes transaction_description:string
+
+npx sequelize-cli model:generate --name banks  --attributes bank_name:string
+
+npx sequelize-cli model:generate --name transactions  --attributes account_id:integer,transaction_type_id:integer,transaction_value:decimal,target_bank_id:integer,target_user_name:string,target_cpf:string,transaction_due_date:date,transaction_pay_date:date
+
+
 npx sequelize-cli model:generate --name sessions  --attributes user_id:integer,token:string
-
-npx sequelize-cli model:generate --name address  --attributes user_id:integer,address_description:string,complemento:string,zip_code:string,neighboorhood:string,city_id:integer,state_id:integer,country_id:integer
-
-npx sequelize-cli model:generate --name sessions  --attributes user_id:integer,token:string
-
-npx sequelize-cli model:generate --name address  --attributes user_id:integer,address_description:string,complemento:string,zip_code:string,neighboorhood:string,city_id:integer,state_id:integer,country_id:integer
