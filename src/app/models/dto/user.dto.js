@@ -10,7 +10,7 @@ const userDto = Yup.object()
       .min(8)
       .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-        'Password must contain at least 8 characters, one uppercase, one number and one special case character!'
+        'Password must contain at least 8 characters, one lowercase letter, one uppercase letter, one number and one special character!'
       ),
     telephone: Yup.string(),
     cpf: Yup.string().required(),

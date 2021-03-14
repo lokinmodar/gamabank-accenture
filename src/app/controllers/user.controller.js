@@ -8,14 +8,14 @@ class UserController {
     // validações do Schema
     const schema = userDto;
 
-    // TODO: Transformar em função helper
-    if (!(await schema.isValid(req.body))) {
-      return res
-        .status(400)
-        .json({ error: 'Request fields validation failed.' });
+    // TODO: Transformar em função helper ou service
+    try {
+      await schema.validate(req.body);
+    } catch (error) {
+      return res.status(400).json({ error: error.errors[0] });
     }
-    // TODO: checagem de validade do cpf
 
+    // TODO: checagem de validade do cpf
     if (!ValidarCPF(req.body.cpf)) {
       return res.status(400).json({ error: 'Invalid CPF.' });
     }
