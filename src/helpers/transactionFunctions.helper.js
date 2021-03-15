@@ -1,48 +1,48 @@
-const cliente = {
-  nome: 'diego',
-  conta: '0025-2',
-  saldo: 0,
+const customer = {
+  name: 'diego',
+  account: '0025-2',
+  balance: 0,
 };
 
-const cliente2 = {
-  nome: 'mario',
-  conta: '0025-1',
-  saldo: 1000,
+const customer2 = {
+  name: 'mario',
+  account: '0025-1',
+  balance: 1000,
 };
 
-function sacar(valor) {
-  this.saldo = 1000;
-  if (saldo < valor) {
-    console.log(`${valor} excede o limite disponível.`);
+function withdraw(value) {
+  this.balance = 1000;
+  if (balance < value) {
+    console.log(`${value} excede o limite disponível.`);
   }
 }
 
-const deposito = function (valorDepositado) {
-  if (valorDepositado <= 0) {
-    console.log('O valor depositado tem que ser maior que zero.');
+const deposit = function (depositValue) {
+  if (depositValue <= 0) {
+    console.log('O value depositado tem que ser maior que zero.');
   } else {
-    cliente.saldo += valorDepositado;
-    console.log(cliente.saldo);
+    customer.balance += depositValue;
+    console.log(customer.balance);
   }
 };
 
-const debito = function (valor) {
-  if (valor > cliente.saldo) {
-    console.log('Saldo insuficiente.');
+const debit = function (value) {
+  if (value > customer.balance) {
+    console.log('balance insuficiente.');
   } else {
-    cliente.saldo -= valor;
-    console.log(cliente.saldo);
+    customer.balance -= value;
+    console.log(customer.balance);
   }
 };
 
-const consultarSaldo = function () {
-  console.log(`Saldo: ${cliente.saldo}`);
+const consultarbalance = function () {
+  console.log(`balance: ${customer.balance}`);
 };
 
-const transferencia = function (valorTransferido) {
-  cliente2.saldo -= valorTransferido;
-  cliente.saldo += valorTransferido;
+const transfer = function (transferredValue) {
+  customer2.balance -= transferredValue;
+  customer.balance += transferredValue;
   console.log(
-    `Transferido ${valorTransferido} para a conta de ${cliente.nome} com sucesso.`
+    `Transferido ${transferredValue} para a account de ${customer.name} com sucesso.`
   );
 };
