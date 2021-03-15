@@ -11,7 +11,7 @@ O projeto Gama Bank foi desenvolvido durante o curso da Gama oferecido pela Acce
 ## 👨‍💻Integrantes
 
 
----
+
 
 #### Bruno Ayres
 
