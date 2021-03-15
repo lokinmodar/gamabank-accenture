@@ -19,3 +19,29 @@ npx sequelize-cli model:generate --name sessions  --attributes user_id:integer,t
 // Com as migrations na pasta, rodar o comando abaixo para criar as tabelas no banco
 
 // npx sequelize-cli db:migrate
+
+
+
+
+
+
+
+
+----------
+
+Created!
+You have successfully created a new database. The details are below.
+
+Username: OAcqmvSuoX
+
+Database name: OAcqmvSuoX
+
+Password: QiyUCRV3V9
+
+Server: remotemysql.com
+
+Port: 3306
+
+These are the username and password to log in to your database and phpMyAdmin
+
+Make sure you keep your password secure. Ensure you keep back ups of your database in case it gets deleted.

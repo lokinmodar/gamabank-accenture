@@ -6,7 +6,10 @@ import UserController from './app/controllers/user.controller';
 import authMiddleware from './app/middlewares/auth.middleware';
 
 const routes = new Router();
+
+// TODO: Fazer rota "/" do tipo get com mensagem avisando que é uma API rest com URL do swagger quando publicado
 // Store - armazenar
+
 routes.post('/users', UserController.store); // criação de conta de usuário
 routes.post('/sessions', SessionController.store); // login
 
