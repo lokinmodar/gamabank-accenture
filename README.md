@@ -28,6 +28,10 @@ O projeto Gama Bank foi desenvolvido durante o curso da Gama oferecido pela Acce
 - [GitHub](https://github.com/debug-droid)
 - [LinkedIn](https://www.linkedin.com/in/diego-augusto-b957921a2/)
 
+#### Gabriel Chagas
+
+- [GitHub](https://github.com/GabrielChagas1)
+
 #### Glória Teodoro
 
 - [GitHub](https://github.com/gloriateodoro)
