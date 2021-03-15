@@ -3,7 +3,10 @@ import User from '../models/user.model';
 // TODO: Criar teste
 
 module.exports = {
-  checkUserExists: async (user_email, cpf) => {
+  checkUserExists: async (user_name, user_email, cpf) => {
+    const userWithUsernameExists = await User.findOne({
+      where: { user_name },
+    });
     const userWithEmailExists = await User.findOne({
       where: { user_email },
     });
@@ -11,8 +14,12 @@ module.exports = {
       where: { cpf },
     });
 
-    if (userWithEmailExists !== null || userWithCpfExists !== null) {
-      // checando se um usuário com o email ou cpf cadastrado já existe
+    if (
+      userWithUsernameExists !== null ||
+      userWithEmailExists !== null ||
+      userWithCpfExists !== null
+    ) {
+      // checando se um usuário com o user_name, email ou cpf cadastrado já existe
       return true;
     }
   },

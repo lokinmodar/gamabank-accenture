@@ -22,10 +22,17 @@ class UserController {
       return res.status(400).json({ error: 'Invalid CPF.' });
     }
 
-    if (await UserExists.checkUserExists(req.body.user_email, req.body.cpf)) {
+    if (
+      await UserExists.checkUserExists(
+        req.body.user_name,
+        req.body.user_email,
+        req.body.cpf
+      )
+    ) {
       return res.status(400).json({ error: 'User already exists.' });
     }
 
+    // salvamento no banco de dados
     const createdUser = await User.create(req.body); // passados os atributos no corpo da requisição em JSON
     createdUser.password = undefined;
     createdUser.password_hash = undefined;
