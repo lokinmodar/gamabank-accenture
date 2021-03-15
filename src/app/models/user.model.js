@@ -34,7 +34,7 @@ class User extends Model {
         // console.log(encryptedPassword);
         user.password_hash = encryptedPassword;
         user.salt = salt;
-        // geração do hash de senha - usando força 8 (n de rounds)
+        // geração do hash de senha
       }
     });
     return this;
@@ -46,7 +46,7 @@ class User extends Model {
   }
 
   checkPassword(password, salt) {
-    console.log();
+    // console.log();
     // compara informação inserida na senha de login com hash do cadastro
     return comparePassword(password, salt, this.password_hash);
   }

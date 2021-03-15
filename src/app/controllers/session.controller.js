@@ -1,43 +1,39 @@
 import jwt from 'jsonwebtoken';
-import * as Yup from 'yup';
 
-import User from '../models/user.model';
+import sessionDto from '../models/dto/session.dto';
 import Session from '../models/session.model';
-import authConfig from '../../configs/auth'; // gerar arquivo exportando chave secreta e data de expiração
+import authConfig from '../../configs/auth';
+import UserExists from '../services/checkuserexists.service';
+import sessionCreate from '../services/session.service';
+
+// gerar arquivo exportando chave secreta e data de expiração
 
 class SessionController {
   async store(req, res) {
-    const schema = Yup.object().shape({
-      user_email: Yup.string().email().required(),
-      password: Yup.string().required(),
-    });
+    const schema = sessionDto;
 
-    if (!(await schema.isValid(req.body))) {
-      return res
-        .status(400)
-        .json({ error: 'Email and/or password validation failed.' });
+    try {
+      await schema.validate(req.body); // chamada ao yup.validate pra validação do DTO(schema)
+    } catch (error) {
+      // extraindo de dentro do retorno do Yup o erro exato
+      return res.status(400).json({ error_1: error.errors[0] });
     }
-
-    const { user_email, password } = req.body;
-
-    const user = await User.findOne({ where: { user_email } });
+    // checando se usuário com e-mail informado existe
+    const user = await UserExists.userWithEmailExists(req.body.user_email);
 
     if (!user) {
       // checa se usuário do email fornecido está cadastrado
       return res.status(401).json({ error: 'User not found.' });
     }
 
-    if (!(await user.checkPassword(password, user.salt))) {
+    if (!(await user.checkPassword(req.body.password, user.salt))) {
       // checa se a senha está correta
       return res.status(401).json({ error: 'Incorrect password.' });
     }
 
-    //
-
     const { id } = user;
-    const token = await jwt.sign({ id }, authConfig.secret, {
-      expiresIn: authConfig.expiresIn,
-    });
+
+    const token = await sessionCreate.userSignIn(id);
 
     const sessionToCreate = { user_id: id, token };
 

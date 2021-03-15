@@ -1,5 +1,6 @@
 import accountDto from '../models/dto/accounts.dto';
 import UserExists from '../services/checkuserexists.service';
+import Account from '../models/account.model';
 
 // Como class pois precisamos sempre de uma nova instância
 class AccountController {
