@@ -14,8 +14,7 @@ import Sequelize, { Model } from 'sequelize';
           transaction_pay_date: DataTypes.DATE,
         },
         {
-          sequelize,
-          
+          sequelize,          
         }
         
       );
