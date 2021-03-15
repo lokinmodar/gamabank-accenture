@@ -70,14 +70,14 @@ O projeto Gama Bank foi desenvolvido durante o curso da Gama oferecido pela Acce
   <img src="https://media.tenor.com/images/63dc70b43a949617fdfa3447868d534d/tenor.gif" alt="Hulk Smart"/>
 </p>
 
-Nosso momento é de cada vez mais aprender sobre como administrar nosso patriminio pois como diz o ditado "não tá facil pra ninguém", não é mesmo ? Sendo assim, queremos começar não só querer cuidar do nosso dinheiro, mas do seu também. Criamos a Gama Bank para ser uma fintech diferente e que seja acima de tudo capaz de transformar a vida das pessoas e suas carreiras (sacoou?)
+Nosso momento é de cada vez mais aprender sobre como administrar nosso patrimônio pois como diz o ditado "não tá facil pra ninguém", não é mesmo ? Sendo assim, queremos começar não só querer cuidar do nosso dinheiro, mas do seu também. Criamos a Gama Bank para ser uma fintech diferente e que seja acima de tudo capaz de transformar a vida das pessoas e suas carreiras (sacoou?)
 
 ## Nosso time, seu projeto de vida !
 
-Ainda estamos em desenvolvimento e você juntamente com seu time deverão ser capazes de construir nosso MVP (Minimo Produto Viavel) e garantir que possamos disponibilizar para o time de frontend a implementação dessa solução, que para nós, será um divisor de aguas na sua carreira (sacoou?)
+Ainda estamos em desenvolvimento e você juntamente com seu time deverão ser capazes de construir nosso MVP (Mínimo Produto Viável) e garantir que possamos disponibilizar para o time de frontend a implementação dessa solução, que para nós, será um divisor de águas na sua carreira (sacoou?)
 
 ## Objetivo
-Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecnologias que aprendemos durante o curso (você é livre para substitui-lás mas fica por sua conta e risco, ok ?) e disponibiliza-las em um servidor em cloud com acesso irrestrito por zona ou por horario.
+Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecnologias que aprendemos durante o curso (você é livre para substituí-las mas fica por sua conta e risco, ok ?) e disponibiliza-las em um servidor em cloud com acesso irrestrito por zona ou por horario.
 
 
 ## Artefatos e entregaveis
@@ -97,9 +97,9 @@ Construir uma aplicação web, utilizando Node.js e todas as bibliotecas e tecno
 
 
 ## Critérios de aceite
-1. Entregou a API Backend devidade documentada 
+1. Entregou a API Backend devidamente documentada 
 2. Cadastrou usúarios com as respectivas contas
-3. Realizou transferencia entre conta existes e/ou inexistentes
+3. Realizou transferencia entre conta existentes e/ou inexistentes
 4. Realizou lançamentos de compras feitas com crédito e débito
 5. Realizou envio de email confirmando o lançamento de crédito ou débito para o email do usuario
 6. Exibiu o extrato bancário e fatura de crédito
