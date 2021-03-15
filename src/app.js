@@ -2,9 +2,9 @@ import 'dotenv/config';
 
 import express from 'express';
 import 'express-async-errors';
-//import path from 'path';
-
+import swaggerUi from 'swagger-ui-express';
 import Youch from 'youch'; // trata mensagens de erro
+import swaggerDocument from './swagger/swagger.json';
 
 import routes from './routes';
 
@@ -24,7 +24,12 @@ class App {
 
   middlewares() {
     this.server.use(express.json());
-
+    // removed for brevity
+    this.server.use(
+      '/documentation',
+      swaggerUi.serve,
+      swaggerUi.setup(swaggerDocument)
+    );
   }
 
   routes() {

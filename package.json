@@ -41,6 +41,8 @@
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
     "sequelize": "^6.5.0",
+    "swagger-jsdoc": "^7.0.0-rc.6",
+    "swagger-ui-express": "^4.1.6",
     "youch": "^2.1.1",
     "yup": "^0.32.9"
   }
