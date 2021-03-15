@@ -38,9 +38,26 @@ O projeto Gama Bank foi desenvolvido durante o curso da Gama oferecido pela Acce
 - [GitHub](https://github.com/rafaelmindicelo)
 - [LinkedIn](https://www.linkedin.com/in/rafael-mindicelo-2171389b/)
 
+---
 
+## 🚀 Tecnologias Utilizadas
+
+- Javascript
+- Node.js
+
+### Dependências
+
+- Bcrypt
+- Mysql2
+- Yup
+- Bcrypt
+- JWT
+- Cross-env
+- Chai
+- Mocha
 
 ---
+
 
 
 # 🏦 Gama Bank 💲 Verde de dinheiro
