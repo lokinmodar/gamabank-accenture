@@ -1,24 +1,16 @@
-const { Model } = require('sequelize');
-
-module.exports = (sequelize, DataTypes) => {
-  class TransactionTypes extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+import Sequelize, { Model } from 'sequelize';
+class TransactionTypes extends Model {
+  
+  static init(sequelize) {
+    super.init(
+      {
+        transaction_description: DataTypes.STRING,
+      },
+      {
+        sequelize,          
+      }
+    );
+    return this;
   }
-  TransactionTypes.init(
-    {
-      transaction_description: DataTypes.STRING,
-    },
-    {
-      sequelize,
-      modelName: 'TransactionTypes',
-    }
-  );
-  return TransactionTypes;
-};
+}
+export default TransactionTypes;
