@@ -38,7 +38,7 @@ O projeto Gama Bank foi desenvolvido durante o curso da Gama oferecido pela Acce
 - [GitHub](https://github.com/rafaelmindicelo)
 - [LinkedIn](https://www.linkedin.com/in/rafael-mindicelo-2171389b/)
 
----
+
 
 ## 🚀 Tecnologias Utilizadas
 
