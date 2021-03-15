@@ -1,45 +1,43 @@
 # 🏦 Gama Bank 💲 Verde de Dinheiro
 
-# 🎯 Objetivo do Projeto
+## 🎯 Objetivo do Projeto
 
 Facilitar a administração do dinheiro por meio de extratos, faturas, transações e outras atividades indispensáveis aos serviços financeiros.
 
-# 📃 Sobre
+## 📃 Sobre
 
 O projeto Gama Bank foi desenvolvido durante o curso da Gama oferecido pela Accenture aos candidatos selecionados pela empresa. Durante a execução do projeto, a equipe colocou em prática o uso do MySQL, fez a integração dele por meio do ORM Sequelize e investiu em uma arquitetura detalhada e compreensível.
 
-👨‍💻Integrantes
+## 👨‍💻Integrantes
+
 
 ---
 
----
-
-### Bruno Ayres
+#### Bruno Ayres
 
 - [GitHub](https://github.com/bjsec)
 - [LinkedIn](https://www.linkedin.com/in/bruno-jorge-sec/)
 
-### Dante Souza
+#### Dante Souza
 
 - [GitHub](https://github.com/lokinmodar)
 - [LinkedIn](https://www.linkedin.com/in/dante-souza-e-souza/)
 
-### Diego Augusto
+#### Diego Augusto
 
 - [GitHub](https://github.com/debug-droid)
 - [LinkedIn](https://www.linkedin.com/in/diego-augusto-b957921a2/)
 
-### Glória Teodoro
+#### Glória Teodoro
 
 - [GitHub](https://github.com/gloriateodoro)
 - [LinkedIn](https://www.linkedin.com/in/gl%C3%B3ria-teodoro-8910331b7/)
 
-### Rafael Mindicelo
+#### Rafael Mindicelo
 
 - [GitHub](https://github.com/rafaelmindicelo)
 - [LinkedIn](https://www.linkedin.com/in/rafael-mindicelo-2171389b/)
 
-#
 
 
 ---
