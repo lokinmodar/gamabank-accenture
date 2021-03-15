@@ -9,10 +9,12 @@ class UserController {
     const schema = userDto;
 
     // TODO: Transformar em função helper ou service
+    // TODO: Checar herarquia dos erros de verificação no YUP
     try {
-      await schema.validate(req.body);
+      await schema.validate(req.body); // chamada ao yup.validate pra validação do DTO(schema)
     } catch (error) {
-      return res.status(400).json({ error: error.errors[0] });
+      // extraindo de dentro do retorno do Yup o erro exato
+      return res.status(400).json({ error_1: error.errors[0] });
     }
 
     // TODO: checagem de validade do cpf

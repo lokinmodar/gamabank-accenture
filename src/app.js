@@ -24,7 +24,7 @@ class App {
 
   middlewares() {
     this.server.use(express.json());
-    // removed for brevity
+    // Conectando o swagger
     this.server.use(
       '/documentation',
       swaggerUi.serve,
