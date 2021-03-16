@@ -1,6 +1,7 @@
 import accountDto from '../models/dto/accounts.dto';
 import UserExists from '../services/checkuserexists.service';
 import Account from '../models/account.model';
+import verifyCardDueDay from '../../helpers/verifyCardDueDay.helper'
 
 // Como class pois precisamos sempre de uma nova instância
 class AccountController {
@@ -18,6 +19,11 @@ class AccountController {
     if (!(await UserExists.userWithIdExists(req.body.user_id))) {
       return res.status(400).json({ error: 'User does not exist.' });
     }
+
+    if (!verifyCardDueDay(req.body.card_due_day)){
+      return res.status(400).json({ error: 'Card expiration days allowed: 5, 10, 15, 20, 25' });
+    }
+
     // Retono de resposta quando a rota é chamada:
     const createdAccount = await Account.create(req.body);
 

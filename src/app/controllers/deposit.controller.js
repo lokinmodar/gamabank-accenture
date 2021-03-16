@@ -2,7 +2,7 @@ import validateCPF from '../../helpers/validateCPF.helper';
 import depositDTO from '../models/dto/deposit.dto';
 
 class DepositController {
-  async sotre(req, res) {
+  async store(req, res) {
     const schema = depositDTO;
 
     try {

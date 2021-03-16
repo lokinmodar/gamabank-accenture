@@ -7,8 +7,8 @@ const accountDto = Yup.object()
     user_id: Yup.number().required(),
     balance: Yup.number().required(),
     credit_limit: Yup.number().required(),
-    card_due_day: Yup.number().required().min(1).max(31),
-    // checa se o dia de vencimento da fatura está entre 1 e 31
+    card_due_day: Yup.number().required(),
+    
   })
   .label('AccountCreationRequestDTO');
 
