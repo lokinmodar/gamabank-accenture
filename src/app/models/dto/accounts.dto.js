@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
 
-// TODO: Verificar regex para aceitar só números múltiplos de 5 de 1 a 25
 // validando a requisição
 const accountDto = Yup.object()
   .shape({
