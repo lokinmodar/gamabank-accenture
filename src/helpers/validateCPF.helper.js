@@ -34,4 +34,4 @@ const validateCpf = async (cpf) => {
   return true;
 };
 
-export default validateCpf;
+module.exports = validateCpf;

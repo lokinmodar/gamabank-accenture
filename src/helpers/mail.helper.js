@@ -39,4 +39,4 @@ const sendmail = async (from, to, subject, text, htmlTemplate) => {
   return result;
 };
 
-export default { sendmail };
+module.exports = { sendmail };

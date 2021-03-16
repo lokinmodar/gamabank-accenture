@@ -14,4 +14,4 @@ const sendCongratulationsEmail = async () => {
     .catch((error) => console.error(error));
 };
 
-export default { sendCongratulationsEmail };
+module.exports = { sendCongratulationsEmail };

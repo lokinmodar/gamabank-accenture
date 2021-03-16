@@ -2,7 +2,7 @@ require('dotenv/config');
 
 // definindo parâmetros de acesso à base de dados
 
-export default {
+module.exports = {
   dialect: 'mysql',
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,

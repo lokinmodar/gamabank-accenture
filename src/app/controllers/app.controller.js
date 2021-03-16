@@ -12,4 +12,4 @@ const sendMail = (request, h) => {
   };
 };
 
-export default { status, sendMail };
+module.exports = { status, sendMail };

@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 
-export default {
+module.exports = {
   encryptPassword: async (password, salt) => {
     if (!salt) salt = await bcrypt.genSalt();
     return {

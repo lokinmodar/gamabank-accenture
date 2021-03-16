@@ -1,15 +1,13 @@
-import Account from '../models/account.model'
+import Account from '../models/account.model';
 
 module.exports = {
+  accountWithIdExists: async (id) => {
+    const accountWithId = await Account.findOne({
+      where: { id },
+    });
 
-    accountWithIdExists: async (id) => {
-            
-        const accountWithId = await Account.findOne({
-          where: { id },
-        });
-        
-        if (accountWithId !== null) {          
-          return true;
-        }
-      }
-}
+    if (accountWithId !== null) {
+      return true;
+    }
+  },
+};

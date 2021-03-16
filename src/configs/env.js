@@ -10,7 +10,7 @@ dotenv.config({
       : '.env',
 });
 
-export default {
+module.exports = {
   env: process.env.NODE_ENV,
   secret: process.env.APP_SECRET, // TOKEN JWT
   salt: process.env.SALT,
