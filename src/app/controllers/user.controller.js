@@ -20,7 +20,7 @@ class UserController {
     }
 
     // TODO: checagem de validade do cpf
-    if (!ValidarCPF(req.body.cpf)) {
+    if (!(await ValidarCPF(req.body.cpf))) {
       return res.status(400).json({ error: 'Invalid CPF.' });
     }
 
@@ -46,6 +46,7 @@ class UserController {
     createdUser.password_hash = undefined;
     createdUser.salt = undefined;
 
+    // criando objeto para adicionar nova conta corrente:
     const accountToCreate = {
       user_id: createdUser.id,
       balance: 0,
