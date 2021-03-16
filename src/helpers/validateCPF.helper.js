@@ -1,4 +1,4 @@
-const validateCpf = (cpf) => {
+const validateCpf = async (cpf) => {
   if (typeof cpf !== 'string') return false;
   cpf = cpf.replace(/[\s.-]*/gim, '');
   if (

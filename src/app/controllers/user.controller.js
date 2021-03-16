@@ -32,6 +32,7 @@ class UserController {
     ) {
       return res.status(400).json({ error: 'User already exists.' });
     }
+  
 
     // salvamento no banco de dados
     const createdUser = await User.create(req.body); // passados os atributos no corpo da requisição em JSON
