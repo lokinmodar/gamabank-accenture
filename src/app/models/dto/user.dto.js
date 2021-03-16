@@ -14,6 +14,7 @@ const userDto = Yup.object()
       .required(),
     telephone: Yup.string(),
     cpf: Yup.string().required(),
+    card_due_day: Yup.string().required(),
   })
   .label('UserCreationRequestDTO');
 
