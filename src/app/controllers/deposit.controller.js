@@ -2,11 +2,11 @@ import validateCPF from '../../helpers/validateCPF.helper';
 import depositDTO from '../models/dto/deposit.dto';
 
 class DepositController {
-  async sotre(req, res) {
+  async store(req, res) {
     const schema = depositDTO;
 
     try {
-      await schema.validate(red.body);
+      await schema.validate(req.body);
     } catch (error) {
       return res.status(400).json({ error_1: error.errors[0] });
     }

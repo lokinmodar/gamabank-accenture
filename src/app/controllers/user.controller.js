@@ -2,6 +2,7 @@ import User from '../models/user.model';
 import ValidarCPF from '../../helpers/validateCPF.helper';
 import userDto from '../models/dto/user.dto';
 import UserExists from '../services/checkuserexists.service';
+import Account from '../models/account.model';
 
 class UserController {
   async store(req, res) {
@@ -38,8 +39,19 @@ class UserController {
     createdUser.password_hash = undefined;
     createdUser.salt = undefined;
 
+    const accountToCreate = {
+      user_id: createdUser.id,
+      balance: 0,
+      credit_limit: 200,
+      card_due_day: 25,
+    };
+
+    const createdAccount = await Account.create(accountToCreate);
+    createdAccount.UserId = undefined;
+
     return res.json({
       createdUser,
+      createdAccount,
     });
   }
 }
