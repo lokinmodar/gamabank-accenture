@@ -1,13 +1,13 @@
 import Sequelize, { Model } from 'sequelize';
+
 class TransactionTypes extends Model {
-  
   static init(sequelize) {
     super.init(
       {
-        transaction_description: DataTypes.STRING,
+        transaction_description: Sequelize.STRING,
       },
       {
-        sequelize,          
+        sequelize,
       }
     );
     return this;

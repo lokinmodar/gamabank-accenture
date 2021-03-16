@@ -19,7 +19,11 @@ class AccountController {
       return res.status(400).json({ error: 'User does not exist.' });
     }
     // Retono de resposta quando a rota é chamada:
-    return res.status(200).json({ ok: 'deu tudo certo' });
+    const createdAccount = await Account.create(req.body);
+    console.log(createdAccount); // passados os atributos no corpo da requisição em JSON
+    createdAccount.UserId = undefined;
+
+    return res.status(200).json({ createdAccount });
   }
 }
 

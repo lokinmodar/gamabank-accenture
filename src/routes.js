@@ -12,10 +12,16 @@ const routes = new Router();
 
 routes.post('/users', UserController.store); // criação de conta de usuário
 routes.post('/sessions', SessionController.store); // login
+// TODO: criação da lógica para rotas novas
+routes.post('/externaldeposit');
 
 routes.use(authMiddleware); // como está definido aqui, somente rotas que estiverem abaixo dele no código irão usar esse middleware
 
-// TODO: Verificar se não há necessidade de criar Conta corrente separando do User
 routes.post('/accounts', AccountController.store); // criação de conta bancária
+
+routes.post('/accountdebit');
+routes.post('/carddebit');
+routes.post('/internaltransfer');
+routes.post('/cardpayment');
 
 export default routes;

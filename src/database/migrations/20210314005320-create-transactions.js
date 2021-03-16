@@ -17,6 +17,9 @@ module.exports = {
         transaction_value: {
           type: Sequelize.DECIMAL,
         },
+        incoming_cpf: {
+          type: Sequelize.STRING,
+        },
         target_bank_id: {
           // código do banco
           type: Sequelize.INTEGER,
@@ -24,6 +27,10 @@ module.exports = {
         target_user_name: {
           // user de destino
           type: Sequelize.STRING,
+        },
+        target_account_id: {
+          // cpf de destino
+          type: Sequelize.INTEGER,
         },
         target_cpf: {
           // cpf de destino

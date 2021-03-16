@@ -43,6 +43,7 @@ class User extends Model {
   // criando método que associa models
   static associate(models) {
     this.hasMany(models.Session);
+    this.hasMany(models.Account);
   }
 
   checkPassword(password, salt) {

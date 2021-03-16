@@ -1,8 +1,5 @@
-import jwt from 'jsonwebtoken';
-
 import sessionDto from '../models/dto/session.dto';
 import Session from '../models/session.model';
-import authConfig from '../../configs/auth';
 import UserExists from '../services/checkuserexists.service';
 import sessionCreate from '../services/session.service';
 
@@ -38,6 +35,7 @@ class SessionController {
     const sessionToCreate = { user_id: id, token };
 
     const createdSession = await Session.create(sessionToCreate);
+    createdSession.UserId = undefined;
 
     return res.json({
       createdSession,
