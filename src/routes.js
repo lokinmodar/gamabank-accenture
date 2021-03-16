@@ -19,7 +19,7 @@ routes.use(authMiddleware); // como está definido aqui, somente rotas que estiv
 
 routes.post('/accounts', AccountController.store); // criação de conta bancária
 
-routes.post('/accountdebit');
+routes.post('/debitpurchase'); //despesa débito
 routes.post('/carddebit');
 routes.post('/internaltransfer');
 routes.post('/cardpayment');

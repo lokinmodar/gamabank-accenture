@@ -1,7 +1,7 @@
 import User from '../models/user.model';
 import ValidarCPF from '../../helpers/validateCPF.helper';
 import userDto from '../models/dto/user.dto';
-import UserExists from '../services/checkuserexists.service';
+import UserExists from '../services/checkUserExists.service';
 import Account from '../models/account.model';
 import verifyCardDueDay from '../../helpers/verifyCardDueDay.helper';
 
@@ -20,7 +20,7 @@ class UserController {
     }
 
     // TODO: checagem de validade do cpf
-    if (!ValidarCPF(req.body.cpf)) {
+    if (!(await ValidarCPF(req.body.cpf))) {
       return res.status(400).json({ error: 'Invalid CPF.' });
     }
 

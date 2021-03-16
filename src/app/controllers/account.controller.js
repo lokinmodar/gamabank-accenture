@@ -30,6 +30,7 @@ class AccountController {
     const createdAccount = await Account.create(req.body);
 
     createdAccount.UserId = undefined;
+
     // passados os atributos no corpo da requisição em JSON
     return res.status(200).json({ createdAccount });
   }
