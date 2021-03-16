@@ -20,9 +20,9 @@ class AccountController {
     }
     // Retono de resposta quando a rota é chamada:
     const createdAccount = await Account.create(req.body);
-    console.log(createdAccount); // passados os atributos no corpo da requisição em JSON
-    createdAccount.UserId = undefined;
 
+    createdAccount.UserId = undefined;
+    // passados os atributos no corpo da requisição em JSON
     return res.status(200).json({ createdAccount });
   }
 }

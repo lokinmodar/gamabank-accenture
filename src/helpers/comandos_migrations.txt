@@ -2,6 +2,8 @@
 
 - Usar nomes em minúsculo
 
+----> comando para inserir as seeds no banco npx sequelize-cli db:seed:all
+
 
 npx sequelize-cli model:generate --name accounts  --attributes user_id:integer,balance:decimal,credit_limit:decimal,card_due_date:date
 
