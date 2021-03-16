@@ -5,4 +5,4 @@ const verifyCardDueDay = async (day) => {
   return false;
 };
 
-module.exports = verifyCardDueDay;
+export default verifyCardDueDay;

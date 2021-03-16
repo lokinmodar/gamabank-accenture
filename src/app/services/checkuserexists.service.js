@@ -2,7 +2,7 @@ import User from '../models/user.model';
 
 // TODO: Criar teste
 
-module.exports = {
+export default {
   checkUserExists: async (user_name, user_email, cpf) => {
     const userWithUsernameExists = await User.findOne({
       where: { user_name },

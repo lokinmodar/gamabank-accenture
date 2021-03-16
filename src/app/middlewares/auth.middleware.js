@@ -13,9 +13,7 @@ export default async (req, res, next) => {
 
   if (!authHeader) {
     // checando se o token veio na requisição
-    return res
-      .status(401)
-      .json({ error: 'Token not present in the Request.' });
+    return res.status(401).json({ error: 'Token not present in the Request.' });
   }
 
   const [, token] = authHeader.split(' '); // captando somente o token em si da string 'Bearer'

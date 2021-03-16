@@ -8,7 +8,6 @@ const accountDto = Yup.object()
     balance: Yup.number().required(),
     credit_limit: Yup.number().required(),
     card_due_day: Yup.number().required(),
-    
   })
   .label('AccountCreationRequestDTO');
 
