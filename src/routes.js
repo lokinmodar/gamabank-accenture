@@ -4,6 +4,7 @@ import AccountController from './app/controllers/account.controller';
 import SessionController from './app/controllers/session.controller';
 import UserController from './app/controllers/user.controller';
 import authMiddleware from './app/middlewares/auth.middleware';
+import DepositController from './app/controllers/deposit.controller';
 
 const routes = new Router();
 
@@ -13,7 +14,7 @@ const routes = new Router();
 routes.post('/users', UserController.store); // criação de conta de usuário
 routes.post('/sessions', SessionController.store); // login
 // TODO: criação da lógica para rotas novas
-routes.post('/externaldeposit');
+routes.post('/externaldeposit', DepositController.store);
 
 routes.use(authMiddleware); // como está definido aqui, somente rotas que estiverem abaixo dele no código irão usar esse middleware
 
