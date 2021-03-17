@@ -1,8 +1,8 @@
 import validateCPF from '../../helpers/validateCPF.helper';
 import depositDTO from '../models/dto/deposit.dto';
 import accountService from '../services/account.service';
-import { checkValueNotNegative } from '../services/deposit.service';
-import { accountBalance } from '../services/accountBalance.service';
+import { checkValueNotNegative } from '../services/checkTransactionValue.service';
+import accountBalance from '../services/accountBalance.service';
 import Transaction from '../models/transaction.model';
 import Account from '../models/account.model';
 
