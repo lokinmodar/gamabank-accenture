@@ -5,7 +5,7 @@ module.exports = {
     const accountWithId = await Account.findOne({
       where: { id },
     });
-
+    console.log(accountWithId);
     if (accountWithId !== null) {
       return true;
     }
