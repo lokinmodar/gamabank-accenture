@@ -10,7 +10,7 @@ const sendCongratulationsEmail = async () => {
     '<p>blablablalb balbalblabl blablablalbalbalb blablablalbalb lbalba</p>';
 
   sendmail(from, to, subject, text, htmlTemplate)
-    .then((sended) => console.log(sended))
+    .then((sent) => console.log(sent))
     .catch((error) => console.error(error));
 };
 
