@@ -1,7 +1,7 @@
 import debitPurchaseDto from '../models/dto/debitPurchase.dto';
 import accountExists from '../services/account.service';
 
-class debitPurchaseController {
+class DebitPurchaseController {
   async store(req, res) {
     const schema = debitPurchaseDto;
 
@@ -17,3 +17,5 @@ class debitPurchaseController {
     }
   }
 }
+
+export default new DebitPurchaseController();

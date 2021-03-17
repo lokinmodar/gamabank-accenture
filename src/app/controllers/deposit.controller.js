@@ -21,3 +21,5 @@ class DepositController {
 }
 
 export default new DepositController();
+
+export default new DepositController();
