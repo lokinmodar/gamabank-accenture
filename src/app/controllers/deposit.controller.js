@@ -46,14 +46,16 @@ class DepositController {
 
     currentBalance += parseFloat(req.body.transaction_value);
 
-    const [, newBalance] = await Account.update(
+    const newBalance = await Account.update(
       { balance: parseFloat(currentBalance) },
       {
         where: { id: req.body.account_id },
       }
     );
 
-    return res.status(200).json({ transactionSaved, newBalance });
+    const { balance } = await Account.findByPk(newBalance[0]);
+
+    return res.status(200).json({ transactionSaved, balance });
   }
 }
 

@@ -26,9 +26,11 @@ class DebitPurchaseController {
 
     const accountId = await findUserIdByToken.accountIdByToken(token);
 
-    let balance = parseFloat(await accountBalance.getAccountBalance(accountId));
+    let debitBalance = parseFloat(
+      await accountBalance.getAccountBalance(accountId)
+    );
 
-    if (req.body.transaction_value > balance) {
+    if (req.body.transaction_value > debitBalance) {
       return res.status(400).json({ error: 'Insuficient balance' });
     }
     // Retorno de resposta quando a rota é chamada:
@@ -43,15 +45,18 @@ class DebitPurchaseController {
     const purchaseMade = await Transaction.create(transactionToCreate);
     // passados os atributos no corpo da requisição em JSON
 
-    balance -= parseFloat(req.body.transaction_value);
+    debitBalance -= parseFloat(req.body.transaction_value);
 
     const newBalance = await Account.update(
-      { balance: parseFloat(balance) },
+      { balance: parseFloat(debitBalance) },
       {
         where: { id: accountId },
       }
     );
-    return res.status(200).json({ purchaseMade, newBalance });
+
+    const { balance } = await Account.findByPk(newBalance[0]);
+
+    return res.status(200).json({ purchaseMade, balance });
   }
 }
 export default new DebitPurchaseController();
