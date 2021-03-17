@@ -8,6 +8,8 @@ module.exports = {
     }).then((balance) => {
       balance.get('balance');
     });
-    return accountBalance;
+    console.log(accountBalance);
+    resolve(accountBalance);
+
   },
 };
