@@ -8,9 +8,10 @@ import databaseConfig from '../configs/database'; // configurações da base de 
 import User from '../app/models/user.model';
 import Session from '../app/models/session.model';
 import Account from '../app/models/account.model';
+import Transaction from '../app/models/transaction.model';
 
 // Criando um Array com todos os models da aplicação
-const models = [User, Session, Account];
+const models = [User, Session, Account, Transaction];
 
 class Database {
   constructor() {

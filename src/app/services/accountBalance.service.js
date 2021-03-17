@@ -8,7 +8,7 @@ module.exports = {
     }).then((balance) => {
       balance.get('balance');
     });
-    // console.log(accountBalance)
-    return accountBalance;
+    console.log(accountBalance);
+    resolve(accountBalance);
   },
 };
