@@ -7,7 +7,9 @@ module.exports = {
       attributes: ['balance'],
     }).then((balance) => {
       balance.get('balance');
+      return balance;
     });
+
     return accountBalance;
   },
 };
