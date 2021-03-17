@@ -5,10 +5,7 @@ module.exports = {
     const accountBalance = await Account.findOne({
       where: { id },
       attributes: ['balance'],
-    }).then((balance) => {
-      balance.get('balance');
-      return balance;
-    });
+    }).then((account) => account.get('balance'));
 
     return accountBalance;
   },

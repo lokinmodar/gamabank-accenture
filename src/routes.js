@@ -17,7 +17,6 @@ routes.post('/users', UserController.store); // criação de conta de usuário
 routes.post('/sessions', SessionController.store); // login
 // TODO: criação da lógica para rotas novas
 
-routes.post('/externaldeposit');
 routes.post('/internaltransfer', InternTransferController.store);
 
 routes.post('/externaldeposit', DepositController.store);
