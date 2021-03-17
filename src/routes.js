@@ -3,6 +3,7 @@ import { Router } from 'express'; // Router gerencia todas as rotas do app
 import AccountController from './app/controllers/account.controller';
 import SessionController from './app/controllers/session.controller';
 import UserController from './app/controllers/user.controller';
+import DebitPurchaseController from './app/controllers/debitPurchase.controller';
 import authMiddleware from './app/middlewares/auth.middleware';
 import DepositController from './app/controllers/deposit.controller';
 
@@ -20,7 +21,8 @@ routes.use(authMiddleware); // como está definido aqui, somente rotas que estiv
 
 routes.post('/accounts', AccountController.store); // criação de conta bancária
 
-routes.post('/debitpurchase'); // despesa débito
+routes.post('/debitpurchase', DebitPurchaseController.store); //despesa débito
+
 routes.post('/carddebit');
 routes.post('/internaltransfer');
 routes.post('/cardpayment');
