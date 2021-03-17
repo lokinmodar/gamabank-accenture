@@ -27,7 +27,7 @@ class AccountController {
         .json({ error: 'Card due days allowed: 5, 10, 15, 20, 25' });
     }
 
-    // Retono de resposta quando a rota é chamada:
+    // Retorno de resposta quando a rota é chamada:
     const createdAccount = await Account.create(req.body);
 
     createdAccount.UserId = undefined;
