@@ -8,9 +8,8 @@ module.exports = {
           where: { id }, attributes: [ 'balance' ]
         }).then (balance => {
             balance.get('balance')
-        });
-        //console.log(accountBalance)
+        });        
         return accountBalance        
-      }
+    }
 }
 
