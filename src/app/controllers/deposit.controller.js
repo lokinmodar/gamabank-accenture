@@ -29,7 +29,7 @@ class DepositController {
       return res.status(400).json({ error: 'Valor negativo, presta atenção!' });
     }
 
-    //Salve os dados na tabela de transation
+    // Salve os dados na tabela de transation
     const transactionToInsert = {
       account_id: req.body.account_id,
       transaction_type: 1,
