@@ -28,6 +28,7 @@ class debitPurchaseController{
             return res.status(400).json({ error: 'Insuficient balance' })
         }
 
+
         // Retorno de resposta quando a rota é chamada:
 
         const transactionToCreate = {
@@ -47,5 +48,5 @@ class debitPurchaseController{
     }
 }
 
-export default new debitPurchaseController();
+export default new DebitPurchaseController();
 

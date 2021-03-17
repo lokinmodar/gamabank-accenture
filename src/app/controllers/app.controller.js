@@ -1,5 +1,5 @@
 import mailservice from '../services/mail.service';
-
+// TODO: refactor
 const status = (request, h) => ({
   status: 'running',
   timestamp: new Date(),
