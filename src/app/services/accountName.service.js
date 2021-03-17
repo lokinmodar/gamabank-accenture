@@ -10,7 +10,7 @@ module.exports = {
       where: { user_id: UserWithUserName.id },
     });
     if (accountWithUserName !== null) {
-      console.log(accountWithUserName);
+      // console.log(accountWithUserName);
       return accountWithUserName.id;
     }
   },

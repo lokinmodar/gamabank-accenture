@@ -14,7 +14,7 @@ module.exports = {
       where: { user_id: UserWithCpf.id },
     });
     if (accountWithCpf !== null) {
-      console.log(accountWithCpf);
+      // console.log(accountWithCpf);
       return accountWithCpf.id;
     }
   },

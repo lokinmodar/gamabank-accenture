@@ -1,8 +1,9 @@
 import debitPurchaseDto from '../models/dto/debitPurchase.dto';
-import getAccountBalance from '../services/accountBalance.service';
+import accountBalance from '../services/accountBalance.service';
 import Transaction from '../models/transaction.model';
-import findAccountByToken from '../services/findAccountByToken.service';
+import findUserIdByToken from '../services/findUserIdByToken.service';
 import { checkValueNotNegative } from '../services/checkTransactionValue.service';
+import Account from '../models/account.model';
 
 class DebitPurchaseController {
   async store(req, res) {
@@ -11,7 +12,7 @@ class DebitPurchaseController {
       await schema.validate(req.body); // chamada ao yup.validate pra validação do DTO(schema)
     } catch (error) {
       // extraindo de dentro do retorno do Yup o erro exato
-      return res.status(400).json({ error_1: error.errors[0] });
+      return res.status(400).json({ RequestFormatError: error.errors[0] });
     }
 
     if (await checkValueNotNegative(req.body.transaction_value)) {
@@ -23,8 +24,9 @@ class DebitPurchaseController {
     // passar o account_id
     const [, token] = req.headers.authorization.split(' ');
 
-    const accountId = await findAccountByToken.accountIdByToken(token);
-    const balance = await getAccountBalance(accountId);
+    const accountId = await findUserIdByToken.accountIdByToken(token);
+
+    let balance = parseFloat(await accountBalance.getAccountBalance(accountId));
 
     if (req.body.transaction_value > balance) {
       return res.status(400).json({ error: 'Insuficient balance' });
@@ -41,7 +43,15 @@ class DebitPurchaseController {
     const purchaseMade = await Transaction.create(transactionToCreate);
     // passados os atributos no corpo da requisição em JSON
 
-    return res.status(200).json({ purchaseMade });
+    balance -= parseFloat(req.body.transaction_value);
+
+    const newBalance = await Account.update(
+      { balance: parseFloat(balance) },
+      {
+        where: { id: accountId },
+      }
+    );
+    return res.status(200).json({ purchaseMade, newBalance });
   }
 }
 export default new DebitPurchaseController();

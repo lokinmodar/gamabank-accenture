@@ -6,7 +6,6 @@ module.exports = {
       where: { id },
       attributes: ['balance'],
     }).then((account) => account.get('balance'));
-
     return accountBalance;
   },
 };

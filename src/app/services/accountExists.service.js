@@ -6,8 +6,6 @@ module.exports = {
       where: { id },
     });
     console.log(accountWithId);
-    if (accountWithId !== null) {
-      return true;
-    }
+    return accountWithId !== null;
   },
 };

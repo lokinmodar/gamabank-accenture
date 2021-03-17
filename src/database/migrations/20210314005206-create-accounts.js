@@ -12,10 +12,10 @@ module.exports = {
           type: Sequelize.INTEGER,
         },
         balance: {
-          type: Sequelize.DECIMAL,
+          type: Sequelize.DECIMAL(10, 2),
         },
         credit_limit: {
-          type: Sequelize.DECIMAL,
+          type: Sequelize.DECIMAL(10, 2),
         },
         card_due_day: {
           // dia de vencimento da fatura do cartão
