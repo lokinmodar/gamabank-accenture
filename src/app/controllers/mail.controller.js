@@ -11,7 +11,7 @@ const sendCongratulationsEmail = async () => {
 
   mailer
     .sendmail(from, to, subject, text, htmlTemplate)
-    .then((sended) => console.log(sended))
+    .then((sent) => console.log(sent))
     .catch((error) => console.error(error));
 };
 

@@ -1,7 +1,7 @@
 import User from '../models/user.model';
 import ValidarCPF from '../../helpers/validateCPF.helper';
 import userDto from '../models/dto/user.dto';
-import UserExists from '../services/checkUserExists.service';
+import UserExists from '../services/checkuserexists.service';
 import Account from '../models/account.model';
 import verifyCardDueDay from '../../helpers/verifyCardDueDay.helper';
 
