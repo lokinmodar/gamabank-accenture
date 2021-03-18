@@ -7,6 +7,7 @@ import UserController from './app/controllers/user.controller';
 import DebitPurchaseController from './app/controllers/debitpurchase.controller';
 import authMiddleware from './app/middlewares/auth.middleware';
 import DepositController from './app/controllers/deposit.controller';
+import CreditPurchaseController from './app/controllers/creditPurchase.controller'
 
 const routes = new Router();
 
@@ -27,7 +28,8 @@ routes.post('/accounts', AccountController.store); // criação de conta bancár
 
 routes.post('/debitpurchase', DebitPurchaseController.store); // despesa débito
 
-routes.post('/carddebit');
+routes.post('/creditpurchase', CreditPurchaseController.store); // despesa débito
+
 routes.post('/cardpayment');
 
 export default routes;
