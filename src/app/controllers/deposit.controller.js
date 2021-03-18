@@ -32,7 +32,7 @@ class DepositController {
     // Salve os dados na tabela de transation
     const transactionToInsert = {
       account_id: req.body.account_id,
-      transaction_type: 1,
+      transaction_type_id: 1,
       transaction_value: req.body.transaction_value,
       incoming_cpf: req.body.incoming_cpf,
       transaction_due_date: new Date(),
@@ -55,7 +55,7 @@ class DepositController {
 
     const { balance } = await Account.findByPk(newBalance[0]);
 
-    return res.status(200).json({ transactionSaved, balance });
+    return res.status(200).json({ transactionSaved });
   }
 }
 

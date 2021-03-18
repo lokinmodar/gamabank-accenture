@@ -1,5 +1,5 @@
 import accountDto from '../models/dto/accounts.dto';
-import UserExists from '../services/checkuserexists.service';
+import UserExists from '../services/checkUserExists.service';
 import Account from '../models/account.model';
 import verifyCardDueDay from '../../helpers/verifyCardDueDay.helper';
 
