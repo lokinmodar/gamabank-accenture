@@ -4,7 +4,7 @@
   "description": "REST Api Bank backend",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive -w",
+    "test": "mocha --recursive",
     "start": "node ./src/index.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./src/server.js"
   },
@@ -43,7 +43,6 @@
     "mysql2": "^2.2.5",
     "nodemailer": "^6.5.0",
     "sequelize": "^6.5.0",
-    "swagger-jsdoc": "^7.0.0-rc.6",
     "swagger-ui-express": "^4.1.6",
     "youch": "^2.1.1",
     "yup": "^0.32.9"
