@@ -1,6 +1,6 @@
 import sessionDto from '../models/dto/session.dto';
 import Session from '../models/session.model';
-import UserExists from '../services/checkuserexists.service';
+import UserExists from '../services/checkUserExists.service';
 import sessionCreate from '../services/session.service';
 
 // gerar arquivo exportando chave secreta e data de expiração
@@ -13,7 +13,7 @@ class SessionController {
       await schema.validate(req.body); // chamada ao yup.validate pra validação do DTO(schema)
     } catch (error) {
       // extraindo de dentro do retorno do Yup o erro exato
-      return res.status(400).json({ error_1: error.errors[0] });
+      return res.status(400).json({ RequestFormatError: error.errors[0] });
     }
     // checando se usuário com e-mail informado existe
     const user = await UserExists.userWithEmailExists(req.body.user_email);

@@ -1,5 +1,5 @@
 import accountDto from '../models/dto/accounts.dto';
-import UserExists from '../services/checkuserexists.service';
+import UserExists from '../services/checkUserExists.service';
 import Account from '../models/account.model';
 import verifyCardDueDay from '../../helpers/verifyCardDueDay.helper';
 
@@ -14,7 +14,7 @@ class AccountController {
       await schema.validate(req.body); // chamada ao yup.validate pra validação do DTO(schema)
     } catch (error) {
       // extraindo de dentro do retorno do Yup o erro exato
-      return res.status(400).json({ error_1: error.errors[0] });
+      return res.status(400).json({ RequestFormatError: error.errors[0] });
     }
 
     if (!(await UserExists.userWithIdExists(req.body.user_id))) {

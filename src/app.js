@@ -3,6 +3,7 @@ import 'dotenv/config';
 import express from 'express';
 import 'express-async-errors';
 import swaggerUi from 'swagger-ui-express';
+import swaggerJsDoc from 'swagger-jsdoc';
 import Youch from 'youch'; // trata mensagens de erro
 import swaggerDocument from './swagger/swagger.json';
 

@@ -4,9 +4,10 @@ import InternTransferController from './app/controllers/internTransfer.controlle
 import AccountController from './app/controllers/account.controller';
 import SessionController from './app/controllers/session.controller';
 import UserController from './app/controllers/user.controller';
-import DebitPurchaseController from './app/controllers/debitpurchase.controller';
+import DebitPurchaseController from './app/controllers/debitPurchase.controller';
 import authMiddleware from './app/middlewares/auth.middleware';
 import DepositController from './app/controllers/deposit.controller';
+import CreditPurchaseController from './app/controllers/creditPurchase.controller';
 
 const routes = new Router();
 
@@ -17,7 +18,6 @@ routes.post('/users', UserController.store); // criação de conta de usuário
 routes.post('/sessions', SessionController.store); // login
 // TODO: criação da lógica para rotas novas
 
-routes.post('/externaldeposit');
 routes.post('/internaltransfer', InternTransferController.store);
 
 routes.post('/externaldeposit', DepositController.store);
@@ -28,7 +28,8 @@ routes.post('/accounts', AccountController.store); // criação de conta bancár
 
 routes.post('/debitpurchase', DebitPurchaseController.store); // despesa débito
 
-routes.post('/carddebit');
+routes.post('/creditpurchase', CreditPurchaseController.store); // despesa débito
+
 routes.post('/cardpayment');
 
 export default routes;

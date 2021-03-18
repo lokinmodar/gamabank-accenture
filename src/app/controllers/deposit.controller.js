@@ -1,8 +1,8 @@
 import validateCPF from '../../helpers/validateCPF.helper';
 import depositDTO from '../models/dto/deposit.dto';
-import accountService from '../services/account.service';
-import { checkValueNotNegative } from '../services/deposit.service';
-import { accountBalance } from '../services/accountBalance.service';
+import accountExists from '../services/accountExists.service';
+import { checkValueNotNegative } from '../services/checkTransactionValue.service';
+import accountBalance from '../services/accountBalance.service';
 import Transaction from '../models/transaction.model';
 import Account from '../models/account.model';
 
@@ -13,9 +13,9 @@ class DepositController {
     try {
       await schema.validate(req.body);
     } catch (error) {
-      return res.status(400).json({ error_1: error.errors[0] });
+      return res.status(400).json({ RequestFormatError: error.errors[0] });
     }
-    if (!(await accountService.accountWithIdExists(req.body.account_id))) {
+    if (!(await accountExists.accountWithIdExists(req.body.account_id))) {
       return res
         .status(400)
         .json({ error: 'Não existe conta com esse número' });
@@ -32,7 +32,7 @@ class DepositController {
     // Salve os dados na tabela de transation
     const transactionToInsert = {
       account_id: req.body.account_id,
-      transaction_type: 1,
+      transaction_type_id: 1,
       transaction_value: req.body.transaction_value,
       incoming_cpf: req.body.incoming_cpf,
       transaction_due_date: new Date(),
@@ -40,18 +40,20 @@ class DepositController {
     };
     const transactionSaved = await Transaction.create(transactionToInsert);
 
-    let currentBalance = await accountBalance(req.body.account_id);
-    console.log(currentBalance);
-    currentBalance += req.body.transaction_value;
-    console.log(currentBalance);
-    const newBalance = await Account.update(
-      { balance: currentBalance },
+    let currentBalance = parseFloat(
+      await accountBalance.getAccountBalance(req.body.account_id)
+    );
+
+    currentBalance += parseFloat(req.body.transaction_value);
+
+    await Account.update(
+      { balance: parseFloat(currentBalance) },
       {
         where: { id: req.body.account_id },
       }
     );
 
-    return res.status(200).json({ transactionSaved, newBalance });
+    return res.status(200).json({ transactionSaved });
   }
 }
 
