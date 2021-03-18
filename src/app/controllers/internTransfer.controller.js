@@ -63,10 +63,6 @@ class InternTransferController {
         return res.json({ transactionSaved });
       }
 
-
-    
-      
-      
     }
 
     
