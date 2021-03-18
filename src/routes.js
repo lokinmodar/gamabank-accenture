@@ -7,7 +7,7 @@ import UserController from './app/controllers/user.controller';
 import DebitPurchaseController from './app/controllers/debitpurchase.controller';
 import authMiddleware from './app/middlewares/auth.middleware';
 import DepositController from './app/controllers/deposit.controller';
-import CreditPurchaseController from './app/controllers/creditPurchase.controller'
+import CreditPurchaseController from './app/controllers/creditPurchase.controller';
 
 const routes = new Router();
 
