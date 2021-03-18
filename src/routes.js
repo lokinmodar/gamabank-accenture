@@ -4,7 +4,7 @@ import InternTransferController from './app/controllers/internTransfer.controlle
 import AccountController from './app/controllers/account.controller';
 import SessionController from './app/controllers/session.controller';
 import UserController from './app/controllers/user.controller';
-import DebitPurchaseController from './app/controllers/debitpurchase.controller';
+import DebitPurchaseController from './app/controllers/debitPurchase.controller';
 import authMiddleware from './app/middlewares/auth.middleware';
 import DepositController from './app/controllers/deposit.controller';
 

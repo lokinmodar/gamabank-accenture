@@ -1,6 +1,6 @@
 import sessionDto from '../models/dto/session.dto';
 import Session from '../models/session.model';
-import UserExists from '../services/checkuserexists.service';
+import UserExists from '../services/checkUserExists.service';
 import sessionCreate from '../services/session.service';
 
 // gerar arquivo exportando chave secreta e data de expiração

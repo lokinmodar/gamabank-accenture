@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 const debitPurchaseDto = Yup.object()
   .shape({
     transaction_value: Yup.number().required(),
-        
   })
   .label('debitPurchaseRequestDTO');
 
