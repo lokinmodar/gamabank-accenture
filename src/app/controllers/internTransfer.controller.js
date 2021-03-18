@@ -54,7 +54,7 @@ class InternTransferController {
         }
 
         const transactionToInsert = {
-          account_id: req.body.account_id, // ACCOUNT_ID NÃO PODE SER INFORMADA, DEVE SER PEGA DIRETO DO SISTEMA ********
+          account_id: req.body.account_id, // ACCOUNT_ID NÃO PODE SER INFORMADA, DEVE SER PEGA DIRETO DO SISTEMA ***********
           target_account_id: targetAccountId,
           transaction_type: 4,
           transaction_value: req.body.transaction_value,
