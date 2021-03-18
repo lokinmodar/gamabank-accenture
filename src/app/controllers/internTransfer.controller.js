@@ -6,6 +6,8 @@ import { checkValueNotNegative } from '../services/checkTransactionValue.service
 import Transaction from '../models/transaction.model';
 import Account from '../models/account.model';
 import accountBalance from '../services/accountBalance.service';
+import findUserIdByToken from '../services/findUserIdByToken.service';
+import findAccountByUsername from '../services/accountName.service';
 
 class InternTransferController {
   async store(req, res) {
@@ -31,6 +33,7 @@ class InternTransferController {
             .json({ error: 'Target ACCOUNT does not exist.' });
         }
         // fazer o processamento usando o id da conta
+        const targetAccountId = req.body.target_account_id
       }
       if (req.body.target_user_name !== null || req.body.target_user_name) {
         if (!(await accountWithUserNameExists(req.body.target_user_name))) {
@@ -39,6 +42,7 @@ class InternTransferController {
             .json({ error: 'Target USERNAME does not exist.' });
         }
         // fazer o processamento usando o user_name da conta
+        const targetAccountId = await findAccountByUsername.accountWithUserNameExists(req.body.target_user_name);
       }
       if (req.body.target_cpf !== null || req.body.target_cpf) {
         if (!(await accountWithCpfExists(req.body.target_cpf))) {
@@ -52,9 +56,10 @@ class InternTransferController {
             .status(400)
             .json({ error: 'Transaction value must be greater than 0.' });
         }
+        const accountId = await findUserIdByToken.accountIdByToken(token);
 
         const transactionToInsert = {
-          account_id: req.body.account_id, // ACCOUNT_ID NÃO PODE SER INFORMADA, DEVE SER PEGA DIRETO DO SISTEMA ***********
+          account_id: accountId,
           target_account_id: targetAccountId,
           transaction_type: 4,
           transaction_value: req.body.transaction_value,
