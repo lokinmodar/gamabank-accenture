@@ -1,50 +1,43 @@
 {
-  "name": "gamabank-accenture",
+  "name": "gamabank-eventloop",
   "version": "1.0.0",
-  "description": "REST Api Bank backend",
+  "description": "Projeto final da Gama Academy Accenture 2.0",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --recursive",
-    "start": "node ./src/index.js",
-    "start:dev": "cross-env NODE_ENV=development nodemon ./src/server.js"
+    "test": "mocha --recursive -w",
+    "start": "nodemon src/api/server.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon ./src/api/server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lokinmodar/gamabank-accenture.git"
-  },
+  "keywords": [
+    "Node.js"
+  ],
   "author": "EventLoop",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lokinmodar/gamabank-accenture/issues"
-  },
-  "homepage": "https://github.com/lokinmodar/gamabank-accenture#readme",
-  "devDependencies": {
-    "chai": "^4.3.3",
-    "cross-env": "^7.0.3",
-    "eslint": "^7.22.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-prettier": "^3.3.1",
-    "faker": "^5.4.0",
-    "mocha": "^8.3.1",
-    "nodemon": "^2.0.7",
-    "prettier": "^2.2.1",
-    "sequelize-cli": "^6.2.0",
-    "sucrase": "^3.17.1"
-  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "chai-http": "^4.3.0",
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
     "nodemailer": "^6.5.0",
-    "sequelize": "^6.5.0",
+    "sequelize": "^6.5.1",
     "swagger-ui-express": "^4.1.6",
-    "youch": "^2.1.1",
     "yup": "^0.32.9"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.22.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "faker": "^5.4.0",
+    "mocha": "^8.3.2",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.2.1",
+    "sequelize-cli": "^6.2.0"
   }
 }

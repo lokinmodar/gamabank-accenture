@@ -1,17 +1,17 @@
 // este arquivo cria a conexão com o banco
 // este arquivo carrega os models da aplicação
-import Sequelize from 'sequelize';
+const Sequelize = require('sequelize');
 
-import databaseConfig from '../configs/database'; // configurações da base de dados
+const databaseConfig = require('../configs/database'); // configurações da base de dados
 
 // importando os Models
-import User from '../app/models/user.model';
-import Session from '../app/models/session.model';
-import Account from '../app/models/account.model';
-import Transaction from '../app/models/transaction.model';
+const User = require('../api/models/user.model');
+/* const Session =require( ../app/models/session.model'); */
+const Account = require('../api/models/account.model');
+/* const Transaction =require( ../app/models/transaction.model'); */
 
 // Criando um Array com todos os models da aplicação
-const models = [User, Session, Account, Transaction];
+const models = [User, Account];
 
 class Database {
   constructor() {
@@ -24,13 +24,10 @@ class Database {
 
     // Depois da conexão com o banco de dados, percorrer o array de models
     models
-      .map((model) => model.init(this.connection))
-
-      // Associações
-      .map(
+      .map((model) => model.init(this.connection)).map(
         (model) => model.associate && model.associate(this.connection.models)
       );
   }
 }
 
-export default new Database();
+module.exports = new Database();

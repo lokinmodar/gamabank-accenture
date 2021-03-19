@@ -1,5 +1,5 @@
-import nodemailer from 'nodemailer'; // https://nodemailer.com/about/
-import configs from '../configs/env';
+const nodemailer = require('nodemailer'); // https://nodemailer.com/about/
+const configs = require('../configs/env');
 
 const setup = async () => {
   let account;
