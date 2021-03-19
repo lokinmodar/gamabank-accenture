@@ -19,7 +19,7 @@ module.exports = {
           updated_at: new Date(),
         },
         {
-          transaction_description: 'Transferência Interna',
+          transaction_description: 'Transferência Interna - Saída',
           created_at: new Date(),
           updated_at: new Date(),
         },
@@ -30,6 +30,11 @@ module.exports = {
         },
         {
           transaction_description: 'Pagamento Fatura Crédito',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          transaction_description: 'Transferência Interna - Entrada',
           created_at: new Date(),
           updated_at: new Date(),
         },
