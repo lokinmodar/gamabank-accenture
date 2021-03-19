@@ -1,5 +1,5 @@
 import internTransferDto from '../models/dto/internTransfer.dto';
-import accountWithIdExists from '../services/accountExists.service';
+import {accountWithIdExists} from '../services/accountExists.service';
 import accountWithUserNameExists from '../services/accountName.service';
 import accountWithCpfExists from '../services/accountCpf.service';
 import { checkValueNotNegative } from '../services/checkTransactionValue.service';
@@ -19,23 +19,27 @@ class InternTransferController {
       // extraindo de dentro do retorno do Yup o erro exato
       return res.status(400).json({ RequestFormatError: error.errors[0] });
     }
-
+    
     if (
       req.body.target_account_id ||
       req.body.target_user_name ||
       req.body.target_account_cpf
     ) {
+      console.log(req.body.target_account_id)
       // verificar essa lógica abaixo ************
-      if (req.body.target_account_id !== null || req.body.target_account_id) {
-        if (!(await accountWithIdExists(req.body.target_account_id))) {
+      if (req.body.target_account_id !== null) {
+        const resposta = await accountWithIdExists(req.body.target_account_id)
+        console.log(resposta)
+        if (resposta === false) {
           return res
             .status(400)
             .json({ error: 'Target ACCOUNT does not exist.' });
         }
         // fazer o processamento usando o id da conta
         const targetAccountId = req.body.target_account_id
+        return res.status(200).json({ok: 'deu bom'})
       }
-      if (req.body.target_user_name !== null || req.body.target_user_name) {
+      if (req.body.target_user_name !== null) {
         if (!(await accountWithUserNameExists(req.body.target_user_name))) {
           return res
             .status(400)
@@ -44,7 +48,7 @@ class InternTransferController {
         // fazer o processamento usando o user_name da conta
         const targetAccountId = await findAccountByUsername.accountWithUserNameExists(req.body.target_user_name);
       }
-      if (req.body.target_cpf !== null || req.body.target_cpf) {
+      if (req.body.target_cpf !== null) {
         if (!(await accountWithCpfExists(req.body.target_cpf))) {
           return res.status(400).json({ error: 'Target CPF does not exist.' });
         }
@@ -81,6 +85,10 @@ class InternTransferController {
         );
         return res.status(200).json({ transactionSaved });
       }
+    } else {
+      return res
+            .status(400)
+            .json({ error: `Please inform target_cpf or target_account_id or target_user_name` });
     }
   }
 }
