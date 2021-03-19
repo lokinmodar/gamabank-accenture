@@ -4,8 +4,6 @@ const debitPurchaseDto = require('../models/dto/debitPurchase.dto');
 const accountBalance = require('../services/accountBalance.service');
 const findUserIdByToken = require('../services/findUserIdByToken.service');
 const { checkValueNotNegative } = require('../services/checkTransactionValue.service');
-
-
 class DebitPurchaseController {
   async store(req, res) {
     const schema = debitPurchaseDto;
@@ -48,7 +46,7 @@ class DebitPurchaseController {
 
     debitBalance -= parseFloat(req.body.transaction_value);
 
-    const newBalance = await Account.update(
+    await Account.update(
       { balance: parseFloat(debitBalance) },
       {
         where: { id: accountId },
@@ -57,7 +55,7 @@ class DebitPurchaseController {
 
     // const { balance } = await Account.findByPk(newBalance[0]);
 
-    return res.status(200).json({ purchaseMade });
+    return res.status(200).json({ purchaseMade, debitBalance });
   }
 }
 module.exports = new DebitPurchaseController();

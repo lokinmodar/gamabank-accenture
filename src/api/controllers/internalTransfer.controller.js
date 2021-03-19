@@ -9,7 +9,6 @@ const accountBalance = require('../services/accountBalance.service');
 const findUserIdByToken = require('../services/findUserIdByToken.service');
 const findAccountByUsername = require('../services/accountName.service');
 const findCpfByToken = require('../services/findCpfByToken.service');
-
 class InternTransferController {
   async store(req, res) {
     const schema = internTransferDto;
@@ -108,7 +107,9 @@ class InternTransferController {
           }
         );
         // const { balance } = await Account.findByPk(newOriginBalance[0]);
-        return res.status(200).json({ OriginTransactionSaved });
+        return res
+          .status(200)
+          .json({ OriginTransactionSaved, currentOriginBalance });
       }
 
       // console.log(req.body.target_user_name);
