@@ -54,9 +54,9 @@ class DebitPurchaseController {
       }
     );
 
-    const { balance } = await Account.findByPk(newBalance[0]);
+    // const { balance } = await Account.findByPk(newBalance[0]);
 
-    return res.status(200).json({ purchaseMade, balance });
+    return res.status(200).json({ purchaseMade });
   }
 }
 export default new DebitPurchaseController();
