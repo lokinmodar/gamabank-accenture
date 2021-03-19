@@ -18,33 +18,25 @@
   "tags": [
     {
       "name": "users",
-      "description": "Criação de conta  do usuário",
+      "description": "Bli Bli Bli",
       "externalDocs": {
-        "description": "Criação de conta do usuário",
+        "description": "Find out more about our store",
         "url": "http://swagger.io"
       }
     },
     {
       "name": "accounts",
-      "description": "Criação da conta bancária do usuário",
+      "description": "Blé Blé Blé",
       "externalDocs": {
-        "description": "Criação da conta bancária do usuário",
+        "description": "Find out more about our store",
         "url": "http://swagger.io"
       }
     },
     {
       "name": "transactions",
-      "description": "transações",
+      "description": "Bla Bla bla",
       "externalDocs": {
-        "description": "transação interna",
-        "url": "http://swagger.io"
-      }
-    },
-    {
-      "name": "sessions",
-      "description": "Sessão do usuário",
-      "externalDocs": {
-        "description": "Sessão do usuário iniciada",
+        "description": "Find out more",
         "url": "http://swagger.io"
       }
     }
@@ -54,10 +46,10 @@
     "/users": {
       "post": {
         "tags": ["users"],
-        "summary": "Criação do usuário",
-        "description": "Criação de uma conta para o usuário",
-        "operationId": "userController.js",
-        "produces": ["application/json"],
+        "summary": "Create user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "createUser",
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
             "in": "body",
@@ -77,33 +69,31 @@
       }
     },
     "/sessions": {
-      "post": {
-        "tags": ["sessions"],
-        "summary": "sessão do usuário",
-        "description": "Criação da sessão de um usuário",
-        "operationId": "sessionController.js",
-        "produces": ["application/json"],
+      "get": {
+        "tags": ["users"],
+        "summary": "Logs user into the system",
+        "description": "",
+        "operationId": "loginUser",
+        "produces": ["application/xml", "application/json"],
         "parameters": [
           {
-            "in": "body",
-            "name": "body",
+            "name": "username",
+            "in": "query",
             "description": "The user name for login",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/Sessions"
-            }
+            "type": "string"
           },
           {
             "name": "password",
             "in": "query",
-            "description": "A senha para login",
+            "description": "The password for login in clear text",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "Usuário logado",
+            "description": "successful operation",
             "schema": {
               "type": "string"
             },
@@ -121,76 +111,22 @@
             }
           },
           "400": {
-            "description": "Senha inválida"
+            "description": "Invalid username/password supplied"
           }
         }
       }
     },
-    "/transactions": {
-      "post": {
-        "tags": ["transactions"],
-        "summary": "Transferência interna",
-        "description": "Transferencia interna",
-        "operationId": "InternTransferController.store",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "Corpo",
-            "name": "Interna transferencia",
-            "description": "Dados da transfêrencia interna",
-            "required": true,
-            "schema": {
-              "type": "object",
-              "properties": {
-                "account_id": {
-                  "type": "integer",
-                  "format": "int64"
-                },
-                "transaction_value": {
-                  "type": "number",
-                  "format": "double"
-                },
-                "target_account_id": {
-                  "type": "number"
-                },
-                "target_user_name": {
-                  "type": "string"
-                },
-                "target_cpf": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        ],
+    "/user/logout": {
+      "get": {
+        "tags": ["users"],
+        "summary": "Logs out current logged in user session",
+        "description": "",
+        "operationId": "logoutUser",
+        "produces": ["application/xml", "application/json"],
+        "parameters": [],
         "responses": {
-          "200": {
-            "description": "Transaferência feita com sucesso",
-            "schema": {
-              "type": "object",
-              "properties": [
-                {
-                  "account_id": {
-                    "type": "integer",
-                    "format": "int64"
-                  }
-                }
-              ]
-            }
-          },
-          "400": {
-            "description": "Não obteve sucesso na transferência",
-            "schema": {
-              "type": "object",
-              "properties": [
-                {
-                  "account_id": {
-                    "type": "integer",
-                    "format": "int64"
-                  }
-                }
-              ]
-            }
+          "default": {
+            "description": "successful operation"
           }
         }
       }
@@ -206,7 +142,6 @@
         "read:pets": "read your pets"
       }
     },
-
     "api_key": {
       "type": "apiKey",
       "name": "api_key",
@@ -217,25 +152,32 @@
     "User": {
       "type": "object",
       "properties": {
-        "full_name": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "username": {
           "type": "string"
         },
-        "user_name": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
           "type": "string"
         },
         "password": {
           "type": "string"
-        }
-      }
-    },
-    "Sessions": {
-      "type": "object",
-      "properties": {
-        "user_email": {
+        },
+        "phone": {
           "type": "string"
         },
-        "password": {
-          "type": "string"
+        "userStatus": {
+          "type": "integer",
+          "format": "int32",
+          "description": "User Status"
         }
       },
       "xml": {
