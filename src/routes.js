@@ -28,7 +28,7 @@ routes.post('/accounts', AccountController.store); // criação de conta bancár
 
 routes.post('/debitpurchase', DebitPurchaseController.store); // despesa débito
 
-routes.post('/creditpurchase', CreditPurchaseController.store); // despesa débito
+routes.post('/creditpurchase', CreditPurchaseController.store); // despesa crédito
 
 routes.post('/cardpayment');
 

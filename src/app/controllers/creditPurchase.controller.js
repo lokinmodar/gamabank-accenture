@@ -2,7 +2,11 @@ import creditPurchaseDto from '../models/dto/creditPurchase.dto';
 import Transaction from '../models/transaction.model';
 import findUserIdByToken from '../services/findUserIdByToken.service';
 import { checkValueNotNegative } from '../services/checkTransactionValue.service';
-import {getAccountCreditLimit, getUsedCredit, getDateCard} from '../services/creditBalance.service'
+import {
+  getAccountCreditLimit,
+  getUsedCredit,
+  getDateCard,
+} from '../services/creditBalance.service';
 
 class CreditPurchaseController {
   async store(req, res) {
@@ -26,15 +30,13 @@ class CreditPurchaseController {
 
     let usedCreditLimit = await getUsedCredit(accountId);
 
-    const {credit_limit} = await getAccountCreditLimit(accountId);
+    const { credit_limit } = await getAccountCreditLimit(accountId);
 
-    const {card_due_day} = await getAccountCreditLimit(accountId);
+    const { card_due_day } = await getAccountCreditLimit(accountId);
 
     const dateCardDueDay = await getDateCard(card_due_day);
-    
+
     let currentCreditLimit = credit_limit - usedCreditLimit;
-
-
 
     if (req.body.transaction_value > currentCreditLimit) {
       return res.status(400).json({ error: 'Insuficient credit limit' });
@@ -48,7 +50,6 @@ class CreditPurchaseController {
       transaction_due_date: dateCardDueDay,
     };
 
-    
     const purchaseMade = await Transaction.create(transactionToCreate);
     // passados os atributos no corpo da requisição em JSON
     usedCreditLimit = await getUsedCredit(accountId);

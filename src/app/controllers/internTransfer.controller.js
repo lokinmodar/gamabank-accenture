@@ -108,7 +108,9 @@ class InternTransferController {
           }
         );
         // const { balance } = await Account.findByPk(newOriginBalance[0]);
-        return res.status(200).json({ OriginTransactionSaved });
+        return res
+          .status(200)
+          .json({ OriginTransactionSaved, currentOriginBalance });
       }
 
       // console.log(req.body.target_user_name);
