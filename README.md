@@ -125,7 +125,7 @@ $ npm run test
     Requisitos: username, password, email, cpf, name, adress, phone  
     Autenticação: JWT 
 
-- GET `/sendMail` - Criar usuários  
+- GET  `/sendMail` - Criar usuários  
     Requisitos: username, password, email, cpf, name, adress, phone  
     Autenticação: JWT 
 ## Arquitetura do Sistema 💻  

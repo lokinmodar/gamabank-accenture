@@ -12,7 +12,7 @@ module.exports = {
     if (UserWithUserName){
 
       const accountWithUserName = await Account.findOne({
-        where: { id: UserWithUserName.id },
+        where: { user_id: UserWithUserName.id },
         attributes: ['id'],
       });
       if (accountWithUserName !== null) {

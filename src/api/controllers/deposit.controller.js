@@ -5,6 +5,7 @@ const { checkValueNotNegative } = require('../services/checkTransactionValue.ser
 const accountBalance = require('../services/accountBalance.service');
 const { Transaction } = require('../models');
 const { Account } = require('../models');
+const {formattedCPF} = require('../services/formatCpf.service')
 
 class DepositController {
   async store(req, res) {
@@ -18,23 +19,23 @@ class DepositController {
     if (!(await accountExists.accountWithIdExists(req.body.account_id))) {
       return res
         .status(400)
-        .json({ error: 'Não existe conta com esse número' });
+        .json({ error: 'Target ACCOUNT does not exist.' });
     }
 
     if (!(await validateCPF(req.body.incoming_cpf))) {
-      return res.status(400).json({ error: 'O campo CPF está inválido' });
+      return res.status(400).json({ error: 'Invalid CPF.' });
     }
 
     if (await checkValueNotNegative(req.body.transaction_value)) {
-      return res.status(400).json({ error: 'Valor negativo, presta atenção!' });
+      return res.status(400).json({ error: 'Transaction value must be greater than 0.' });
     }
-
+    const formattedIncomingCPF = await formattedCPF(req.body.incoming_cpf)
     // Salve os dados na tabela de transation
     const transactionToInsert = {
       account_id: req.body.account_id,
       transaction_type_id: 1,
       transaction_value: req.body.transaction_value,
-      incoming_cpf: req.body.incoming_cpf,
+      incoming_cpf: formattedIncomingCPF,
       transaction_due_date: new Date(),
       transaction_pay_date: new Date(),
     };

@@ -1,19 +1,22 @@
 const { Transaction } = require('../models');
 const { Account } = require('../models');
-const internTransferDto = require('../models/dto/internalTransfer.dto');
+const internalTransferDto = require('../models/dto/internalTransfer.dto');
 const { accountWithIdExists } = require('../services/accountExists.service');
 const {accountWithUserNameExists} = require('../services/findAccountByUserName.service');
 const {accountWithCpfExists} = require('../services/accountCpf.service');
 const { checkValueNotNegative } = require('../services/checkTransactionValue.service');
 const accountBalance = require('../services/accountBalance.service');
 const findUserIdByToken = require('../services/findUserIdByToken.service');
-const findAccountByUsername = require('../services/findAccountByUserName.service');
 const findCpfByToken = require('../services/findCpfByToken.service');
 const validateCpf = require('../services/validateCPF.service');
+const { getUsernameCPF } = require('../services/returnUsernameCpfByAccount.service');
+const {formattedCPF} = require('../services/formatCpf.service')
 class InternTransferController {
   async store(req, res) {
-    const schema = internTransferDto
+    const schema = internalTransferDto
     let targetAccountId
+    let targetCpf
+    let targetUsername
 
     try {
       await schema.validate(req.body) // chamada ao yup.validate pra validação do DTO(schema)
@@ -39,36 +42,49 @@ class InternTransferController {
           .json({ error: 'Target ACCOUNT does not exist.' })
       }else{
         targetAccountId = req.body.target_account_id
+        const verifyUserCPF = await getUsernameCPF(targetAccountId)
+        targetCpf = verifyUserCPF.cpf
+        targetUsername = verifyUserCPF.user_name
 
       }
     }else if (req.body.target_user_name) {
-      //console.log(req.body.target_user_name)
+
       const accountByUserName = await accountWithUserNameExists(req.body.target_user_name)
 
-      if (accountByUserName.id === false) {
+      if (accountByUserName === false) {
         return res
           .status(400)
           .json({ error: 'Target USERNAME does not exist.' })
       }else{
 
         targetAccountId = accountByUserName.id
+        const verifyUserCPF = await getUsernameCPF(targetAccountId)
+        targetCpf = verifyUserCPF.cpf
+        targetUsername = verifyUserCPF.user_name
+
       }
     }else if (req.body.target_cpf) {
 
       if (!(await validateCpf(req.body.target_cpf))) {
         return res.status(400).json({ error: 'Invalid CPF.' });
       }
+      const formattedTargetCPF = await formattedCPF(req.body.target_cpf)
+      console.log(formattedTargetCPF)
+      const accountByCpf = await accountWithCpfExists(formattedTargetCPF)
 
-      const accountByCpf = await accountWithCpfExists(req.body.target_cpf)
-
-      if (!accountByCpf) {
+      if (accountByCpf === false) {
         return res.status(400).json({ error: 'Target CPF does not exist.' })
       }else{
         targetAccountId = accountByCpf
+        const verifyUserCPF = await getUsernameCPF(targetAccountId)
+        targetCpf = formattedTargetCPF
+        targetUsername = verifyUserCPF.user_name
 
       }
+    }else{
+      return res.status(400).json({ error: 'Enter one of these fields: target_account_id || target_cpf || target_user_name.' })
+    }
 
-      //aqui foi informado ou target_account_id || target_cpf || target_user_name
       const [, token] = req.headers.authorization.split(' ');
       const accountId = await findUserIdByToken.accountIdByToken(token);
 
@@ -84,7 +100,8 @@ class InternTransferController {
         target_account_id: targetAccountId,
         transaction_type_id: 4,
         transaction_value: req.body.transaction_value,
-        //target_cpf: req.body.target_cpf, //e se não for passado cpf?
+        target_cpf: targetCpf,
+        target_user_name: targetUsername,
         transaction_due_date: new Date(),
         transaction_pay_date: new Date(),
       };
@@ -130,10 +147,6 @@ class InternTransferController {
       return res
         .status(200)
         .json({ OriginTransactionSaved, currentOriginBalance });
-
-    }else{
-      return res.status(400).json({ error: 'Inform: target_account_id or target_cpf or target_user_name.' })
-    }
   }
 }
 
