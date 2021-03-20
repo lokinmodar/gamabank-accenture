@@ -1,4 +1,4 @@
-
+/* 
 const chaiHttp =require('chai-http');
 const chai =require('chai');
 const app =require('../src/api/app');
@@ -15,7 +15,7 @@ const botchedRequest = {
   cpf: '21798532620',
   card_due_day: 5
 }
-console.log(JSON.stringify(botchedRequest));
+//console.log(JSON.stringify(botchedRequest));
 
 describe('API', () => {
 
@@ -52,3 +52,4 @@ describe('API', () => {
     });
   });
 });
+ */

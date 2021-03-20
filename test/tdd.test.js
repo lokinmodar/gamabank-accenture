@@ -1,12 +1,12 @@
-const chaiHttp = require('chai-http');
+/* const chaiHttp = require('chai-http');
 const chai = require('chai');
-const app = require('../src/app');
+const app =require('../src/api/app');
 
 /*
 import chaiHttp from 'chai-http';
 import chai from 'chai';
 import app from '../src/app';
- */
+ 
 chai.use(chaiHttp);
 const { expect } = chai;
 const { request } = chai;
@@ -32,3 +32,4 @@ describe('API', () => {
     });
   });
 });
+ */
