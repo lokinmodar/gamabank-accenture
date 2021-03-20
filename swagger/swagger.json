@@ -4,9 +4,8 @@
     "description": "Api criada durante a gama Academy Accenture 2.0 pelo grupo EventLoop",
     "version": "1.0.0",
     "title": "Gamabank EventLoop",
-    "termsOfService": "http://swagger.io/terms/",
     "contact": {
-      "email": "apiteam@swagger.io"
+      "url": "https://github.com/lokinmodar/gamabank-accenture"
     },
     "license": {
       "name": "Apache 2.0",
@@ -18,31 +17,21 @@
   "tags": [
     {
       "name": "users",
-      "description": "Criação de conta  do usuário",
+      "description": "Criação de conta  do usuário e conta bancária",
       "externalDocs": {
-        "description": "Criação de conta do usuário",
-        "url": "http://swagger.io"
+        "description": "Rotina para criação de conta do usuário e conta bancária"
       }
     },
     {
       "name": "sessions",
-      "description": "Sessão do usuário",
+      "description": "Criação de Sessão do usuário",
       "externalDocs": {
-        "description": "Sessão do usuário iniciada",
-        "url": "http://swagger.io"
-      }
-    },
-    {
-      "name": "accounts",
-      "description": "Criação da conta bancária do usuário",
-      "externalDocs": {
-        "description": "Criação da conta bancária do usuário",
-        "url": "http://swagger.io"
+        "description": "Sessão do usuário iniciada"
       }
     },
     {
       "name": "transactions",
-      "description": "transações",
+      "description": "Transações bancária",
       "externalDocs": {
         "description": "transação interna",
         "url": "http://swagger.io"
@@ -54,15 +43,15 @@
     "/users": {
       "post": {
         "tags": ["users"],
-        "summary": "Criação do usuário",
-        "description": "Criação de uma conta para o usuário",
-        "operationId": "userController.js",
+        "summary": "Criação de conta de usuário",
+        "description": "Criação de uma conta para o usuário conforme dados enviados na requisição POST",
+        "operationId": "user.controller.js",
         "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
             "name": "body",
-            "description": "Created user object",
+            "description": "Objeto com informações de usuário criado",
             "required": true,
             "schema": {
               "$ref": "#/definitions/User"
@@ -71,10 +60,17 @@
         ],
         "responses": {
           "200": {
-            "description": "Logado",
+            "description": "Usuário e conta criados",
             "produces": ["application/json"],
             "schema": {
               "$ref": "#/definitions/User200"
+            },
+            "400": {
+              "description": "Erro",
+              "produces": ["application/json"],
+              "schema": {
+                "$ref": "#/definitions/User400"
+              }
             }
           }
         }
@@ -152,7 +148,7 @@
     }
   },
   "securityDefinitions": {
-    "petstore_auth": {
+    "bearer_token": {
       "type": "oauth2",
       "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
       "flow": "implicit",
@@ -177,6 +173,12 @@
         "createdAccount": {
           "$ref": "#/definitions/createdAccount"
         }
+      }
+    },
+    "User400": {
+      "type": "object",
+      "properties": {
+        "Error": "User already exists"
       }
     },
     "User": {
