@@ -261,7 +261,6 @@
         }
       }
     },
-
     "createdAccount": {
       "type": "object",
       "properties": {
