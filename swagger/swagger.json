@@ -14,13 +14,21 @@
     }
   },
   "host": ".",
-  "basePath": "/v2",
+  "basePath": "/",
   "tags": [
     {
       "name": "users",
       "description": "Criação de conta  do usuário",
       "externalDocs": {
         "description": "Criação de conta do usuário",
+        "url": "http://swagger.io"
+      }
+    },
+    {
+      "name": "sessions",
+      "description": "Sessão do usuário",
+      "externalDocs": {
+        "description": "Sessão do usuário iniciada",
         "url": "http://swagger.io"
       }
     },
@@ -37,14 +45,6 @@
       "description": "transações",
       "externalDocs": {
         "description": "transação interna",
-        "url": "http://swagger.io"
-      }
-    },
-    {
-      "name": "sessions",
-      "description": "Sessão do usuário",
-      "externalDocs": {
-        "description": "Sessão do usuário iniciada",
         "url": "http://swagger.io"
       }
     }
@@ -70,8 +70,12 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "description": "Logado",
+            "produces": ["application/json"],
+            "schema": {
+              "$ref": "#/definitions/User200"
+            }
           }
         }
       }
@@ -92,32 +96,13 @@
             "schema": {
               "$ref": "#/definitions/Sessions"
             }
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "description": "A senha para login",
-            "required": true,
-            "type": "string"
           }
         ],
         "responses": {
-          "200": {
+          "Sessions200": {
             "description": "Usuário logado",
             "schema": {
-              "type": "string"
-            },
-            "headers": {
-              "X-Rate-Limit": {
-                "type": "integer",
-                "format": "int32",
-                "description": "calls per hour allowed by the user"
-              },
-              "X-Expires-After": {
-                "type": "string",
-                "format": "date-time",
-                "description": "date in UTC when token expires"
-              }
+              "$ref": "#/Sessions200"
             }
           },
           "400": {
@@ -126,7 +111,7 @@
         }
       }
     },
-    "/transactions": {
+    "/internaltransfer": {
       "post": {
         "tags": ["transactions"],
         "summary": "Transferência interna",
@@ -140,24 +125,13 @@
             "description": "Created user object",
             "required": true,
             "schema": {
-              "$ref": "#/transactionsIntern"
+              "$ref": "#/internalTransfer"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Transaferência feita com sucesso",
-            "schema": {
-              "type": "object",
-              "properties": [
-                {
-                  "account_id": {
-                    "type": "integer",
-                    "format": "int64"
-                  }
-                }
-              ]
-            }
+            "description": "Transaferência feita com sucesso"
           },
           "400": {
             "description": "Não obteve sucesso na transferência",
@@ -187,7 +161,6 @@
         "read:pets": "read your pets"
       }
     },
-
     "api_key": {
       "type": "apiKey",
       "name": "api_key",
@@ -195,6 +168,17 @@
     }
   },
   "definitions": {
+    "User200": {
+      "type": "object",
+      "properties": {
+        "createdUser": {
+          "$ref": "#/definitions/createdUser"
+        },
+        "createdAccount": {
+          "$ref": "#/definitions/createdAccount"
+        }
+      }
+    },
     "User": {
       "type": "object",
       "properties": {
@@ -204,8 +188,42 @@
         "user_name": {
           "type": "string"
         },
+        "user_email": {
+          "type": "string"
+        },
         "password": {
           "type": "string"
+        },
+        "telephone": {
+          "type": "string"
+        },
+        "card_due_day": {
+          "type": "string"
+        }
+      }
+    },
+    "createdUser": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "full_name": {
+          "type": "string"
+        },
+        "user_email": {
+          "type": "string"
+        },
+        "telephone": {
+          "type": "string"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },
@@ -222,26 +240,55 @@
       "xml": {
         "name": "User"
       }
-    }
-  },
-  "transactionsIntern": {
-    "type": "object",
-    "properties": {
-      "account_id": {
-        "type": "integer"
-      },
-       "transaction_value": {
-        "type": "number"
-       },
-       "target_account_id": {
-         "type": "integer"
-       },
-       "target_user_name": {
-         "type": "string"
-       },
-       "taget_cpf": {
-         "type": "string"
-       }       
+    },
+    "internalTransfer": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "integer"
+        },
+        "transaction_value": {
+          "type": "number"
+        },
+        "target_account_id": {
+          "type": "integer"
+        },
+        "target_user_name": {
+          "type": "string"
+        },
+        "taget_cpf": {
+          "type": "string"
+        }
+      }
+    },
+
+    "createdAccount": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "user_id": {
+          "type": "number"
+        },
+        "balance": {
+          "type": "number"
+        },
+        "credit_limit": {
+          "type": "number"
+        },
+        "card_due_day": {
+          "type": "number"
+        },
+        "updateAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
     }
   },
   "externalDocs": {
