@@ -3,7 +3,6 @@ module.exports = {
     await queryInterface.createTable('banks', {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
