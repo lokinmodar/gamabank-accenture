@@ -93,47 +93,50 @@ $ npm run test
 ```
 ### 📚 Documentação das rotas
 
-- POST `/users` - Verificar status do servidor  
+- POST `/` - Verificar status do servidor  
     Requisitos: N/A  
+    Autenticação: N/A 
+
+- POST `/users` - Criar usuários  
+    Requisitos: username, password, email, cpf, name, adress, phone  
     Autenticação: N/A  
 
-- POST `/sessions` - Criar usuários  
-    Requisitos: username, password, email, cpf, name, adress, phone  
+- POST `/sessions` - Criar sessão de usuários  
+    Requisitos: email, password  
     Autenticação: N/A 
 
-- POST `/externaldeposit` - Criar usuários  
-    Requisitos: username, password, email, cpf, name, adress, phone  
+- POST `/externaldeposit` - Fazer depositos na conta de algum usuário 
+    Requisitos: account_id, transaction_value, incoming_cpf  
     Autenticação: N/A 
 
-- POST `/internaltransfer` - Criar usuários  
-    Requisitos: username, password, email, cpf, name, adress, phone  
+- POST `/internaltransfer` - Fazer dépositos entre usuários do próprio banco 
+    Requisitos: account_id, transaction_value, target_account_id ou target_username ou targe_cpf  
     Autenticação: JWT
 
-- POST `/debitpurchase` - Criar usuários  
-    Requisitos: username, password, email, cpf, name, adress, phone  
+- POST `/externaltransfer` - Fazer dépositos entre usuários do próprio banco 
+    Requisitos: transaction_value, target_bank_id, target_account_id e target_cpf  
+    Autenticação: JWT
+
+- POST `/debitpurchase` - Despesa débito  
+    Requisitos: account_id, transaction_value  
     Autenticação: JWT  
 
-- POST `/creditpurchase` - Criar usuários  
-    Requisitos: username, password, email, cpf, name, adress, phone  
+- POST `/creditpurchase` - Despesa crédito  
+    Requisitos: account_id, transaction_value  
     Autenticação: JWT 
 
-- POST `/accounts` - Criar usuários  
-    Requisitos: username, password, email, cpf, name, adress, phone  
+- POST `/cardpayment` - Pagamento fatura cartão de crédito 
+    Requisitos: date_payment  
     Autenticação: JWT 
 
-- POST `/sendMail` - Criar usuários  
-    Requisitos: username, password, email, cpf, name, adress, phone  
-    Autenticação: JWT 
-
-- GET  `/sendMail` - Criar usuários  
-    Requisitos: username, password, email, cpf, name, adress, phone  
+- GET  `/bankstatement` - Extrato da conta    
     Autenticação: JWT 
 ## Arquitetura do Sistema 💻  
 
 - Camada de controllers  
 - Camada de serviços  
 - Camada de modelos
-- Camada   
+- Camada de testes 
 - Camada de repositório com TypeORM  
 - Variaveis de ambiente com informações sensíveis 
 
