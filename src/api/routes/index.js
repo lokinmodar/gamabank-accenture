@@ -9,6 +9,12 @@ const CreditPurchaseController = require('../controllers/creditPurchase.controll
 
 
 module.exports =  (app) => {
+
+  app.get('/', (req, res) => {
+    res.status(200).json({ Error: 'Nothing to see here...' })
+  })
+
+
   app.route('/users').post(UserController.store);
 
   app.route('/sessions').post(SessionController.store);
