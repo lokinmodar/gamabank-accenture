@@ -135,31 +135,12 @@
         "produces": ["application/json"],
         "parameters": [
           {
-            "in": "Corpo",
-            "name": "Interna transferencia",
-            "description": "Dados da transfêrencia interna",
+            "in": "body",
+            "name": "body",
+            "description": "Created user object",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "account_id": {
-                  "type": "integer",
-                  "format": "int64"
-                },
-                "transaction_value": {
-                  "type": "number",
-                  "format": "double"
-                },
-                "target_account_id": {
-                  "type": "number"
-                },
-                "target_user_name": {
-                  "type": "string"
-                },
-                "target_cpf": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/transactionsIntern"
             }
           }
         ],
@@ -241,21 +222,26 @@
       "xml": {
         "name": "User"
       }
-    },
-    "ApiResponse": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "integer",
-          "format": "int32"
-        },
-        "type": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
+    }
+  },
+  "transactionsIntern": {
+    "type": "object",
+    "properties": {
+      "account_id": {
+        "type": "integer"
+      },
+       "transaction_value": {
+        "type": "number"
+       },
+       "target_account_id": {
+         "type": "integer"
+       },
+       "target_user_name": {
+         "type": "string"
+       },
+       "taget_cpf": {
+         "type": "string"
+       }       
     }
   },
   "externalDocs": {
