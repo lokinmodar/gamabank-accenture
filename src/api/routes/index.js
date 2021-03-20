@@ -1,7 +1,7 @@
 const UserController = require('../controllers/user.controller');
 const SessionController = require('../controllers/session.controller');
 const authMiddleware = require('../middlewares/auth.middleware');
-const AccountController = require('../controllers/account.controller');
+
 const InternalTransferController = require('../controllers/internalTransfer.controller');
 const DebitPurchaseController = require('../controllers/debitpurchase.controller');
 const DepositController = require('../controllers/deposit.controller');
@@ -35,9 +35,9 @@ module.exports =  (app) => {
 
   app.route('/creditpurchase').post(CreditPurchaseController.store);
 
-  app.route('/accounts').post(AccountController.store);
 
-  app.route('/sendMail').post(SendEmail.sendExtractEmail);
+
+ // app.route('/sendMail').post(SendEmail.sendExtractEmail);
 
   app.route('/cardpayment').post();
 
