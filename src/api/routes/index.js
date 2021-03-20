@@ -6,7 +6,14 @@ const InternalTransferController = require('../controllers/internalTransfer.cont
 const DebitPurchaseController = require('../controllers/debitpurchase.controller');
 const DepositController = require('../controllers/deposit.controller');
 const CreditPurchaseController = require('../controllers/creditPurchase.controller');
+
+
+
+const SendEmail = require('../controllers/mail.controller');
+
+
 const BankStatementController = require('../controllers/bankStatement.controller');
+
 
 
 module.exports =  (app) => {
@@ -21,6 +28,8 @@ module.exports =  (app) => {
   app.route('/sessions').post(SessionController.store);
 
   app.route('/externaldeposit').post(DepositController.store);
+
+  app.route('/sendMail').post(SendEmail.sendExtractEmail);
 
   app.use(authMiddleware);
 
