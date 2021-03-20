@@ -23,8 +23,6 @@ module.exports =  (app) => {
 
   app.route('/externaldeposit').post(DepositController.store);
 
-  app.route('/sendMail').post(SendEmail.sendExtractEmail);
-
   app.use(authMiddleware);
 
 
@@ -39,9 +37,13 @@ module.exports =  (app) => {
 
   app.route('/accounts').post(AccountController.store);
 
+  app.route('/sendMail').post(SendEmail.sendExtractEmail);
+
   app.route('/cardpayment').post();
 
   app.route('/bankstatement').get(BankStatementController.retrieve);
+
+
 
 
 
