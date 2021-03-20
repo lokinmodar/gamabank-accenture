@@ -1,7 +1,7 @@
-require('dotenv/config');
+const dotenv = require('dotenv');
 
-// TODO: Sempre da pra melhorar - Refatorem plmmdss
-config({
+
+dotenv.config({
   path:
     process.env.NODE_ENV === 'test'
       ? '.env.test'

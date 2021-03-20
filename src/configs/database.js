@@ -1,5 +1,14 @@
-require('dotenv/config');
+const dotenv = require('dotenv');
 
+
+dotenv.config({
+  path:
+    process.env.NODE_ENV === 'test'
+      ? '.env.test'
+      : process.env.NODE_ENV === 'development'
+      ? '.env.development'
+      : '.env',
+});
 // definindo parâmetros de acesso à base de dados
 
 

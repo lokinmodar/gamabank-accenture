@@ -4,6 +4,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../../swagger/swagger.json');
 const routes = require('./routes/index');
 require('../api/models')
+require('../configs/env');
 
 const app = express();
 
@@ -39,5 +40,12 @@ app.use((err, req, res, next) => {
     */
 
 routes(app);
+
+
+process.on('unhandledRejection', (err) => {
+  console.log('---->  Deu ruim !');
+  console.error(err);
+  process.exit(1);
+});
 
 module.exports = app;
