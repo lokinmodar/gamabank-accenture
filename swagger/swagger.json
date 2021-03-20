@@ -31,10 +31,9 @@
     },
     {
       "name": "transactions",
-      "description": "Transações bancária",
+      "description": "Transações bancárias",
       "externalDocs": {
-        "description": "transação interna",
-        "url": "http://swagger.io"
+        "description": "Transações."
       }
     }
   ],
@@ -64,13 +63,13 @@
             "produces": ["application/json"],
             "schema": {
               "$ref": "#/definitions/User200"
-            },
-            "400": {
-              "description": "Erro",
-              "produces": ["application/json"],
-              "schema": {
-                "$ref": "#/definitions/User400"
-              }
+            }
+          },
+          "400": {
+            "description": "Erro",
+            "produces": ["application/json"],
+            "schema": {
+              "$ref": "#/definitions/User400"
             }
           }
         }
@@ -102,7 +101,10 @@
             }
           },
           "400": {
-            "description": "Senha inválida"
+            "description": "Senha inválida",
+            "schema": {
+              "$ref": "#/Sessions200"
+            }
           }
         }
       }
@@ -112,16 +114,16 @@
         "tags": ["transactions"],
         "summary": "Transferência interna",
         "description": "Transferencia interna",
-        "operationId": "InternTransferController.store",
+        "operationId": "internalTransfer.Controller.js",
         "produces": ["application/json"],
         "parameters": [
           {
             "in": "body",
             "name": "body",
-            "description": "Created user object",
+            "description": "Objeto com informações sobre transferência entre contas",
             "required": true,
             "schema": {
-              "$ref": "#/internalTransfer"
+              "$ref": "#/definitions/InternalTransfer"
             }
           }
         ],
@@ -150,11 +152,11 @@
   "securityDefinitions": {
     "bearer_token": {
       "type": "oauth2",
-      "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+      "authorizationUrl": "https://gamabank-eventloop.herokuapp.com/sessions",
       "flow": "implicit",
       "scopes": {
-        "write:pets": "modify pets in your account",
-        "read:pets": "read your pets"
+        "write:transactions": "Faz transações em sua conta",
+        "read:transactions": "Consulta movimentações em sua conta"
       }
     },
     "api_key": {
@@ -164,6 +166,29 @@
     }
   },
   "definitions": {
+    "InternalTransfer": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "integer"
+        },
+        "transaction_value": {
+          "type": "number"
+        },
+        "target_account_id": {
+          "type": "integer"
+        },
+        "target_user_name": {
+          "type": "string"
+        },
+        "target_cpf": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "internalTransfer"
+      }
+    },
     "User200": {
       "type": "object",
       "properties": {
@@ -240,27 +265,7 @@
         }
       },
       "xml": {
-        "name": "User"
-      }
-    },
-    "internalTransfer": {
-      "type": "object",
-      "properties": {
-        "account_id": {
-          "type": "integer"
-        },
-        "transaction_value": {
-          "type": "number"
-        },
-        "target_account_id": {
-          "type": "integer"
-        },
-        "target_user_name": {
-          "type": "string"
-        },
-        "taget_cpf": {
-          "type": "string"
-        }
+        "name": "Sessions"
       }
     },
     "createdAccount": {
