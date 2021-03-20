@@ -12,7 +12,7 @@ dotenv.config({
 // definindo parâmetros de acesso à base de dados
 
 
-module.exports = {
+module.exports =  {
   dialect: 'mysql',
   env: process.env.NODE_ENV,
   host: process.env.DB_HOST,
@@ -26,3 +26,4 @@ module.exports = {
     underscoredAll: true,
   },
 };
+

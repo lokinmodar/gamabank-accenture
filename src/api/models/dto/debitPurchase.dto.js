@@ -4,6 +4,7 @@ const Yup = require('yup');
 const debitPurchaseDto = Yup.object()
   .shape({
     transaction_value: Yup.number().required(),
+    operation: Yup.string().required()
   })
   .label('debitPurchaseRequestDTO');
 

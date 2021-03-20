@@ -14,6 +14,9 @@ module.exports = {
         transaction_type_id: {
           type: Sequelize.INTEGER,
         },
+        operation: {
+          type: Sequelize.STRING,
+        },
         transaction_value: {
           type: Sequelize.DECIMAL(10, 2),
         },

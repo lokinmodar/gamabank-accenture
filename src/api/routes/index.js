@@ -6,6 +6,7 @@ const InternalTransferController = require('../controllers/internalTransfer.cont
 const DebitPurchaseController = require('../controllers/debitpurchase.controller');
 const DepositController = require('../controllers/deposit.controller');
 const CreditPurchaseController = require('../controllers/creditPurchase.controller');
+const BankStatementController = require('../controllers/bankStatement.controller');
 
 
 module.exports =  (app) => {
@@ -33,7 +34,7 @@ module.exports =  (app) => {
 
   app.route('/cardpayment').post();
 
-  app.route('/bankstatement').post();
+  app.route('/bankstatement').get(BankStatementController.retrieve);
 
 
 
