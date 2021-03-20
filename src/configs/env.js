@@ -12,7 +12,7 @@ config({
 
 module.exports = {
   env: process.env.NODE_ENV,
-  salt: process.env.SALT,
+  salt: process.env.APP_SALT,
   mail: {
     host: process.env.MAIL_HOST,
     port: process.env.MAIL_PORT,
