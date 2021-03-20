@@ -1,12 +1,12 @@
 const Yup = require('yup');
 
-const internTransferDto = Yup.object()
+const internalTransferDto = Yup.object()
   .shape({
     transaction_value: Yup.number().required(),
     target_account_id: Yup.number(),
     target_user_name: Yup.string(),
     target_cpf: Yup.string(),
   })
-  .label('internTransferDTO');
+  .label('internalTransferRequestDTO');
 
-module.exports = internTransferDto;
+module.exports = internalTransferDto;
