@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive -w",
-    "start": "nodemon src/api/server.js",
+    "start": "src/api/server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./src/api/server.js"
   },
   "keywords": [
