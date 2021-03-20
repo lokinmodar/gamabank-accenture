@@ -42,7 +42,6 @@ module.exports = {
       {}
     );
   },
-
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete('transaction_types', null, {});
   },
