@@ -11,7 +11,7 @@ const findCpfByToken = require('../services/findCpfByToken.service');
 const validateCpf = require('../services/validateCPF.service');
 const { getUsernameCPF } = require('../services/returnUsernameCpfByAccount.service');
 const {formattedCPF} = require('../services/formatCpf.service')
-class InternTransferController {
+class InternalTransferController {
   async store(req, res) {
     const schema = internalTransferDto
     let targetAccountId
@@ -150,4 +150,4 @@ class InternTransferController {
   }
 }
 
-module.exports = new InternTransferController();
+module.exports = new InternalTransferController();
