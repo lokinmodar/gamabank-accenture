@@ -62,7 +62,36 @@ O projeto Gama Bank foi desenvolvido durante o curso da Gama oferecido pela Acce
 
 ---
 
+### Como clonar o projeto
 
+É só clicar no link: [Clone do projeto](https://github.com/lokinmodar/gamabank-accenture.git) copiar o link do projeto, depois crie uma pasta para clonar o projeto, abra o git bash caso esteja no windows,(no linux é só abrir o terminal de comandos), escreva: git clone https://github.com/lokinmodar/gamabank-accenture.git e pronto.
+
+### Como rodar o projeto
+
+Já deu git clone no projeto? Tudo certo então, segundo passo é abrir o terminal para baixar a pasta node_modules com o comando: npm install, com o terminal aberto agora é dá o seguinte comando: npm run start:dev
+e pronto, o projeto vai rodar no localhost na porta 3000. 
+
+### Banco de dados
+
+Crie um banco de dados no Mysql com o nome: gamabank. Em seguida rode as migrations e seeds que estão na pasta database > migrations, database > seeds.
+
+### Rotas do projeto
+
+Criação de conta de usuário: /users
+Exemplo de POST request:
+{
+	"full_name": "xdsds",
+	"user_name": "xsdsd",
+	"user_email": "xdsds@gmail.com",
+	"password": "123456x$dA",
+	"telephone": "(11) 1234-5678",
+	"cpf": "21798532620",
+	"card_due_day": 10
+}
+
+### Link do projeto no Heroku
+
+[Projeto no Heroku](https://gamabank-eventloop.herokuapp.com/)
 
 # 🏦 Gama Bank 💲 Verde de dinheiro
 
