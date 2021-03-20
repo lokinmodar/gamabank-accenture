@@ -11,7 +11,7 @@ module.exports = {
 
     if (UserWithCpf){
       const accountWithCpf = await Account.findOne({
-        where: { id: UserWithCpf.id },
+        where: { user_id: UserWithCpf.id },
         attributes: ['id'],
       });
       if (accountWithCpf !== null) {
