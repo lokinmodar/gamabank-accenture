@@ -20,6 +20,9 @@ module.exports = {
         transaction_value: {
           type: Sequelize.DECIMAL(10, 2),
         },
+        operation: {
+          type: Sequelize.STRING,
+        },
         incoming_cpf: {
           type: Sequelize.STRING,
         },

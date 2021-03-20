@@ -33,7 +33,7 @@ const sendmail = async (from, to, subject, text, htmlTemplate) => {
     console.log('Message sent: %s', result.messageId);
     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(result));
   }
-  return result;
+  return nodemailer.getTestMessageUrl(result)
 };
 
 module.exports = { sendmail };

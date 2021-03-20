@@ -6,8 +6,13 @@ const InternalTransferController = require('../controllers/internalTransfer.cont
 const DebitPurchaseController = require('../controllers/debitpurchase.controller');
 const DepositController = require('../controllers/deposit.controller');
 const CreditPurchaseController = require('../controllers/creditPurchase.controller');
+const SendEmail = require('../controllers/mail.controller');
 const BankStatementController = require('../controllers/bankStatement.controller');
+
 const ExternalTransferController = require('../controllers/externalTransfer.controller');
+
+
+const { Router } = require('express');
 
 
 module.exports =  (app) => {
@@ -25,7 +30,11 @@ module.exports =  (app) => {
 
   app.use(authMiddleware);
 
+
+
   app.route('/internaltransfer').post(InternalTransferController.store);
+
+  app.route('/externaltransfer').post();
 
   app.route('/debitpurchase').post(DebitPurchaseController.store);
 
@@ -33,10 +42,14 @@ module.exports =  (app) => {
 
   app.route('/accounts').post(AccountController.store);
 
+  app.route('/sendMail').post(SendEmail.sendExtractEmail);
+
   app.route('/cardpayment').post();
 
   app.route('/bankstatement').get(BankStatementController.retrieve);
 
   app.route('/externalTransfer').post(ExternalTransferController.store);
+
+
 
 };

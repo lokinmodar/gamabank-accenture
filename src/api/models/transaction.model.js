@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     account_id: DataTypes.INTEGER,
     transaction_type_id: DataTypes.INTEGER,
     transaction_value: DataTypes.DECIMAL,
+    operation: DataTypes.STRING,
     incoming_cpf: DataTypes.STRING,
     target_bank_id: DataTypes.INTEGER,
     target_user_name: DataTypes.STRING,
