@@ -10,27 +10,44 @@
       "url": "http://gamabank-eventloop.herokuapp.com:80"
     }
   ],
+  "tags": [
+    {
+      "name": "users",
+      "description": "Criação de conta  do usuário e conta bancária",
+      "externalDocs": {
+        "description": "Rotina para criação de conta do usuário e conta bancária"
+      }
+    },
+    {
+      "name": "sessions",
+      "description": "Criação de Sessão do usuário",
+      "externalDocs": {
+        "description": "Sessão do usuário iniciada"
+      }
+    },
+    {
+      "name": "transactions",
+      "description": "Transações bancárias",
+      "externalDocs": {
+        "description": "Transações."
+      }
+    }
+  ],
   "paths": {
     "/users": {
-      "options": {
-        "responses": {
-          "default": {
-            "description": "CORS headers for all operations",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "type": "string",
-                "default": "http://gamabank-eventloop.herokuapp.com:80"
-              },
-              "Access-Control-Allow-Headers": {
-                "type": "string",
-                "default": "X-UA-Compatible, X-XSS-Protection"
-              }
-            }
-          }
-        }
-      },
       "post": {
+        "tags": ["users"],
         "description": "Creation of user account and bank account",
+        "headers": {
+          "Access-Control-Allow-Origin": {
+            "type": "string",
+            "default": "http://gamabank-eventloop.herokuapp.com:80"
+          },
+          "Access-Control-Allow-Headers": {
+            "type": "string",
+            "default": "X-UA-Compatible, X-XSS-Protection"
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -50,13 +67,22 @@
         },
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector",
+            "description": "User created",
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
-                },
-                "examples": {}
+                  "$ref":"#/components/schemas/UserCreated"
+                }                
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error400"
+                }                
               }
             }
           },
@@ -76,8 +102,52 @@
         }
       ]
     },
+    "/sessions": {
+      "post": {
+        "tags": ["sessions"],
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Sessions"
+              },
+              "examples": {
+                "0": {
+                  "value": "\t{\r\n\t    \"user_email\": \"xasdadasdsds@gmail.com\",\r\n\t    \"password\": \"123asd4asd56x$dA\"\r\n\t}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    },
     "/creditpurchase": {
       "post": {
+        "tags": ["transactions"],
         "security": [
           {
             "bearerAuth": []
@@ -105,8 +175,7 @@
               "application/json; charset=utf-8": {
                 "schema": {
                   "type": "string"
-                },
-                "examples": {}
+                }                
               }
             }
           }
@@ -125,6 +194,12 @@
     },
     "/externaltransfer": {
       "post": {
+        "tags": ["transactions"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "description": "Auto generated using Swagger Inspector",
         "requestBody": {
           "content": {
@@ -167,6 +242,12 @@
     },
     "/externaldeposit": {
       "post": {
+        "tags": ["transactions"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "description": "Auto generated using Swagger Inspector",
         "requestBody": {
           "content": {
@@ -209,51 +290,15 @@
           "url": "http://gamabank-eventloop.herokuapp.com:80"
         }
       ]
-    },
-    "/sessions": {
-      "post": {
-        "description": "Auto generated using Swagger Inspector",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Sessions"
-              },
-              "examples": {
-                "0": {
-                  "value": "\t{\r\n\t    \"user_email\": \"xasdadasdsds@gmail.com\",\r\n\t    \"password\": \"123asd4asd56x$dA\"\r\n\t}"
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Auto generated using Swagger Inspector",
-            "content": {
-              "application/json; charset=utf-8": {
-                "schema": {
-                  "type": "string"
-                },
-                "examples": {}
-              }
-            }
-          }
-        },
-        "servers": [
-          {
-            "url": "http://gamabank-eventloop.herokuapp.com:80"
-          }
-        ]
-      },
-      "servers": [
-        {
-          "url": "http://gamabank-eventloop.herokuapp.com:80"
-        }
-      ]
-    },
+    }, 
     "/debitpurchase": {
       "post": {
+        "tags": ["transactions"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "description": "Auto generated using Swagger Inspector",
         "requestBody": {
           "content": {
@@ -296,6 +341,12 @@
     },
     "/internaltransfer": {
       "post": {
+        "tags": ["transactions"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "description": "Auto generated using Swagger Inspector",
         "requestBody": {
           "content": {
@@ -342,17 +393,118 @@
       "users": {
         "type": "object",
         "properties": {
-          "incoming_cpf": {
+          "full_name": {
+            "required":true,
             "type": "string"
           },
-          "account_id": {
-            "type": "integer"
+          "user_name": {
+            "required":true,
+            "type": "string"
           },
-          "transaction_value": {
-            "type": "integer"
+          "user_email": {
+            "required":true,
+            "type": "string"
+          },
+          "password": {
+            "required":true,
+            "type": "string"
+          },
+          "telephone": {
+            "required":true,
+            "type": "string"
+          },
+          "card_due_day": {
+            "required":true,
+            "type": "number"
+          }
+        }
+      },      
+      "createdUser": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "user_email": {
+            "type": "string"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
+      "UserCreated": {   
+        "type": "object",
+        "properties": {
+          "createdUser": {
+            "$ref": "#/components/schemas/createdUser"
+          },
+          "createdAccount": {
+            "$ref": "#/components/schemas/createdAccount"
+          }
+        }
+      },
+      "createdAccount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "balance": {
+            "type": "number"
+          },
+          "credit_limit": {
+            "type": "number"
+          },
+          "card_due_day": {
+            "type": "number"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },  
+      "createdSession": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "user_id": {
+            "type": "number"
+          },
+          "token": {
+            "type": "string"  
+          },
+          "updateAt": {
+            "type": "string",
+            "format":"date-time"
+          },
+          "createAt": {
+            "type": "string",
+            "format":"date-time"
+          }
+        }
+      },       
       "creditPurchase": {
         "type": "object",
         "properties": {
@@ -438,9 +590,19 @@
           "target_cpf": {
             "type": "string"
           }
+        }      
+      },
+      "Error400": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "value": "RequestFormatError: Resquest fields validation failed"
+          }
         }
       }
     },
+  
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
