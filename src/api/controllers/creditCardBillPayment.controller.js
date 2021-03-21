@@ -1,4 +1,3 @@
-const { Transaction } = require('../models');
 const creditCardBillPaymentDto = require('../models/dto/creditCardBillPayment.dto');
 
 class CreditCardBillPaymentController {
@@ -15,6 +14,10 @@ class CreditCardBillPaymentController {
       return;
     }
     console.log(req.body);
+
+
+    const parsedDate = console.log(new Date(req.body.transaction_pay_date));
+    console.log(parsedDate);
 
 
 
