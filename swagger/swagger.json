@@ -97,19 +97,19 @@
           "Sessions200": {
             "description": "Usuário logado",
             "schema": {
-              "$ref": "#/Sessions200"
+              "$ref": "#/definitions/createdSession"
             }
           },
           "400": {
             "description": "Senha inválida",
             "schema": {
-              "$ref": "#/Sessions200"
+              "$ref": ""
             }
           }
         }
       }
     },
-    "/internaltransfer": {
+    "/internalTransfer": {
       "post": {
         "tags": ["transactions"],
         "summary": "Transferência interna",
@@ -129,21 +129,78 @@
         ],
         "responses": {
           "200": {
-            "description": "Transaferência feita com sucesso"
+            "description": "Transaferência feita com sucesso",
+            "schema": {
+              "$ref": "#/definitions/createdInternalTransafer"
+            }
           },
           "400": {
             "description": "Não obteve sucesso na transferência",
             "schema": {
-              "type": "object",
-              "properties": [
-                {
-                  "account_id": {
-                    "type": "integer",
-                    "format": "int64"
-                  }
-                }
-              ]
+              "$ref": "#/definitions/unCreatedInternalTransfer"
+            }         
+          }
+        }
+      }
+    },
+    "/depositTransfer": {
+      "post": {
+        "tags": ["transactions"],
+        "summary": "Deposit",
+        "description": "Deposit dont need token",
+        "operationId": "deposit.controller.js",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Object Deposit",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Deposit"
             }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "deposit completed",
+            "schema": {
+              "$ref": "#/definitions/transactionSaved"
+            }
+          },
+          "400": {
+            "description": "double check the filled fields"                     
+          }
+        }
+      }
+    },
+    "/debitPurchaseTransfer": {
+      "post": {
+        "tags": ["transactions"],
+        "summary": "debitPurchaseTransafer",
+        "description": "Compra cartão débito",
+        "operationId": "debitPurchase.controller.js",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Object debitPurchase",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/debitPurchase"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "debit Purchase completed",
+            "schema": {
+              "$ref": "#/definitions/purchaseMade"
+            }
+          },
+          "400": {
+            "description": "double check the filled fields"                     
           }
         }
       }
@@ -189,6 +246,101 @@
         "name": "internalTransfer"
       }
     },
+    "Deposit": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "number"
+        },
+        "transaction_value": {
+          "type": "number"
+        },
+        "incoming_cpf": {
+          "type": "number"
+        }
+      }
+    },
+    "transactionSaved": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "account_id": {
+          "type": "number"
+        },
+        "transaction_type_id": {
+          "type": "number"
+        },
+        "transaction_value": {
+          "type": "number"
+        },
+        "incoming_cpf": {
+          "type": "number"
+        },
+        "transaction_due_date": {
+          "type": "string",
+          "format":"date-time"
+        },
+        "transaction_pay_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updateAt": {
+          "type": "string",
+          "format":"date-time"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "debitPurchase": {
+      "type": "object",
+      "properties": {
+        "transaction_value": {
+          "type": "number"
+        }
+      }
+    },
+    "purchaseMade": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "account_id": {
+          "type": "number"
+        },
+        "transaction_type_id": {
+          "type": "number"
+        },
+        "transaction_value": {
+          "type": "number"
+        },
+        "transaction_due_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "transaction_pay_date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updateAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "createAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "debitBalance": {
+        "type": "number"
+      }
+    },
+    
     "User200": {
       "type": "object",
       "properties": {
@@ -225,7 +377,7 @@
           "type": "string"
         },
         "card_due_day": {
-          "type": "string"
+          "type": "number"
         }
       }
     },
@@ -266,6 +418,28 @@
       },
       "xml": {
         "name": "Sessions"
+      }    
+    },
+    "createdSession": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "user_id": {
+          "type": "number"
+        },
+        "token": {
+          "type": "string"  
+        },
+        "updateAt": {
+          "type": "string",
+          "format":"date-time"
+        },
+        "createAt": {
+          "type": "string",
+          "format":"date-time"
+        }
       }
     },
     "createdAccount": {
@@ -296,6 +470,7 @@
         }
       }
     }
+    
   },
   "externalDocs": {
     "description": "Find out more about Swagger",
