@@ -11,10 +11,6 @@ const BankStatementController = require('../controllers/bankStatement.controller
 
 const ExternalTransferController = require('../controllers/externalTransfer.controller');
 
-
-const { Router } = require('express');
-
-
 module.exports =  (app) => {
 
   app.get('/', (req, res) => {
@@ -30,8 +26,6 @@ module.exports =  (app) => {
 
   app.use(authMiddleware);
 
-
-
   app.route('/internaltransfer').post(InternalTransferController.store);
 
   app.route('/externaltransfer').post();
@@ -39,8 +33,6 @@ module.exports =  (app) => {
   app.route('/debitpurchase').post(DebitPurchaseController.store);
 
   app.route('/creditpurchase').post(CreditPurchaseController.store);
-
-
 
  // app.route('/sendMail').post(SendEmail.sendExtractEmail);
 
