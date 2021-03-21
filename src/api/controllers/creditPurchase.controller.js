@@ -62,9 +62,9 @@ class CreditPurchaseController {
     usedCreditLimit = await getUsedCredit(accountId);
 
     // recuperando o limite restante para exibir para o usuário
-    currentCreditLimit = credit_limit - usedCreditLimit; 
+    currentCreditLimit = credit_limit - usedCreditLimit;
 
-    /* 
+    /*
       recuperando a url com o e-mail para o usuário
       passando como paramêtro as informações operator, transaction_value e dateCardDueDay
     */
