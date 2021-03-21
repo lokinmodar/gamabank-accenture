@@ -62,14 +62,14 @@
             "description": "Usuário e conta criados",
             "produces": ["application/json"],
             "schema": {
-              "$ref": "#/definitions/User200"
+              "$ref": "#/definitions/UserCreated"
             }
           },
           "400": {
             "description": "Erro",
             "produces": ["application/json"],
             "schema": {
-              "$ref": "#/definitions/User400"
+              "$ref": "#/definitions/NotCreatedUser"
             }
           }
         }
@@ -204,6 +204,68 @@
           }
         }
       }
+    },
+    "/externalTransfer": {
+      "post": {
+        "tags": ["transactions"],
+        "summary": "externalTransafer",
+        "description": "External Transafer",
+        "operationId": "externalTransfer.controller.js",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Object external transfer",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/externalTransfer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "external transfer sucessful",
+            "schema": {
+              "$ref": "#/definitions/externalTransferSaved"
+            }
+          },
+          "400": {
+            "description": "double check the filled fields"                     
+          }
+        }
+      }
+    },
+    "/creditPurchase": {
+      "post": {
+        "tags": ["transactions"],
+        "summary": "CreditPurchaseTransafer",
+        "description": "Compra cartão crédito",
+        "operationId": "creditPurchase.controller.js",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Object creditPurchase",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/creditPurchase"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Credit Purchase completed",
+            "schema": {
+              "$ref": "#/definitions/creditPurchaseMade"
+            }
+          },
+          "400": {
+            "description": "double check the filled fields"                     
+          }
+        }
+      }
     }
   },
   "securityDefinitions": {
@@ -225,11 +287,10 @@
   "definitions": {
     "InternalTransfer": {
       "type": "object",
+      "description": "Para que a requisição seja processada corretamente informe 1 desses 3 campos opcionais: target_account_id, target_user_name, target_cpf",    
       "properties": {
-        "account_id": {
-          "type": "integer"
-        },
         "transaction_value": {
+          "required": true,
           "type": "number"
         },
         "target_account_id": {
@@ -246,13 +307,33 @@
         "name": "internalTransfer"
       }
     },
+    "externalTransfer": {
+      "type": "object",
+      "description": "",
+      "properties": {
+        "transaction_value": {
+          "type": "number"
+        },
+        "target_bank_id": {
+          "type": "number"
+        },
+        "target_account_id": {
+          "type": "number"
+        },
+        "target_cpf": {
+          "type": "number"
+        }
+      }
+    },
     "Deposit": {
       "type": "object",
+      "description": "Para que requisição a requisição seja processada pelo menos 1 campos desses 2 deverá ser preenchido: account_id ou incoming_cpf",
       "properties": {
         "account_id": {
           "type": "number"
         },
         "transaction_value": {
+          "required":true,
           "type": "number"
         },
         "incoming_cpf": {
@@ -300,10 +381,86 @@
       "type": "object",
       "properties": {
         "transaction_value": {
+          "required": true,
           "type": "number"
         }
       }
     },
+    "externalTransferSaved": {
+      "properties": {
+      "id": {
+        "type": "number"
+      },
+      "account_id": {
+        "type": "number"
+      },
+      "target_bank_id": {
+        "type": "number"
+      },
+      "target_account_id": {
+        "type": "number"
+      },
+      "transaction_type_id": {
+        "type": "number"
+      },
+      "transaction_value": {
+        "type": "number"
+      },
+      "target_cpf": {
+        "type": "number"
+      },
+      "incoming_cpf": {
+        "type": "number"
+      },
+      "transaction_due_date": {
+        "type": "string",
+        "format":"date-time"
+      },
+      "transaction_pay_date": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "updateAt": {
+        "type": "string",
+        "format":"date-time"
+      }
+    }
+  },
+    "creditPurchaseMade": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number"
+        },
+        "account_id": {
+          "type": "number"           
+          },
+        "transaction_type_id": {
+          "type": "number"
+        },
+        "transaction_value": {
+          "type": "number"
+        },
+        "operation": {
+          "type": "string"
+        },
+        "transaction_due_date": {
+          "type": "string",
+          "format":"date-time"
+        },
+        "updateAt": {
+          "type": "string",
+          "format":"date-time"
+        },
+        "createAt": {
+          "type": "string",
+          "format":"date-time"
+        }        
+      },
+      "currentCreditLimit": {
+        "type": "number"
+      }        
+  },
     "purchaseMade": {
       "type": "object",
       "properties": {
@@ -340,8 +497,19 @@
         "type": "number"
       }
     },
+    "creditPurchase": {
+      "type": "object",
+      "properties": {
+        "transaction_value": {
+          "type": "number"
+        },
+        "operation": {
+          "type": "string"
+        }      
+    }
+  },
     
-    "User200": {
+    "UserCreated": {
       "type": "object",
       "properties": {
         "createdUser": {
@@ -352,7 +520,7 @@
         }
       }
     },
-    "User400": {
+    "NotCreatedUser": {
       "type": "object",
       "properties": {
         "Error": "User already exists"
@@ -362,21 +530,27 @@
       "type": "object",
       "properties": {
         "full_name": {
+          "required":true,
           "type": "string"
         },
         "user_name": {
+          "required":true,
           "type": "string"
         },
         "user_email": {
+          "required":true,
           "type": "string"
         },
         "password": {
+          "required":true,
           "type": "string"
         },
         "telephone": {
+          "required":true,
           "type": "string"
         },
         "card_due_day": {
+          "required":true,
           "type": "number"
         }
       }
@@ -410,15 +584,14 @@
       "type": "object",
       "properties": {
         "user_email": {
+          "required":true,
           "type": "string"
         },
         "password": {
+          "required":true,
           "type": "string"
         }
-      },
-      "xml": {
-        "name": "Sessions"
-      }    
+      }      
     },
     "createdSession": {
       "type": "object",
