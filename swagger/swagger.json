@@ -13,23 +13,23 @@
   "tags": [
     {
       "name": "users",
-      "description": "Criação de conta  do usuário e conta bancária",
+      "description": "User account creation and bank account creation ",
       "externalDocs": {
-        "description": "Rotina para criação de conta do usuário e conta bancária"
+        "description": "Routine to creation of the account of the user and bank account"
       }
     },
     {
       "name": "sessions",
-      "description": "Criação de Sessão do usuário",
+      "description": "Create session of the user",
       "externalDocs": {
-        "description": "Sessão do usuário iniciada"
+        "description": "Session of the user initiated"
       }
     },
     {
       "name": "transactions",
-      "description": "Transações bancárias",
+      "description": "Bank transactions",
       "externalDocs": {
-        "description": "Transações."
+        "description": "Transactions."
       }
     }
   ],
@@ -68,6 +68,16 @@
         "responses": {
           "200": {
             "description": "User created",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
@@ -85,10 +95,7 @@
                 }                
               }
             }
-          },
-          "default": {
-            "description": "Auto generated using Swagger Inspector"
-          }
+          }          
         },
         "servers": [
           {
@@ -105,7 +112,17 @@
     "/sessions": {
       "post": {
         "tags": ["sessions"],
-        "description": "Auto generated using Swagger Inspector",
+        "description": "Session creation",
+        "headers": {
+          "Access-Control-Allow-Origin": {
+            "type": "string",
+            "default": "http://gamabank-eventloop.herokuapp.com:80"
+          },
+          "Access-Control-Allow-Headers": {
+            "type": "string",
+            "default": "X-UA-Compatible, X-XSS-Protection"
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -121,14 +138,23 @@
           }
         },
         "responses": {
-          "200": {
-            "description": "Auto generated using Swagger Inspector",
+          "200": {            
+            "description": "Session created",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
                   "type": "string"
-                },
-                "examples": {}
+                }                
               }
             }
           }
@@ -153,7 +179,17 @@
             "bearerAuth": []
           }
         ],
-        "description": "Auto generated using Swagger Inspector",
+        "description": "Credit card purchase",
+        "headers": {
+          "Access-Control-Allow-Origin": {
+            "type": "string",
+            "default": "http://gamabank-eventloop.herokuapp.com:80"
+          },
+          "Access-Control-Allow-Headers": {
+            "type": "string",
+            "default": "X-UA-Compatible, X-XSS-Protection"
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -170,7 +206,17 @@
         },
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector",
+            "description": "Purchase card approved",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
@@ -200,7 +246,17 @@
             "bearerAuth": []
           }
         ],
-        "description": "Auto generated using Swagger Inspector",
+        "description": "External transfer",
+        "headers": {
+          "Access-Control-Allow-Origin": {
+            "type": "string",
+            "default": "http://gamabank-eventloop.herokuapp.com:80"
+          },
+          "Access-Control-Allow-Headers": {
+            "type": "string",
+            "default": "X-UA-Compatible, X-XSS-Protection"
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -217,13 +273,22 @@
         },
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector",
+            "description": "External transaction approved",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
                   "type": "string"
-                },
-                "examples": {}
+                }                
               }
             }
           }
@@ -242,13 +307,18 @@
     },
     "/externaldeposit": {
       "post": {
-        "tags": ["transactions"],
-        "security": [
-          {
-            "bearerAuth": []
+        "tags": ["transactions"],        
+        "description": "External deposit",
+        "headers": {
+          "Access-Control-Allow-Origin": {
+            "type": "string",
+            "default": "http://gamabank-eventloop.herokuapp.com:80"
+          },
+          "Access-Control-Allow-Headers": {
+            "type": "string",
+            "default": "X-UA-Compatible, X-XSS-Protection"
           }
-        ],
-        "description": "Auto generated using Swagger Inspector",
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -268,13 +338,22 @@
         },
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector",
+            "description": "External deposit aprroved",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
                   "type": "string"
-                },
-                "examples": {}
+                }                
               }
             }
           }
@@ -299,7 +378,17 @@
             "bearerAuth": []
           }
         ],
-        "description": "Auto generated using Swagger Inspector",
+        "description": "Debit purchase",
+        "headers": {
+          "Access-Control-Allow-Origin": {
+            "type": "string",
+            "default": "http://gamabank-eventloop.herokuapp.com:80"
+          },
+          "Access-Control-Allow-Headers": {
+            "type": "string",
+            "default": "X-UA-Compatible, X-XSS-Protection"
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -316,13 +405,22 @@
         },
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector",
+            "description": "Debit purchase aprroved",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
                   "type": "string"
-                },
-                "examples": {}
+                }                
               }
             }
           }
@@ -347,7 +445,17 @@
             "bearerAuth": []
           }
         ],
-        "description": "Auto generated using Swagger Inspector",
+        "description": "Internal transfer",
+        "headers": {
+          "Access-Control-Allow-Origin": {
+            "type": "string",
+            "default": "http://gamabank-eventloop.herokuapp.com:80"
+          },
+          "Access-Control-Allow-Headers": {
+            "type": "string",
+            "default": "X-UA-Compatible, X-XSS-Protection"
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -364,13 +472,22 @@
         },
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector",
+            "description": "Internal transfer approved",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
                   "type": "string"
-                },
-                "examples": {}
+                }                
               }
             }
           }
