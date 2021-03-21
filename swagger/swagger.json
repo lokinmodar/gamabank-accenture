@@ -5,13 +5,7 @@
     "description": "defaultDescription",
     "version": "0.1"
   },
-
   "servers": [
-
-  "host": "gamabank-eventloop.herokuapp.com:80",
-  "basePath": "/",
-  "tags": [
-
     {
       "url": "http://gamabank-eventloop.herokuapp.com:80"
     }
