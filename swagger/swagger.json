@@ -35,7 +35,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body"
+                "$ref": "#/components/schemas/users"
               },
               "examples": {
                 "0": {
@@ -88,7 +88,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body_1"
+                "$ref": "#/components/schemas/creditPurchase"
               },
               "examples": {
                 "0": {
@@ -130,7 +130,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body_2"
+                "$ref": "#/components/schemas/externalTransfer"
               },
               "examples": {
                 "0": {
@@ -172,7 +172,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body_3"
+                "$ref": "#/components/schemas/externalDeposit"
               },
               "examples": {
                 "0": {
@@ -217,7 +217,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body_4"
+                "$ref": "#/components/schemas/Sessions"
               },
               "examples": {
                 "0": {
@@ -259,7 +259,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body_5"
+                "$ref": "#/components/schemas/debitPurchase"
               },
               "examples": {
                 "0": {
@@ -301,7 +301,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/body_6"
+                "$ref": "#/components/schemas/internalTransfer"
               },
               "examples": {
                 "0": {
