@@ -12,6 +12,23 @@
   ],
   "paths": {
     "/users": {
+      "options": {
+        "responses": {
+          "default": {
+            "description": "CORS headers for all operations",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            }
+          }
+        }
+      },
       "post": {
         "description": "Auto generated using Swagger Inspector",
         "requestBody": {
@@ -61,6 +78,11 @@
     },
     "/creditpurchase": {
       "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "description": "Auto generated using Swagger Inspector",
         "requestBody": {
           "content": {
@@ -420,16 +442,10 @@
       }
     },
     "securitySchemes": {
-      "oauth2": {
-        "type": "oauth2",
-        "flows": {
-          "implicit": {
-            "authorizationUrl": "http://yourauthurl.com",
-            "scopes": {
-              "scope_name": "Enter your scopes here"
-            }
-          }
-        }
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
