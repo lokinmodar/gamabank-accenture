@@ -14,7 +14,7 @@ class CreditCardBillPaymentController {
       res.status(400).json({ RequestFormatError: error.errors[0] });
       return;
     }
-
+    console.log(req.body);
 
 
 
