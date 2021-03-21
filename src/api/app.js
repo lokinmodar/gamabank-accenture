@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../../swagger/swagger.json');
 const routes = require('./routes/index');
+const cors = require('cors');
+
 require('../api/models')
 require('../configs/env');
 
@@ -11,9 +13,10 @@ const app = express();
 /**
     * Middleware
     */
-
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
 
 app.use(
   '/documentation',
