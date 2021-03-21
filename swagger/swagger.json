@@ -1,652 +1,436 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.1",
   "info": {
-    "description": "Api criada durante a gama Academy Accenture 2.0 pelo grupo EventLoop",
-    "version": "1.0.0",
-    "title": "Gamabank EventLoop",
-    "contact": {
-      "url": "https://github.com/lokinmodar/gamabank-accenture"
-    },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-    }
+    "title": "defaultTitle",
+    "description": "defaultDescription",
+    "version": "0.1"
   },
-  "host": "https://gamabank-eventloop.herokuapp.com/",
-  "basePath": "/",
-  "tags": [
+  "servers": [
     {
-      "name": "users",
-      "description": "Criação de conta  do usuário e conta bancária",
-      "externalDocs": {
-        "description": "Rotina para criação de conta do usuário e conta bancária"
-      }
-    },
-    {
-      "name": "sessions",
-      "description": "Criação de Sessão do usuário",
-      "externalDocs": {
-        "description": "Sessão do usuário iniciada"
-      }
-    },
-    {
-      "name": "transactions",
-      "description": "Transações bancárias",
-      "externalDocs": {
-        "description": "Transações."
-      }
+      "url": "http://gamabank-eventloop.herokuapp.com:80"
     }
   ],
-  "schemes": ["https", "http"],
   "paths": {
     "/users": {
       "post": {
-        "tags": ["users"],
-        "summary": "Criação de conta de usuário",
-        "description": "Criação de uma conta para o usuário conforme dados enviados na requisição POST",
-        "operationId": "user.controller.js",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Objeto com informações de usuário criado",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/User"
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\r\n\t\"full_name\": \"xdssadsdds\",\r\n\t\"user_name\": \"xssasdasdaddsd\",\r\n\t\"user_email\": \"xasdadasdsds@gmail.com\",\r\n\t\"password\": \"123asd4asd56x$dA\",\r\n\t\"telephone\": \"(11) 1234-5678\",\r\n\t\"cpf\": \"17912718710\",\r\n\t\"card_due_day\": 10\r\n}"
+                },
+                "1": {
+                  "value": "{\r\n\t\"full_name\": \"xdssadsdds\",\r\n\t\"user_name\": \"xssasdasdaddsd\",\r\n\t\"user_email\": \"xasdadasdsds@gmail.com\",\r\n\t\"password\": \"123asd4asd56x$dA\",\r\n\t\"telephone\": \"(11) 1234-5678\",\r\n\t\"cpf\": \"17912718710\",\r\n\t\"card_due_day\": 10\r\n}"
+                }
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
-            "description": "Usuário e conta criados",
-            "produces": ["application/json"],
-            "schema": {
-              "$ref": "#/definitions/UserCreated"
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
             }
           },
-          "400": {
-            "description": "Erro",
-            "produces": ["application/json"],
-            "schema": {
-              "$ref": "#/definitions/NotCreatedUser"
+          "default": {
+            "description": "Auto generated using Swagger Inspector"
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    },
+    "/creditpurchase": {
+      "post": {
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_1"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\t\r\n    \"transaction_value\": 100,\r\n    \"operation\": \"Operation description\"\r\n}"
+                }
+              }
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
         }
-      }
+      ]
+    },
+    "/externaltransfer": {
+      "post": {
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_2"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\r\n\t \t\"transaction_value\": 100,\r\n\t\t\"target_bank_id\": 1,\r\n\t\t\"target_account_id\": 123456,\r\n    \"target_cpf\": \"78664896291\"\t\r\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    },
+    "/externaldeposit": {
+      "post": {
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_3"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\r\n\t\"account_id\": 4,\r\n\t\"transaction_value\": 1000,\r\n\t\"incoming_cpf\": \"21798532620\"\r\n}"
+                },
+                "1": {
+                  "value": "{\r\n\t\"account_id\": 1,\r\n\t\"transaction_value\": 1000,\r\n\t\"incoming_cpf\": \"21798532620\"\r\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
     },
     "/sessions": {
       "post": {
-        "tags": ["sessions"],
-        "summary": "sessão do usuário",
-        "description": "Criação da sessão de um usuário",
-        "operationId": "sessionController.js",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "The user name for login",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Sessions"
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_4"
+              },
+              "examples": {
+                "0": {
+                  "value": "\t{\r\n\t    \"user_email\": \"xasdadasdsds@gmail.com\",\r\n\t    \"password\": \"123asd4asd56x$dA\"\r\n\t}"
+                }
+              }
             }
           }
-        ],
+        },
         "responses": {
-          "Sessions200": {
-            "description": "Usuário logado",
-            "schema": {
-              "$ref": "#/definitions/createdSession"
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
             }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    },
+    "/debitpurchase": {
+      "post": {
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_5"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\r\n\t\"transaction_value\": 140,\r\n\t\"operation\": \"Compra a débito\"\r\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    },
+    "/internaltransfer": {
+      "post": {
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_6"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\r\n\t\"transaction_value\": 10,\r\n\t\"target_cpf\": \"94818274100\"\r\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "body_3": {
+        "type": "object",
+        "properties": {
+          "incoming_cpf": {
+            "type": "string"
           },
-          "400": {
-            "description": "Senha inválida",
-            "schema": {
-              "$ref": ""
-            }
+          "account_id": {
+            "type": "integer"
+          },
+          "transaction_value": {
+            "type": "integer"
+          }
+        }
+      },
+      "body_4": {
+        "type": "object",
+        "properties": {
+          "user_email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "body_1": {
+        "type": "object",
+        "properties": {
+          "transaction_value": {
+            "type": "integer"
+          },
+          "operation": {
+            "type": "string"
+          }
+        }
+      },
+      "body_2": {
+        "type": "object",
+        "properties": {
+          "target_account_id": {
+            "type": "integer"
+          },
+          "target_bank_id": {
+            "type": "integer"
+          },
+          "transaction_value": {
+            "type": "integer"
+          },
+          "target_cpf": {
+            "type": "string"
+          }
+        }
+      },
+      "body": {
+        "type": "object",
+        "properties": {
+          "user_email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "user_name": {
+            "type": "string"
+          },
+          "cpf": {
+            "type": "string"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "card_due_day": {
+            "type": "integer"
+          }
+        }
+      },
+      "body_5": {
+        "type": "object",
+        "properties": {
+          "transaction_value": {
+            "type": "integer"
+          },
+          "operation": {
+            "type": "string"
+          }
+        }
+      },
+      "body_6": {
+        "type": "object",
+        "properties": {
+          "transaction_value": {
+            "type": "integer"
+          },
+          "target_cpf": {
+            "type": "string"
           }
         }
       }
     },
-    "/internalTransfer": {
-      "post": {
-        "tags": ["transactions"],
-        "summary": "Transferência interna",
-        "description": "Transferencia interna",
-        "operationId": "internalTransfer.Controller.js",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Objeto com informações sobre transferência entre contas",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/InternalTransfer"
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "http://yourauthurl.com",
+            "scopes": {
+              "scope_name": "Enter your scopes here"
             }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Transaferência feita com sucesso",
-            "schema": {
-              "$ref": "#/definitions/createdInternalTransafer"
-            }
-          },
-          "400": {
-            "description": "Não obteve sucesso na transferência",
-            "schema": {
-              "$ref": "#/definitions/unCreatedInternalTransfer"
-            }         
-          }
-        }
-      }
-    },
-    "/depositTransfer": {
-      "post": {
-        "tags": ["transactions"],
-        "summary": "Deposit",
-        "description": "Deposit dont need token",
-        "operationId": "deposit.controller.js",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Object Deposit",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Deposit"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "deposit completed",
-            "schema": {
-              "$ref": "#/definitions/transactionSaved"
-            }
-          },
-          "400": {
-            "description": "double check the filled fields"                     
-          }
-        }
-      }
-    },
-    "/debitPurchaseTransfer": {
-      "post": {
-        "tags": ["transactions"],
-        "summary": "debitPurchaseTransafer",
-        "description": "Compra cartão débito",
-        "operationId": "debitPurchase.controller.js",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Object debitPurchase",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/debitPurchase"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "debit Purchase completed",
-            "schema": {
-              "$ref": "#/definitions/purchaseMade"
-            }
-          },
-          "400": {
-            "description": "double check the filled fields"                     
-          }
-        }
-      }
-    },
-    "/externalTransfer": {
-      "post": {
-        "tags": ["transactions"],
-        "summary": "externalTransafer",
-        "description": "External Transafer",
-        "operationId": "externalTransfer.controller.js",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Object external transfer",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/externalTransfer"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "external transfer sucessful",
-            "schema": {
-              "$ref": "#/definitions/externalTransferSaved"
-            }
-          },
-          "400": {
-            "description": "double check the filled fields"                     
-          }
-        }
-      }
-    },
-    "/creditPurchase": {
-      "post": {
-        "tags": ["transactions"],
-        "summary": "CreditPurchaseTransafer",
-        "description": "Compra cartão crédito",
-        "operationId": "creditPurchase.controller.js",
-        "produces": ["application/json"],
-        "parameters": [
-          {
-            "in": "body",
-            "name": "body",
-            "description": "Object creditPurchase",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/creditPurchase"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Credit Purchase completed",
-            "schema": {
-              "$ref": "#/definitions/creditPurchaseMade"
-            }
-          },
-          "400": {
-            "description": "double check the filled fields"                     
           }
         }
       }
     }
-  },
-  "securityDefinitions": {
-    "bearer_token": {
-      "type": "oauth2",
-      "authorizationUrl": "https://gamabank-eventloop.herokuapp.com/sessions",
-      "flow": "implicit",
-      "scopes": {
-        "write:transactions": "Faz transações em sua conta",
-        "read:transactions": "Consulta movimentações em sua conta"
-      }
-    },
-    "api_key": {
-      "type": "apiKey",
-      "name": "api_key",
-      "in": "header"
-    }
-  },
-  "definitions": {
-    "InternalTransfer": {
-      "type": "object",
-      "description": "Para que a requisição seja processada corretamente informe 1 desses 3 campos opcionais: target_account_id, target_user_name, target_cpf",    
-      "properties": {
-        "transaction_value": {
-          "required": true,
-          "type": "number"
-        },
-        "target_account_id": {
-          "type": "integer"
-        },
-        "target_user_name": {
-          "type": "string"
-        },
-        "target_cpf": {
-          "type": "string"
-        }
-      },
-      "xml": {
-        "name": "internalTransfer"
-      }
-    },
-    "externalTransfer": {
-      "type": "object",
-      "description": "",
-      "properties": {
-        "transaction_value": {
-          "type": "number"
-        },
-        "target_bank_id": {
-          "type": "number"
-        },
-        "target_account_id": {
-          "type": "number"
-        },
-        "target_cpf": {
-          "type": "number"
-        }
-      }
-    },
-    "Deposit": {
-      "type": "object",
-      "description": "Para que requisição a requisição seja processada pelo menos 1 campos desses 2 deverá ser preenchido: account_id ou incoming_cpf",
-      "properties": {
-        "account_id": {
-          "type": "number"
-        },
-        "transaction_value": {
-          "required":true,
-          "type": "number"
-        },
-        "incoming_cpf": {
-          "type": "number"
-        }
-      }
-    },
-    "transactionSaved": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number"
-        },
-        "account_id": {
-          "type": "number"
-        },
-        "transaction_type_id": {
-          "type": "number"
-        },
-        "transaction_value": {
-          "type": "number"
-        },
-        "incoming_cpf": {
-          "type": "number"
-        },
-        "transaction_due_date": {
-          "type": "string",
-          "format":"date-time"
-        },
-        "transaction_pay_date": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updateAt": {
-          "type": "string",
-          "format":"date-time"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "debitPurchase": {
-      "type": "object",
-      "properties": {
-        "transaction_value": {
-          "required": true,
-          "type": "number"
-        }
-      }
-    },
-    "externalTransferSaved": {
-      "properties": {
-      "id": {
-        "type": "number"
-      },
-      "account_id": {
-        "type": "number"
-      },
-      "target_bank_id": {
-        "type": "number"
-      },
-      "target_account_id": {
-        "type": "number"
-      },
-      "transaction_type_id": {
-        "type": "number"
-      },
-      "transaction_value": {
-        "type": "number"
-      },
-      "target_cpf": {
-        "type": "number"
-      },
-      "incoming_cpf": {
-        "type": "number"
-      },
-      "transaction_due_date": {
-        "type": "string",
-        "format":"date-time"
-      },
-      "transaction_pay_date": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "updateAt": {
-        "type": "string",
-        "format":"date-time"
-      }
-    }
-  },
-    "creditPurchaseMade": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number"
-        },
-        "account_id": {
-          "type": "number"           
-          },
-        "transaction_type_id": {
-          "type": "number"
-        },
-        "transaction_value": {
-          "type": "number"
-        },
-        "operation": {
-          "type": "string"
-        },
-        "transaction_due_date": {
-          "type": "string",
-          "format":"date-time"
-        },
-        "updateAt": {
-          "type": "string",
-          "format":"date-time"
-        },
-        "createAt": {
-          "type": "string",
-          "format":"date-time"
-        }        
-      },
-      "currentCreditLimit": {
-        "type": "number"
-      }        
-  },
-    "purchaseMade": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number"
-        },
-        "account_id": {
-          "type": "number"
-        },
-        "transaction_type_id": {
-          "type": "number"
-        },
-        "transaction_value": {
-          "type": "number"
-        },
-        "transaction_due_date": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "transaction_pay_date": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "updateAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "createAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      },
-      "debitBalance": {
-        "type": "number"
-      }
-    },
-    "creditPurchase": {
-      "type": "object",
-      "properties": {
-        "transaction_value": {
-          "type": "number"
-        },
-        "operation": {
-          "type": "string"
-        }      
-    }
-  },
-    
-    "UserCreated": {
-      "type": "object",
-      "properties": {
-        "createdUser": {
-          "$ref": "#/definitions/createdUser"
-        },
-        "createdAccount": {
-          "$ref": "#/definitions/createdAccount"
-        }
-      }
-    },
-    "NotCreatedUser": {
-      "type": "object",
-      "properties": {
-        "Error": "User already exists"
-      }
-    },
-    "User": {
-      "type": "object",
-      "properties": {
-        "full_name": {
-          "required":true,
-          "type": "string"
-        },
-        "user_name": {
-          "required":true,
-          "type": "string"
-        },
-        "user_email": {
-          "required":true,
-          "type": "string"
-        },
-        "password": {
-          "required":true,
-          "type": "string"
-        },
-        "telephone": {
-          "required":true,
-          "type": "string"
-        },
-        "card_due_day": {
-          "required":true,
-          "type": "number"
-        }
-      }
-    },
-    "createdUser": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number"
-        },
-        "full_name": {
-          "type": "string"
-        },
-        "user_email": {
-          "type": "string"
-        },
-        "telephone": {
-          "type": "string"
-        },
-        "updatedAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "createdAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    },
-    "Sessions": {
-      "type": "object",
-      "properties": {
-        "user_email": {
-          "required":true,
-          "type": "string"
-        },
-        "password": {
-          "required":true,
-          "type": "string"
-        }
-      }      
-    },
-    "createdSession": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number"
-        },
-        "user_id": {
-          "type": "number"
-        },
-        "token": {
-          "type": "string"  
-        },
-        "updateAt": {
-          "type": "string",
-          "format":"date-time"
-        },
-        "createAt": {
-          "type": "string",
-          "format":"date-time"
-        }
-      }
-    },
-    "createdAccount": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "number"
-        },
-        "user_id": {
-          "type": "number"
-        },
-        "balance": {
-          "type": "number"
-        },
-        "credit_limit": {
-          "type": "number"
-        },
-        "card_due_day": {
-          "type": "number"
-        },
-        "updateAt": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "createAt": {
-          "type": "string",
-          "format": "date-time"
-        }
-      }
-    }
-    
-  },
-  "externalDocs": {
-    "description": "Find out more about Swagger",
-    "url": "http://swagger.io"
   }
 }
