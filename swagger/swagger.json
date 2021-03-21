@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "EventLoop Group",
-    "description": "defaultDescription",
+    "description": "Api created during the Academy Accenture 2.0 range by the EventLoop group",
     "version": "0.1"
   },
   "servers": [
@@ -13,7 +13,7 @@
   "paths": {
     "/users": {
       "post": {
-        "description": "Auto generated using Swagger Inspector",
+        "description": "Creation of user account and bank account",
         "requestBody": {
           "content": {
             "application/json": {
@@ -317,7 +317,7 @@
   },
   "components": {
     "schemas": {
-      "body_3": {
+      "users": {
         "type": "object",
         "properties": {
           "incoming_cpf": {
@@ -331,7 +331,7 @@
           }
         }
       },
-      "body_4": {
+      "creditPurchase": {
         "type": "object",
         "properties": {
           "user_email": {
@@ -342,7 +342,7 @@
           }
         }
       },
-      "body_1": {
+      "externalTransfer": {
         "type": "object",
         "properties": {
           "transaction_value": {
@@ -353,7 +353,7 @@
           }
         }
       },
-      "body_2": {
+      "externalDeposit": {
         "type": "object",
         "properties": {
           "target_account_id": {
@@ -370,7 +370,7 @@
           }
         }
       },
-      "body": {
+      "Sessions": {
         "type": "object",
         "properties": {
           "user_email": {
@@ -396,7 +396,7 @@
           }
         }
       },
-      "body_5": {
+      "debitPurchase": {
         "type": "object",
         "properties": {
           "transaction_value": {
@@ -407,7 +407,7 @@
           }
         }
       },
-      "body_6": {
+      "internalTransfer": {
         "type": "object",
         "properties": {
           "transaction_value": {
