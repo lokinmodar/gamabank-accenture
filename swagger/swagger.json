@@ -1,0 +1,436 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "EventLoop Group",
+    "description": "defaultDescription",
+    "version": "0.1"
+  },
+  "servers": [
+    {
+      "url": "http://gamabank-eventloop.herokuapp.com:80"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "post": {
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\r\n\t\"full_name\": \"xdssadsdds\",\r\n\t\"user_name\": \"xssasdasdaddsd\",\r\n\t\"user_email\": \"xasdadasdsds@gmail.com\",\r\n\t\"password\": \"123asd4asd56x$dA\",\r\n\t\"telephone\": \"(11) 1234-5678\",\r\n\t\"cpf\": \"17912718710\",\r\n\t\"card_due_day\": 10\r\n}"
+                },
+                "1": {
+                  "value": "{\r\n\t\"full_name\": \"xdssadsdds\",\r\n\t\"user_name\": \"xssasdasdaddsd\",\r\n\t\"user_email\": \"xasdadasdsds@gmail.com\",\r\n\t\"password\": \"123asd4asd56x$dA\",\r\n\t\"telephone\": \"(11) 1234-5678\",\r\n\t\"cpf\": \"17912718710\",\r\n\t\"card_due_day\": 10\r\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          },
+          "default": {
+            "description": "Auto generated using Swagger Inspector"
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    },
+    "/creditpurchase": {
+      "post": {
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_1"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\t\r\n    \"transaction_value\": 100,\r\n    \"operation\": \"Operation description\"\r\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    },
+    "/externaltransfer": {
+      "post": {
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_2"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\r\n\t \t\"transaction_value\": 100,\r\n\t\t\"target_bank_id\": 1,\r\n\t\t\"target_account_id\": 123456,\r\n    \"target_cpf\": \"78664896291\"\t\r\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    },
+    "/externaldeposit": {
+      "post": {
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_3"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\r\n\t\"account_id\": 4,\r\n\t\"transaction_value\": 1000,\r\n\t\"incoming_cpf\": \"21798532620\"\r\n}"
+                },
+                "1": {
+                  "value": "{\r\n\t\"account_id\": 1,\r\n\t\"transaction_value\": 1000,\r\n\t\"incoming_cpf\": \"21798532620\"\r\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    },
+    "/sessions": {
+      "post": {
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_4"
+              },
+              "examples": {
+                "0": {
+                  "value": "\t{\r\n\t    \"user_email\": \"xasdadasdsds@gmail.com\",\r\n\t    \"password\": \"123asd4asd56x$dA\"\r\n\t}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    },
+    "/debitpurchase": {
+      "post": {
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_5"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\r\n\t\"transaction_value\": 140,\r\n\t\"operation\": \"Compra a débito\"\r\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    },
+    "/internaltransfer": {
+      "post": {
+        "description": "Auto generated using Swagger Inspector",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/body_6"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\r\n\t\"transaction_value\": 10,\r\n\t\"target_cpf\": \"94818274100\"\r\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {}
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    }
+  },
+  "components": {
+    "schemas": {
+      "body_3": {
+        "type": "object",
+        "properties": {
+          "incoming_cpf": {
+            "type": "string"
+          },
+          "account_id": {
+            "type": "integer"
+          },
+          "transaction_value": {
+            "type": "integer"
+          }
+        }
+      },
+      "body_4": {
+        "type": "object",
+        "properties": {
+          "user_email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "body_1": {
+        "type": "object",
+        "properties": {
+          "transaction_value": {
+            "type": "integer"
+          },
+          "operation": {
+            "type": "string"
+          }
+        }
+      },
+      "body_2": {
+        "type": "object",
+        "properties": {
+          "target_account_id": {
+            "type": "integer"
+          },
+          "target_bank_id": {
+            "type": "integer"
+          },
+          "transaction_value": {
+            "type": "integer"
+          },
+          "target_cpf": {
+            "type": "string"
+          }
+        }
+      },
+      "body": {
+        "type": "object",
+        "properties": {
+          "user_email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "user_name": {
+            "type": "string"
+          },
+          "cpf": {
+            "type": "string"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "card_due_day": {
+            "type": "integer"
+          }
+        }
+      },
+      "body_5": {
+        "type": "object",
+        "properties": {
+          "transaction_value": {
+            "type": "integer"
+          },
+          "operation": {
+            "type": "string"
+          }
+        }
+      },
+      "body_6": {
+        "type": "object",
+        "properties": {
+          "transaction_value": {
+            "type": "integer"
+          },
+          "target_cpf": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "oauth2": {
+        "type": "oauth2",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "http://yourauthurl.com",
+            "scopes": {
+              "scope_name": "Enter your scopes here"
+            }
+          }
+        }
+      }
+    }
+  }
+}
