@@ -2,9 +2,6 @@ const sessionDto = require('../models/dto/session.dto');
 const { Session } = require('../models');
 const UserExists = require('../services/checkUserExists.service');
 const sessionCreate = require('../services/session.service');
-
-// gerar arquivo exportando chave secreta e data de expiração
-
 class SessionController {
   async store(req, res) {
     const schema = sessionDto;

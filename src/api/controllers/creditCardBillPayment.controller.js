@@ -1,8 +1,9 @@
 const creditCardBillPaymentDto = require('../models/dto/creditCardBillPayment.dto');
+const findUserIdByToken = require('../services/findUserIdByToken.service');
+const { billPayment } = require('../services/creditCardBillPayment.service');
 
 class CreditCardBillPaymentController {
   async store(req, res) {
-
     const schema = creditCardBillPaymentDto;
     // verificando validade do schema usando Yup
 
@@ -10,19 +11,42 @@ class CreditCardBillPaymentController {
       await schema.validate(req.body); // chamada ao yup.validate pra validação do DTO(schema)
     } catch (error) {
       // extraindo de dentro do retorno do Yup o erro exato
-      res.status(400).json({ RequestFormatError: error.errors[0] });
-      return;
+      return res.status(400).json({ RequestFormatError: error.errors[0] });
     }
-    console.log(req.body);
+    console.log(`Request ${req.body}`);
+
+    const parsedDate = new Date(req.body.transaction_pay_date);
+    console.log(`parsedDate: ${parsedDate}`);
+    if (parsedDate < new Date()) {
+      return res
+        .status(409)
+        .json({ Error: 'Payment date must be today or greater.' });
+    }
+
+    const [, token] = req.headers.authorization.split(' ');
+    const accountId = await findUserIdByToken.accountIdByToken(token);
+
+    const payment = await billPayment(accountId, parsedDate);
 
 
-    const parsedDate = console.log(new Date(req.body.transaction_pay_date));
-    console.log(parsedDate);
+    if (payment !== 0 && payment !== 1) {
+      console.log(`payment a: ${payment}`);
+      return res.status(200).json({ message: payment });
+    } else {
+      if (payment === 0) {
+        console.log(`payment b: ${payment.message}`);
+        return res
+          .status(400)
+          .json({ Error: 'No transactions in the period.' });
+      }
+      if (payment === 1) {
+        console.log(`payment c: ${payment.message}`);
+        return res
+          .status(400)
+          .json({ Error: 'Not enough balance to finish the payment.' });
+      }
+    }
 
-
-
-    // passados os atributos no corpo da requisição em JSON
-    return res.status(200).json({ ok: 'uiuiui' });
   }
 }
 

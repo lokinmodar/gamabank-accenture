@@ -1,9 +1,15 @@
 const creditPurchaseDto = require('../models/dto/creditPurchase.dto');
 const { Transaction } = require('../models');
 const findUserIdByToken = require('../services/findUserIdByToken.service');
-const { checkValueNotNegative } = require('../services/checkTransactionValue.service');
-const { getAccountCreditLimit, getUsedCredit, getDateCard } = require('../services/creditBalance.service');
-const {sendExtractEmail} = require('../controllers/mail.controller')
+const {
+  checkValueNotNegative,
+} = require('../services/checkTransactionValue.service');
+const {
+  getAccountCreditLimit,
+  getUsedCredit,
+  getDateCard,
+} = require('../services/creditBalance.service');
+const { sendExtractEmail } = require('../controllers/mail.controller');
 
 class CreditPurchaseController {
   async store(req, res) {
@@ -30,10 +36,10 @@ class CreditPurchaseController {
     let usedCreditLimit = await getUsedCredit(accountId);
 
     // recuperando o limite de crédito do usuário
-    const {credit_limit} = await getAccountCreditLimit(accountId);
+    const { credit_limit } = await getAccountCreditLimit(accountId);
 
     // recuperando a data de vencimento do cartão de crédito do usuário
-    const {card_due_day} = await getAccountCreditLimit(accountId);
+    const { card_due_day } = await getAccountCreditLimit(accountId);
 
     // service para recuperar o dia que a transação vai fechar
     const dateCardDueDay = await getDateCard(card_due_day);
@@ -68,11 +74,17 @@ class CreditPurchaseController {
       recuperando a url com o e-mail para o usuário
       passando como paramêtro as informações operator, transaction_value e dateCardDueDay
     */
-    const mail = await sendExtractEmail(req.body.operation, req.body.transaction_value, `${dateCardDueDay.getDate()}/${dateCardDueDay.getMonth() < 10 ? '0' + (dateCardDueDay.getMonth() + 1) : dateCardDueDay.getMonth() + 1 }/${dateCardDueDay.getFullYear()}`
+    const mail = await sendExtractEmail(
+      req.body.operation,
+      req.body.transaction_value,
+      `${dateCardDueDay.getDate()}/${
+        dateCardDueDay.getMonth() < 10
+          ? '0' + (dateCardDueDay.getMonth() + 1)
+          : dateCardDueDay.getMonth() + 1
+      }/${dateCardDueDay.getFullYear()}`
     );
 
-
-    return res.status(200).json({ purchaseMade, currentCreditLimit, mail});
+    return res.status(200).json({ purchaseMade, currentCreditLimit, mail });
   }
 }
 module.exports = new CreditPurchaseController();

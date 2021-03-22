@@ -3,7 +3,9 @@ const { Transaction } = require('../models');
 const debitPurchaseDto = require('../models/dto/debitPurchase.dto');
 const accountBalance = require('../services/accountBalance.service');
 const findUserIdByToken = require('../services/findUserIdByToken.service');
-const { checkValueNotNegative } = require('../services/checkTransactionValue.service');
+const {
+  checkValueNotNegative,
+} = require('../services/checkTransactionValue.service');
 
 class DebitPurchaseController {
   async store(req, res) {

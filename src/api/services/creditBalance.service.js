@@ -6,23 +6,22 @@ module.exports = {
   getAccountCreditLimit: async (id) => {
     const availableCreditLimit = await Account.findOne({
       where: {
-        id
+        id,
       },
       attributes: ['credit_limit'],
     }).then((account) => account.get('credit_limit'));
 
     const accountCardDueDay = await Account.findOne({
       where: {
-        id
+        id,
       },
       attributes: ['card_due_day'],
     }).then((account) => account.get('card_due_day'));
 
-
     const datum = {
       credit_limit: availableCreditLimit,
-      card_due_day: accountCardDueDay
-    }
+      card_due_day: accountCardDueDay,
+    };
 
     return datum;
   },
@@ -30,12 +29,12 @@ module.exports = {
   getUsedCredit: async (id) => {
     const usedCredit = await Transaction.findAll({
       attributes: [
-        [Sequelize.fn('sum', Sequelize.col('transaction_value')), 'total']
+        [Sequelize.fn('sum', Sequelize.col('transaction_value')), 'total'],
       ],
       where: {
-        'account_id': id,
-        'transaction_pay_date': null
-      }
+        account_id: id,
+        transaction_pay_date: null,
+      },
     });
 
     return usedCredit[0].get('total');
@@ -47,10 +46,14 @@ module.exports = {
     let card_date = new Date();
 
     if (card_due_day < date.getDate())
-      card_date = new Date(date.getFullYear(), date.getMonth() + 1, card_due_day);
+      card_date = new Date(
+        date.getFullYear(),
+        date.getMonth() + 1,
+        card_due_day
+      );
     else
       card_date = new Date(date.getFullYear(), date.getMonth(), card_due_day);
 
     return card_date;
-  }
+  },
 };

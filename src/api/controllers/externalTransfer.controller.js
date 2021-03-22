@@ -1,11 +1,13 @@
 const validateCPF = require('../services/validateCPF.service');
 const externalTransferDTO = require('../models/dto/externalTransfer.dto');
 const accountExists = require('../services/accountExists.service');
-const { checkValueNotNegative } = require('../services/checkTransactionValue.service');
+const {
+  checkValueNotNegative,
+} = require('../services/checkTransactionValue.service');
 const accountBalance = require('../services/accountBalance.service');
 const { Transaction } = require('../models');
 const { Account } = require('../models');
-const {formattedCPF} = require('../services/formatCpf.service');
+const { formattedCPF } = require('../services/formatCpf.service');
 const findUserIdByToken = require('../services/findUserIdByToken.service');
 const findCpfByToken = require('../services/findCpfByToken.service');
 const { bankWithIdExists } = require('../services/verifyExternalBank.service');
@@ -25,22 +27,25 @@ class ExternalTransferController {
     }
 
     if (await checkValueNotNegative(req.body.transaction_value)) {
-      return res.status(400).json({ error: 'Transaction value must be greater than 0.' });
+      return res
+        .status(400)
+        .json({ error: 'Transaction value must be greater than 0.' });
     }
 
-    const checkBankId = await bankWithIdExists(req.body.target_bank_id)
+    const checkBankId = await bankWithIdExists(req.body.target_bank_id);
 
-    if(checkBankId === false){
+    if (checkBankId === false) {
       return res.status(400).json({ error: 'Invalid Bank ID.' });
     }
 
-
-    const formattedTargetCPF = await formattedCPF(req.body.target_cpf)
+    const formattedTargetCPF = await formattedCPF(req.body.target_cpf);
 
     const [, token] = req.headers.authorization.split(' ');
     const accountId = await findUserIdByToken.accountIdByToken(token);
 
-    let currentBalance = parseFloat(await accountBalance.getAccountBalance(accountId))
+    let currentBalance = parseFloat(
+      await accountBalance.getAccountBalance(accountId)
+    );
 
     if (req.body.transaction_value > currentBalance) {
       return res.status(400).json({ error: 'Insuficient balance' });
@@ -72,10 +77,7 @@ class ExternalTransferController {
       }
     );
 
-    return res
-      .status(200)
-      .json({ TransactionSaved, currentBalance });
-
+    return res.status(200).json({ TransactionSaved, currentBalance });
   }
 }
 

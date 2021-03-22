@@ -4,14 +4,12 @@ const validateCpf = require('../services/validateCPF.service');
 const userDto = require('../models/dto/user.dto');
 const UserExists = require('../services/checkUserExists.service');
 const verifyCardDueDay = require('../services/verifyCardDueDay.service');
-const {formattedCPF} = require('../services/formatCpf.service')
+const { formattedCPF } = require('../services/formatCpf.service');
 class UserController {
   async store(req, res) {
     // validações do Schema
     const schema = userDto;
 
-    // TODO: Transformar em função helper ou service
-    // TODO: Checar herarquia dos erros de verificação no YUP
     try {
       await schema.validate(req.body); // chamada ao yup.validate pra validação do DTO(schema)
     } catch (error) {
@@ -40,15 +38,15 @@ class UserController {
       return res.status(400).json({ error: 'User already exists.' });
     }
 
-    const cpf = await formattedCPF(req.body.cpf)
+    const cpf = await formattedCPF(req.body.cpf);
     const userToCreate = {
       full_name: req.body.full_name,
       user_name: req.body.user_name,
       user_email: req.body.user_email,
       password: req.body.password,
       cpf: cpf,
-      telephone: req.body.telephone
-  }
+      telephone: req.body.telephone,
+    };
 
     // salvamento no banco de dados
     const createdUser = await User.build(userToCreate);
