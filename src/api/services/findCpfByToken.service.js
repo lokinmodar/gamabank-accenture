@@ -7,6 +7,9 @@ module.exports = {
       where: { token },
       attributes: ['user_id'],
     });
+    if(!sessionWithToken) {
+      return false;
+    }
     const cpftWithUserId = await User.findOne({
       where: { id: sessionWithToken.user_id },
     });
