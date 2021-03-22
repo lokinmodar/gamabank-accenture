@@ -3,7 +3,7 @@ const { Op } = require('sequelize');
 const { Transaction } = require('../models');
 
 module.exports = {
-  openTransactionsByMonth: async (month) => {
+  openTransactionsByMonth: async (id, month) => {
     const openCreditTransactions = await Transaction.findAll({
       attributes: [
         'id',
@@ -14,6 +14,7 @@ module.exports = {
       ],
       where: {
         [Op.and]: [
+          { account_id: id },
           { transaction_pay_date: null },
           {
             where: {
@@ -25,7 +26,7 @@ module.exports = {
           },
         ],
       },
-      order: [['created_at', 'ASC']],
+      order: [['created_at', 'DESC']],
       raw: true,
     });
     let results = JSON.stringify(Object.assign({}, openCreditTransactions));
@@ -33,7 +34,7 @@ module.exports = {
     return resultsJson;
   },
 
-  openTransactionsByPeriod: async (initial_date, end_date) => {
+  openTransactionsByPeriod: async (id, initial_date, end_date) => {
     const openCreditTransactions = await Transaction.findAll({
       attributes: [
         'id',
@@ -44,6 +45,7 @@ module.exports = {
       ],
       where: {
         [Op.and]: [
+          { account_id: id },
           { transaction_pay_date: null },
           {
             transaction_due_date: { [Op.between]: [initial_date, end_date] },

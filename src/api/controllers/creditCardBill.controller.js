@@ -1,5 +1,3 @@
-const { Transaction } = require('../models');
-
 const creditCardBillDto = require('../models/dto/creditCardBill.dto');
 const {
   userDetailsByToken,
@@ -9,6 +7,8 @@ const {
   openTransactionsByMonth,
 } = require('../services/creditCardBill.service');
 const { formattedDate } = require('../services/dateFormat.service');
+const { statementToHtml } = require('../services/statements.service')
+const { sendExtractEmail } = require('../controllers/statementMail.controller');
 class CreditCardBillController {
   async sendCardBillByMail(req, res) {
     const schema = creditCardBillDto;
@@ -30,32 +30,32 @@ class CreditCardBillController {
       const initialDate = await formattedDate(req.body.initial_date);
       const endDate = await formattedDate(req.body.end_date);
 
-      const bill = await openTransactionsByPeriod(initialDate, endDate);
+      const bill = await openTransactionsByPeriod(userDetails.account.id, initialDate, endDate);
       console.log(bill);
 
-      return res.status(200).json({ ok: 'aiaiai' });
+      const billToMail = await statementToHtml(bill);
+
+      const mail = await sendExtractEmail(billToMail, req.body.month, new Date().getFullYear());
+
+      return res.status(200).json({ Message: 'Bill sent to your email', LinkToMail: mail })
+
     } else {
       if (req.body.month) {
-        const bill = await openTransactionsByMonth(req.body.month);
+        const bill = await openTransactionsByMonth(userDetails.account.id, req.body.month);
         console.log(bill);
-        for (var key of Object.keys(bill)) {
-          console.log(key + " -> " + JSON.stringify(bill[key]))
-      }
 
+        const billToMail = await statementToHtml(bill);
 
+        const mail = await sendExtractEmail(billToMail, req.body.month, new Date().getFullYear());
 
-        return res.status(200).json({ ok: 'uiuiui' });
+        return res.status(200).json({ Message: 'Bill sent to your email', LinkToMail: mail });
       } else {
-        return res
-          .status(409)
-          .json({
-            Error:
-              'To receive the Card Bill by mail you need to provide either initial_date AND end_date or provide the month you want to see the info for.',
-          });
+        return res.status(409).json({
+          Error:
+            'To receive the Card Bill by mail you need to provide either initial_date AND end_date or provide the month you want to see the info for.',
+        });
       }
     }
-
-
 
     // passados os atributos no corpo da requisição em JSON
   }
