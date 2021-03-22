@@ -56,10 +56,10 @@
               },
               "examples": {
                 "0": {
-                  "value": "{\r\n\t\"full_name\": \"xdssadsdds\",\r\n\t\"user_name\": \"xssasdasdaddsd\",\r\n\t\"user_email\": \"xasdadasdsds@gmail.com\",\r\n\t\"password\": \"123asd4asd56x$dA\",\r\n\t\"telephone\": \"(11) 1234-5678\",\r\n\t\"cpf\": \"17912718710\",\r\n\t\"card_due_day\": 10\r\n}"
+                  "value": "{\r\n\t\"full_name\": \"exemplo\",\r\n\t\"user_name\": \"exemplo\",\r\n\t\"user_email\": \"exemple@gmail.com\",\r\n\t\"password\": \"123asd4asd56x$dA\",\r\n\t\"telephone\": \"(11) 9999-9999\",\r\n\t\"cpf\": \"11111111111\",\r\n\t\"card_due_day\": 10\r\n}"
                 },
                 "1": {
-                  "value": "{\r\n\t\"full_name\": \"xdssadsdds\",\r\n\t\"user_name\": \"xssasdasdaddsd\",\r\n\t\"user_email\": \"xasdadasdsds@gmail.com\",\r\n\t\"password\": \"123asd4asd56x$dA\",\r\n\t\"telephone\": \"(11) 1234-5678\",\r\n\t\"cpf\": \"17912718710\",\r\n\t\"card_due_day\": 10\r\n}"
+                "value": "{\r\n\t\"full_name\": \"exemplo\",\r\n\t\"user_name\": \"exemplo\",\r\n\t\"user_email\": \"example@gmail.com\",\r\n\t\"password\": \"passwordCorrect\",\r\n\t\"telephone\": \"(11) 9999-9999\",\r\n\t\"cpf\": \"11111111111\",\r\n\t\"card_due_day\": 10\r\n}"
                 }
               }
             }
@@ -131,7 +131,7 @@
               },
               "examples": {
                 "0": {
-                  "value": "\t{\r\n\t    \"user_email\": \"xasdadasdsds@gmail.com\",\r\n\t    \"password\": \"123asd4asd56x$dA\"\r\n\t}"
+                  "value": "\t{\r\n\t    \"user_email\": \"example@gmail.com\",\r\n\t    \"password\": \"correctPassword\"\r\n\t}"
                 }
               }
             }
