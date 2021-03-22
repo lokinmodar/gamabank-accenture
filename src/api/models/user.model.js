@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
 
     checkPassword(password, salt) {
-      // console.log();
       // compara informação inserida na senha de login com hash do cadastro
       return comparePassword(password, salt, this.password_hash);
     }

@@ -73,7 +73,7 @@ class InternalTransferController {
         return res.status(400).json({ error: 'Invalid CPF.' });
       }
       const formattedTargetCPF = await formattedCPF(req.body.target_cpf);
-      console.log(formattedTargetCPF);
+
       const accountByCpf = await accountWithCpfExists(formattedTargetCPF);
 
       if (accountByCpf === false) {

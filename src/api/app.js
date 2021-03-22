@@ -1,3 +1,4 @@
+const dotenv = require('dotenv');
 const express = require('express');
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express');
@@ -46,7 +47,7 @@ routes(app);
 
 
 process.on('unhandledRejection', (err) => {
-  console.log('---->  Deu ruim !');
+  console.log('---->  Server error!');
   console.error(err);
   process.exit(1);
 });

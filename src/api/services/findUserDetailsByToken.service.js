@@ -16,8 +16,6 @@ module.exports = {
       attributes: ['id'],
     });
     if (userDetails !== null && userAccountDetails !== null) {
-      console.log(userDetails);
-      console.log(userAccountDetails);
 
       const data = { user: userDetails, account:
         userAccountDetails }

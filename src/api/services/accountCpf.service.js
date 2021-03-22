@@ -15,7 +15,6 @@ module.exports = {
         attributes: ['id'],
       });
       if (accountWithCpf !== null) {
-        // console.log(accountWithCpf);
         return accountWithCpf.id;
       }
     }
