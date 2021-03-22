@@ -87,7 +87,7 @@
             }
           },
           "400": {
-            "description": "Validation error",
+            "description": "Request fields validation failed",            
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
@@ -157,6 +157,26 @@
                 }                
               }
             }
+          },
+          "400": {            
+            "description": "Request fields validation failed",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error400"
+                }                
+              }
+            }
           }
         },
         "servers": [
@@ -206,7 +226,7 @@
         },
         "responses": {
           "200": {
-            "description": "Purchase card approved",
+            "description": "Credit purchase card approved",
             "headers": {
               "Access-Control-Allow-Origin": {
                 "type": "string",
@@ -221,6 +241,26 @@
               "application/json; charset=utf-8": {
                 "schema": {
                   "type": "string"
+                }                
+              }
+            }
+          },
+          "401": {
+            "description": "The token is not valid",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotToken"
                 }                
               }
             }
@@ -291,6 +331,26 @@
                 }                
               }
             }
+          },
+          "401": {
+            "description": "The token is not valid",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotToken"
+                }                
+              }
+            }
           }
         },
         "servers": [
@@ -356,6 +416,26 @@
                 }                
               }
             }
+          },
+          "400": {            
+            "description": "Request fields validation failed",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error400"
+                }                
+              }
+            }
           }
         },
         "servers": [
@@ -405,7 +485,7 @@
         },
         "responses": {
           "200": {
-            "description": "Debit purchase aprroved",
+            "description": "Debit purchase approved",
             "headers": {
               "Access-Control-Allow-Origin": {
                 "type": "string",
@@ -420,6 +500,26 @@
               "application/json; charset=utf-8": {
                 "schema": {
                   "type": "string"
+                }                
+              }
+            }
+          },
+          "401": {
+            "description": "The token is not valid",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotToken"
                 }                
               }
             }
@@ -487,6 +587,26 @@
               "application/json; charset=utf-8": {
                 "schema": {
                   "type": "string"
+                }                
+              }
+            }
+          },
+          "401": {
+            "description": "The token is not valid",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotToken"
                 }                
               }
             }
@@ -626,9 +746,11 @@
         "type": "object",
         "properties": {
           "user_email": {
+            "required":true,
             "type": "string"
           },
           "password": {
+            "required":true,
             "type": "string"
           }
         }
@@ -637,6 +759,7 @@
         "type": "object",
         "properties": {
           "transaction_value": {
+            "required":true,
             "type": "integer"
           },
           "operation": {
@@ -646,14 +769,16 @@
       },
       "externalDeposit": {
         "type": "object",
+        "description": "In order for the requisition to be processed at least 1 fields, these 2 must be completed: account_id or entry_cpf",
         "properties": {
-          "target_account_id": {
+          "target_account_id": {            
             "type": "integer"
           },
           "target_bank_id": {
             "type": "integer"
           },
           "transaction_value": {
+            "required":true,
             "type": "integer"
           },
           "target_cpf": {
@@ -665,24 +790,31 @@
         "type": "object",
         "properties": {
           "user_email": {
+            "required":true,
             "type": "string"
           },
           "password": {
+            "required":true,
             "type": "string"
           },
           "full_name": {
+            "required":true,
             "type": "string"
           },
           "user_name": {
+            "required":true,
             "type": "string"
           },
           "cpf": {
+            "required":true,
             "type": "string"
           },
           "telephone": {
+            "required":true,
             "type": "string"
           },
           "card_due_day": {
+            "required":true,
             "type": "integer"
           }
         }
@@ -691,6 +823,7 @@
         "type": "object",
         "properties": {
           "transaction_value": {
+            "required":true,
             "type": "integer"
           },
           "operation": {
@@ -702,9 +835,11 @@
         "type": "object",
         "properties": {
           "transaction_value": {
+            "required":true,
             "type": "integer"
           },
           "target_cpf": {
+            "required":true,
             "type": "string"
           }
         }      
@@ -715,6 +850,15 @@
           "error": {
             "type": "string",
             "value": "RequestFormatError: Resquest fields validation failed"
+          }
+        }
+      },
+      "NotToken": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "value": "Error 401: Unauthorized"
           }
         }
       }
