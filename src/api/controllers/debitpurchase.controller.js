@@ -2,7 +2,7 @@ const { Account } = require('../models');
 const { Transaction } = require('../models');
 const debitPurchaseDto = require('../models/dto/debitPurchase.dto');
 const accountBalance = require('../services/accountBalance.service');
-const findUserIdByToken = require('../services/findUserIdByToken.service');
+const findAccountIdByToken = require('../services/findAccountIdByToken.service');
 const {
   checkValueNotNegative,
 } = require('../services/checkTransactionValue.service');
@@ -26,7 +26,7 @@ class DebitPurchaseController {
     // passar o account_id
     const [, token] = req.headers.authorization.split(' ');
 
-    const accountId = await findUserIdByToken.accountIdByToken(token);
+    const accountId = await findAccountIdByToken.accountIdByToken(token);
 
     let debitBalance = parseFloat(
       await accountBalance.getAccountBalance(accountId)

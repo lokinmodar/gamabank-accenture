@@ -1,5 +1,5 @@
 const creditCardBillPaymentDto = require('../models/dto/creditCardBillPayment.dto');
-const findUserIdByToken = require('../services/findUserIdByToken.service');
+const findAccountIdByToken = require('../services/findAccountIdByToken.service');
 const { billPayment } = require('../services/creditCardBillPayment.service');
 
 class CreditCardBillPaymentController {
@@ -20,7 +20,7 @@ class CreditCardBillPaymentController {
     }
 
     const [, token] = req.headers.authorization.split(' ');
-    const accountId = await findUserIdByToken.accountIdByToken(token);
+    const accountId = await findAccountIdByToken.accountIdByToken(token);
 
     const payment = await billPayment(accountId, parsedDate);
 

@@ -8,7 +8,7 @@ const accountBalance = require('../services/accountBalance.service');
 const { Transaction } = require('../models');
 const { Account } = require('../models');
 const { formattedCPF } = require('../services/formatCpf.service');
-const findUserIdByToken = require('../services/findUserIdByToken.service');
+const findAccountIdByToken = require('../services/findAccountIdByToken.service');
 const findCpfByToken = require('../services/findCpfByToken.service');
 const { bankWithIdExists } = require('../services/verifyExternalBank.service');
 
@@ -41,7 +41,7 @@ class ExternalTransferController {
     const formattedTargetCPF = await formattedCPF(req.body.target_cpf);
 
     const [, token] = req.headers.authorization.split(' ');
-    const accountId = await findUserIdByToken.accountIdByToken(token);
+    const accountId = await findAccountIdByToken.accountIdByToken(token);
 
     let currentBalance = parseFloat(
       await accountBalance.getAccountBalance(accountId)

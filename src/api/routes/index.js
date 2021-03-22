@@ -9,6 +9,7 @@ const CreditPurchaseController = require('../controllers/creditPurchase.controll
 const BankStatementController = require('../controllers/bankStatement.controller');
 const ExternalTransferController = require('../controllers/externalTransfer.controller');
 const CreditCardBillPaymentController = require('../controllers/creditCardBillPayment.controller');
+const CreditCardBillController = require('../controllers/creditCardBill.controller')
 
 module.exports = (app) => {
   app.get('/', (req, res) => {
@@ -38,6 +39,8 @@ module.exports = (app) => {
   app.route('/creditpurchase').post(CreditPurchaseController.store);
 
   app.route('/cardpayment').post(CreditCardBillPaymentController.store);
+
+  app.route('/cardbill').get(CreditCardBillController.sendCardBillByMail);
 
   app.route('/bankstatement').get(BankStatementController.retrieve);
 

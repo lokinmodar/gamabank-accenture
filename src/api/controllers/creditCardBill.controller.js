@@ -1,20 +1,26 @@
 const { Transaction } = require('../models');
 const creditCardBillDto = require('../models/dto/creditCardBill.dto');
+const { userDetailsByToken } = require('../services/findUserDetailsByToken.service')
 
 class CreditCardBillController {
-  async store(req, res) {
+  async sendCardBillByMail(req, res) {
 
     const schema = creditCardBillDto;
-    // verificando validade do schema usando Yup
 
     try {
-      await schema.validate(req.body); // chamada ao yup.validate pra validação do DTO(schema)
+      await schema.validate(req.body);
     } catch (error) {
-      // extraindo de dentro do retorno do Yup o erro exato
       return res.status(400).json({ RequestFormatError: error.errors[0] });
-
     }
-    console.log(req.body);
+
+    const [, token] = req.headers.authorization.split(' ');
+
+    const userDetails = await userDetailsByToken(token);
+    if (userDetails === undefined) {
+      res
+        .status(409)
+        .json({ Error: 'Invalid session token. User not found.' });
+    }
 
 
 

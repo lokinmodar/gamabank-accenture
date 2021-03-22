@@ -2,7 +2,7 @@ const { Transaction } = require('../models');
 
 
 module.exports = {
-  openTransactions: async (month) => {
+  openTransactions: async () => {
     const openCreditTransactions = await Transaction.findAll({
       attributes: ['id', 'operation', 'transaction_value', 'created_at'],
       where: { transaction_due_date: null },

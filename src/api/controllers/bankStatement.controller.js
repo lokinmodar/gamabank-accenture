@@ -1,7 +1,7 @@
 const { Transaction } = require('../models');
 const { Account } = require('../models');
 const bankStatementDto = require('../models/dto/bankStatement.dto');
-const findUserIdByToken = require('../services/findUserIdByToken.service');
+const findAccountIdByToken = require('../services/findAccountIdByToken.service');
 const bankStatementService = require('../services/bankStatement.service');
 
 class BankStatementController {
@@ -17,7 +17,7 @@ class BankStatementController {
 
     const [, token] = req.headers.authorization.split(' ');
 
-    const accountId = await findUserIdByToken.accountIdByToken(token);
+    const accountId = await findAccountIdByToken.accountIdByToken(token);
 
     if (req.body.month) {
       // tratar

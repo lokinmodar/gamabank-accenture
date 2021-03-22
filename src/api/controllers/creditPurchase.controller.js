@@ -1,6 +1,6 @@
 const creditPurchaseDto = require('../models/dto/creditPurchase.dto');
 const { Transaction } = require('../models');
-const findUserIdByToken = require('../services/findUserIdByToken.service');
+const findAccountIdByToken = require('../services/findAccountIdByToken.service');
 const {
   checkValueNotNegative,
 } = require('../services/checkTransactionValue.service');
@@ -30,7 +30,7 @@ class CreditPurchaseController {
     const [, token] = req.headers.authorization.split(' ');
 
     // recuperando a conta pelo token
-    const accountId = await findUserIdByToken.accountIdByToken(token);
+    const accountId = await findAccountIdByToken.accountIdByToken(token);
 
     // recuperando o total de crédito qeu o usuário já utilizou
     let usedCreditLimit = await getUsedCredit(accountId);

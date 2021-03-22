@@ -10,7 +10,7 @@ const {
   checkValueNotNegative,
 } = require('../services/checkTransactionValue.service');
 const accountBalance = require('../services/accountBalance.service');
-const findUserIdByToken = require('../services/findUserIdByToken.service');
+const findAccountIdByToken = require('../services/findAccountIdByToken.service');
 const findCpfByToken = require('../services/findCpfByToken.service');
 const validateCpf = require('../services/validateCPF.service');
 const {
@@ -94,7 +94,7 @@ class InternalTransferController {
     }
 
     const [, token] = req.headers.authorization.split(' ');
-    const accountId = await findUserIdByToken.accountIdByToken(token);
+    const accountId = await findAccountIdByToken.accountIdByToken(token);
 
     let currentOriginBalance = parseFloat(
       await accountBalance.getAccountBalance(accountId)
