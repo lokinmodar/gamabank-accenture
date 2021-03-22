@@ -11,5 +11,5 @@ dotenv.config({
 
 module.exports = {
   secret: process.env.APP_SECRET,
-  expiresIn: 3000
+  expiresIn: 1200
 };
