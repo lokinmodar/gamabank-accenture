@@ -153,7 +153,7 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/createdSession"
                 }                
               }
             }
@@ -226,7 +226,7 @@
         },
         "responses": {
           "200": {
-            "description": "Credit purchase card approved",
+            "description": "Credit purchase approved",
             "headers": {
               "Access-Control-Allow-Origin": {
                 "type": "string",
@@ -240,7 +240,7 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/PurchaseCreditAll"
                 }                
               }
             }
@@ -327,7 +327,7 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/externalTransferMade"
                 }                
               }
             }
@@ -412,7 +412,7 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/externalDepositMade"
                 }                
               }
             }
@@ -499,7 +499,7 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/debitPurchaseMade"
                 }                
               }
             }
@@ -586,7 +586,7 @@
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/internalTransferMade"
                 }                
               }
             }
@@ -611,6 +611,74 @@
               }
             }
           }
+        },
+        "servers": [
+          {
+            "url": "http://gamabank-eventloop.herokuapp.com:80"
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "http://gamabank-eventloop.herokuapp.com:80"
+        }
+      ]
+    },
+    "/cardpayment": {
+      "post": {
+        "tags": ["transactions"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "description": "Card Payment",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/cardPayment"
+              },
+              "examples": {
+                "0": {
+                  "value": "{\n    \"transaction_pay_date\": \"12/12/2021\"\n}"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Payment made",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string",
+                "default": "http://gamabank-eventloop.herokuapp.com:80"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string",
+                "default": "X-UA-Compatible, X-XSS-Protection"
+              }
+            },
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref":  "#/components/schemas/cardPaymentMade"
+                }                
+              }
+            }
+          },
+          "Error409": {
+            "type": "object",
+            "description": "Payment date must be today or greater.",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error409"
+                }
+              }
+            }
+          }          
         },
         "servers": [
           {
@@ -655,7 +723,8 @@
             "type": "number"
           }
         }
-      },      
+      },
+          
       "createdUser": {
         "type": "object",
         "properties": {
@@ -755,6 +824,61 @@
           }
         }
       },
+      "creditPurchaseFirst": {
+        "type":"object",
+        "properties": {
+          "id": {
+            "type":"number"
+          },
+          "account_id": {
+            "type":"number"
+          },
+          "transaction_type_id": {
+            "type":"number"
+          },
+          "transaction_value": {
+            "type":"number"
+          },
+          "operation": {
+            "type":"string"
+          },
+          "transaction_due_date": {
+            "type":"string",
+            "format":"date-time"
+          },
+          "updateAt": {
+            "type":"string",
+            "format":"date-time"
+          },
+          "createAt": {
+            "type":"string",
+            "format":"date-time"
+          }
+        }        
+      },
+      "creditPurchaseSecond": {
+        "type":"object",
+        "properties": {
+          "currentCreditLimit": {
+            "type":"number"
+          },
+          "mail": {
+            "type": "string",
+            "value": "envio de email"
+          }
+        }
+      },
+      "PurchaseCreditAll": {   
+        "type": "object",
+        "properties": {
+          "PurchaseCreditFirst": {
+            "$ref": "#/components/schemas/creditPurchaseFirst"
+          },
+          "createdAccountSecond": {
+            "$ref": "#/components/schemas/creditPurchaseSecond"
+          }
+        }
+      },
       "externalTransfer": {
         "type": "object",
         "properties": {
@@ -764,6 +888,103 @@
           },
           "operation": {
             "type": "string"
+          }
+        }
+      },
+      "externalDepositMade": {
+        "type":"object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "account_id": {
+            "type":"number"
+          },
+          "transaction_type_id": {
+            "type":"number"
+          },
+          "transaction_value": {
+            "type":"number"
+          },
+          "incoming_cpf": {
+            "type":"number"
+          },
+          "transaction_due_date": {
+            "type":"string",
+            "format":"date-time"
+          },
+          "transaction_pay_date": {
+            "type":"string",
+            "format":"date-time"
+          },
+          "updateAt": {
+            "type":"string",
+            "format":"date-time"
+          },
+          "createAt": {
+            "type":"string",
+            "format":"date-time"
+          }
+        }
+      },
+      "externalTransferFirst": {
+        "type":"object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "account_id": {
+            "type":"number"
+          },
+          "target_bank_id": {
+            "type":"number"
+          },
+          "transaction_type_id": {
+            "type":"number"
+          },
+          "transaction_value": {
+            "type":"number"
+          },
+          "target_cpf": {
+            "type":"number"
+          },
+          "incoming_cpf": {
+            "type":"number"
+          },
+          "transaction_due_date": {
+            "type":"string",
+            "format":"date-time"
+          },
+          "transaction_pay_date": {
+            "type":"string",
+            "format":"date-time"
+          },
+          "updateAt": {
+            "type":"string",
+            "format":"date-time"
+          },
+          "createAt": {
+            "type":"string",
+            "format":"date-time"
+          }
+        }
+      },
+      "externalTransferSecond": {
+        "type":"object",
+        "properties": {
+          "current_Balance": {
+            "type":"number"
+          }
+        }
+      },
+      "externalTransferMade":  {   
+        "type": "object",
+        "properties": {
+          "externalTransferFirst": {
+            "$ref": "#/components/schemas/externalTransferFirst"
+          },
+          "externalTransferSecond": {
+            "$ref": "#/components/schemas/externalTransferSecond"
           }
         }
       },
@@ -831,6 +1052,46 @@
           }
         }
       },
+      "cardPaymentMade": {
+        "type": "string",
+        "example": "Transaction completed successfully. Value paid: $ 100. Updated balance: $ 1160. E-mail confirmation: https://ethereal.email/message/YFYSwsCs8AN2Q7SSYFjwqPKgtgZN.kdWAAAABAerPCKkOQJYAYo1vUmFIcg"
+      },
+      "debitPurchaseMade": {
+        "type":"object",
+        "properties": {
+          "id": {
+            "type":"number"
+          },
+          "account_id": {
+            "type":"number"
+          },
+          "transaction_type_id": {
+            "type":"number"
+          },
+          "transaction_value": {
+            "type":"number"
+          },
+          "transaction_due_date": {
+            "type":"string",
+            "format":"date-time"
+          },
+          "transaction_pay_date": {
+            "type":"string",
+            "format":"date-time"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createAt": {
+            "type": "string",
+            "format":"date-time"
+          },
+          "debitBalance": {
+            "type":"number"          
+          }                
+        }      
+      },      
       "internalTransfer": {
         "type": "object",
         "properties": {
@@ -844,6 +1105,76 @@
           }
         }      
       },
+      "internalTransferFirst": {
+        "type":"object",
+        "properties": {
+          "id": {
+            "type":"number"
+          },
+          "account_id": {
+            "type":"number"
+          },
+          "target_account_id": {
+            "type":"number"
+          },
+          "transaction_type_id": {
+            "type":"number"
+          },
+          "transaction_value": {
+            "type":"number"
+          },
+          "target_cpf": {
+            "type":"number"
+          },
+          "target_user_name": {
+            "type":"string"
+          },
+          "transaction_due_date": {
+            "type":"string",
+            "format":"date-time"
+          },
+          "transaction_pay_date": {
+            "type":"string",
+            "format":"date-time"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createAt": {
+            "type": "string",
+            "format":"date-time"
+          }
+        }
+      },
+      "internalTransferSecond": {
+        "type":"object",
+        "properties": {
+          "currentOriginBalance": {
+            "type":"number"
+          }
+        }
+      },
+      "internalTransferMade": {   
+        "type": "object",
+        "properties": {
+          "internalTransferFirst": {
+            "$ref": "#/components/schemas/internalTransferFirst"
+          },
+          "internalTransferSecond": {
+            "$ref": "#/components/schemas/internalTransferSecond"
+          }
+        }
+      },
+      "cardPayment": {
+        "type":"object",
+        "properties": {
+          "transaction_pay_date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "Error400": {
         "type": "object",
         "properties": {
@@ -853,12 +1184,21 @@
           }
         }
       },
+      "Error409": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type":"string",
+            "example": "Payment date must be today or greater."
+          }
+        }
+      },
       "NotToken": {
         "type": "object",
         "properties": {
           "error": {
             "type": "string",
-            "value": "Error 401: Unauthorized"
+            "example": "Error 401: Unauthorized"
           }
         }
       }
