@@ -8,22 +8,13 @@ module.exports = {
       attributes: ['user_id'],
     });
 
-    if(sessionWithToken) {
+    if (sessionWithToken) {
       const accountWithUserId = await Account.findOne({
         where: { user_id: sessionWithToken.user_id },
       });
       if (accountWithUserId !== null) {
-        // console.log(accountWithUserId);
         return accountWithUserId.id;
       }
-
-    const accountWithUserId = await Account.findOne({
-      where: { user_id: sessionWithToken.user_id },
-    });
-    if (accountWithUserId !== null) {
-
-      return accountWithUserId.id;
-
     }
     return false;
   },
