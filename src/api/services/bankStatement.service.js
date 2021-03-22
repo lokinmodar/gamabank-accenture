@@ -59,8 +59,14 @@ module.exports = {
           {
             where: {
               [Op.and]: [
-                Sequelize.where(Sequelize.fn('MONTH', Sequelize.col('created_at')), month),
-                Sequelize.where(Sequelize.fn('YEAR', Sequelize.col('created_at')), new Date().getFullYear())
+                Sequelize.where(
+                  Sequelize.fn('MONTH', Sequelize.col('created_at')),
+                  month
+                ),
+                Sequelize.where(
+                  Sequelize.fn('YEAR', Sequelize.col('created_at')),
+                  new Date().getFullYear()
+                ),
               ],
             },
           },
@@ -83,18 +89,7 @@ module.exports = {
         'created_at',
       ],
       where: {
-        [Op.and]: [
-          { account_id: id },
-          { target_cpf: null },//checar
-          {
-            where: {
-              [Op.and]: [
-                Sequelize.where(Sequelize.fn('MONTH', Sequelize.col('created_at')), month),
-                Sequelize.where(Sequelize.fn('YEAR', Sequelize.col('created_at')), new Date().getFullYear())
-              ],
-            },
-          },
-        ],
+        [Op.and]: [{ account_id: id }, { target_cpf: null }],
       },
       order: [['created_at', 'DESC']],
       raw: true,
@@ -114,18 +109,12 @@ module.exports = {
       ],
       where: {
         [Op.and]: [
-          { account_id: id },{
-          where: {
-            target_cpf: {
-              [Op.ne]: null
-            }
-          }},
+          { account_id: id },
           {
             where: {
-              [Op.and]: [
-                Sequelize.where(Sequelize.fn('MONTH', Sequelize.col('created_at')), month),
-                Sequelize.where(Sequelize.fn('YEAR', Sequelize.col('created_at')), new Date().getFullYear())
-              ],
+              target_cpf: {
+                [Op.ne]: null,
+              },
             },
           },
         ],
