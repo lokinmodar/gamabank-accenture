@@ -632,8 +632,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Credit Card Bill",
-        "requestBody": {
+        "description": "Credit Card Bill",        
           "content": {
             "application/json": {
               "schema": {
@@ -645,8 +644,8 @@
                 }
               }
             }
-          }
-        },
+          },
+        
         "responses": {
           "200": {
             "description": "Statement Sent",
@@ -700,8 +699,7 @@
             "bearerAuth": []
           }
         ],
-        "description": "Bank Statement",
-        "requestBody": {
+        "description": "Bank Statement",        
           "content": {
             "application/json": {
               "schema": {
@@ -713,8 +711,7 @@
                 }
               }
             }
-          }
-        },
+          },        
         "responses": {
           "200": {
             "description": "Statement Sent",
