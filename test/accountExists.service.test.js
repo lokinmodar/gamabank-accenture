@@ -1,4 +1,4 @@
-const chaiHttp = require('chai-http');
+/*const chaiHttp = require('chai-http');
 const chai = require('chai');
 const app = require('../src/api/app');
 const {
@@ -14,4 +14,4 @@ describe('verify if account exists', function () {
   it('should return false if account does not exist', async function () {
     should.equal(false, await accountWithIdExists(4598));
   });
-});
+});*/

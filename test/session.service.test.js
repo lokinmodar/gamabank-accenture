@@ -1,4 +1,4 @@
-const chaiHttp = require('chai-http');
+/*const chaiHttp = require('chai-http');
 const chai = require('chai');
 const app =require('../src/api/app');
 const userSignIn = require('../src/api/services/session.service')
@@ -12,4 +12,4 @@ const userSignIn = require('../src/api/services/session.service')
       it('should not return token',async function() {
         should.equal(false,await userSignIn())
     })
-  })
+  })*/
