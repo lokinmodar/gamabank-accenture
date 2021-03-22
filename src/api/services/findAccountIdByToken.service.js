@@ -15,7 +15,10 @@ module.exports = {
       if (accountWithUserId !== null) {
         return accountWithUserId.id;
       }
+
     }
+
     return false;
-  },
+  }
+}
 };

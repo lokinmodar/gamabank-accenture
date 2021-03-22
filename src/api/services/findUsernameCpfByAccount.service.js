@@ -7,12 +7,16 @@ module.exports = {
       where: { id },
       attributes: ['user_id'],
     });
-    const usernameCpf = await User.findOne({
-      where: { id: userId.user_id },
-    });
-    if (usernameCpf) {
-
-      return { user_name: usernameCpf.user_name, cpf: usernameCpf.cpf };
+    if(userId){
+      const usernameCpf = await User.findOne({
+        where: { id: userId.user_id },
+      });
+      if (usernameCpf) {
+        // console.log(accountWithUserId);
+        return { user_name: usernameCpf.user_name, cpf: usernameCpf.cpf };
+      }
+  
     }
+    return false;
   },
 };

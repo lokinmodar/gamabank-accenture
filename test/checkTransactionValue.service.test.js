@@ -1,4 +1,4 @@
-/*const chaiHttp = require('chai-http');
+const chaiHttp = require('chai-http');
 const chai = require('chai');
 const app =require('../src/api/app');
 const {checkValueNotNegative} = require('../src/api/services/checkTransactionValue.service')
@@ -12,4 +12,4 @@ const {checkValueNotNegative} = require('../src/api/services/checkTransactionVal
       it('should return false if the transaction value > 0',async function() {
         should.equal(false,await checkValueNotNegative(1))
     })
-  })*/
+  })

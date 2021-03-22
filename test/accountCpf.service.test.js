@@ -1,4 +1,4 @@
-/*const chaiHttp = require('chai-http');
+const chaiHttp = require('chai-http');
 const chai = require('chai');
 const app = require('../src/api/app');
 const {
@@ -14,4 +14,4 @@ describe('verify if account exists by cpf', function () {
   it('should return false if cpf does not exist', async function () {
     should.equal(false, await accountWithCpfExists('10048440426'));
   });
-});*/
+});

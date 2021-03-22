@@ -1,4 +1,4 @@
-/* const chaiHttp = require('chai-http');
+ const chaiHttp = require('chai-http');
 const chai = require('chai');
 const app =require('../src/api/app');
 const {getAccountBalance} = require('../src/api/services/accountBalance.service')
@@ -12,4 +12,4 @@ const {getAccountBalance} = require('../src/api/services/accountBalance.service'
       it('should return fail',async function() {
         should.not.equal('1000.00',await getAccountBalance(4))
     })
-  }) */
+  }) 
