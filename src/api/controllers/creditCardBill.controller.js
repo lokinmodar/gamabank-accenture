@@ -30,7 +30,7 @@ class CreditCardBillController {
       const initialDate = await formattedDate(req.body.initial_date);
       const endDate = await formattedDate(req.body.end_date);
 
-      const bill = await openTransactionsByPeriod(initialDate, endDate);
+      const bill = await openTransactionsByPeriod(userDetails.account.id, initialDate, endDate);
       console.log(bill);
 
       const billToMail = await statementToHtml(bill);
@@ -39,10 +39,9 @@ class CreditCardBillController {
 
       return res.status(200).json({ Message: 'Bill sent to your email', LinkToMail: mail })
 
-      return res.status(200).json({ ok: 'aiaiai' });
     } else {
       if (req.body.month) {
-        const bill = await openTransactionsByMonth(req.body.month);
+        const bill = await openTransactionsByMonth(userDetails.account.id, req.body.month);
         console.log(bill);
 
         const billToMail = await statementToHtml(bill);
