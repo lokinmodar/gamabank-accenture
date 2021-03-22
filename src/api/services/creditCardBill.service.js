@@ -25,7 +25,7 @@ module.exports = {
           },
         ],
       },
-      order: [['created_at', 'ASC']],
+      order: [['created_at', 'DESC']],
       raw: true,
     });
     let results = JSON.stringify(Object.assign({}, openCreditTransactions));
