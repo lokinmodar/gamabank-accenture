@@ -47,7 +47,7 @@ routes(app);
 
 
 process.on('unhandledRejection', (err) => {
-  console.log('---->  Deu ruim !');
+  console.log('---->  Server error!');
   console.error(err);
   process.exit(1);
 });

@@ -26,12 +26,11 @@ module.exports = {
 
   // função para checar se o usuário existe buscando pelo id
   userWithIdExists: async (id) => {
-    // console.log(`User Id:${id}`);
 
     const userWithId = await User.findOne({
       where: { id },
     });
-    // console.log(`user:${userWithId}`);
+
     if (userWithId !== null) {
       // checando se existe usuário com o id fornecido
       return true;

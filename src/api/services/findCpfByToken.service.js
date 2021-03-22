@@ -11,7 +11,7 @@ module.exports = {
       where: { id: sessionWithToken.user_id },
     });
     if (cpftWithUserId !== null) {
-      // console.log(accountWithUserId);
+
       return cpftWithUserId.cpf;
     }
   },
