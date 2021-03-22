@@ -23,8 +23,6 @@ module.exports = async (req, res, next) => {
     // captando o ID do payload do token e incluindo dentro da 'req' para que possa ser usado em outros locais da aplicação
     req.userId = decoded.id;
 
-    // console.log(decoded);
-
     return next();
   } catch (error) {
     return res.status(401).json({ error: 'Invalid Session Token.' });

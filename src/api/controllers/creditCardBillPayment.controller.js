@@ -1,6 +1,7 @@
 const creditCardBillPaymentDto = require('../models/dto/creditCardBillPayment.dto');
 const findAccountIdByToken = require('../services/findAccountIdByToken.service');
 const { billPayment } = require('../services/creditCardBillPayment.service');
+const { Transaction } = require('../models');
 
 class CreditCardBillPaymentController {
   async store(req, res) {

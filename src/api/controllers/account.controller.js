@@ -8,8 +8,7 @@ class AccountController {
   async store(req, res) {
     // validações do Schema
     const schema = accountDto;
-    // verificando validade do schema usando Yup
-    // TODO: Transformar em função helper
+
     try {
       await schema.validate(req.body); // chamada ao yup.validate pra validação do DTO(schema)
     } catch (error) {

@@ -17,7 +17,6 @@ class UserController {
       return res.status(400).json({ RequestFormatError: error.errors[0] });
     }
 
-    // TODO: checagem de validade do cpf
     if (!(await validateCpf(req.body.cpf))) {
       return res.status(400).json({ error: 'Invalid CPF.' });
     }

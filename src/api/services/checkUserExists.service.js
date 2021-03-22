@@ -1,8 +1,6 @@
 const { User } = require('../models');
 const {formattedCPF} = require('./formatCpf.service')
 
-// TODO: Criar teste
-
 module.exports = {
   checkUserExists: async (user_name, user_email, cpf) => {
     const requestCPF = await formattedCPF(cpf)
@@ -28,12 +26,11 @@ module.exports = {
 
   // função para checar se o usuário existe buscando pelo id
   userWithIdExists: async (id) => {
-    // console.log(`User Id:${id}`);
 
     const userWithId = await User.findOne({
       where: { id },
     });
-    // console.log(`user:${userWithId}`);
+
     if (userWithId !== null) {
       // checando se existe usuário com o id fornecido
       return true;
