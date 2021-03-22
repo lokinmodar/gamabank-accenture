@@ -6,22 +6,17 @@ const bankStatementService = require('../services/bankStatement.service');
 
 class BankStatementController {
   async retrieve(req, res) {
-    // validações do Schema
     const schema = bankStatementDto;
-    // verificando validade do schema usando Yup
-    // TODO: Transformar em função helper
+
     try {
-      await schema.validate(req.body); // chamada ao yup.validate pra validação do DTO(schema)
+      await schema.validate(req.body);
     } catch (error) {
-      // extraindo de dentro do retorno do Yup o erro exato
       res.status(400).json({ RequestFormatError: error.errors[0] });
       return;
     }
 
-    // recuperando o token do usuário
     const [, token] = req.headers.authorization.split(' ');
 
-    // recuperando a conta pelo token
     const accountId = await findUserIdByToken.accountIdByToken(token);
 
     if (req.body.month) {
