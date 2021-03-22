@@ -1,8 +1,6 @@
 const { User } = require('../models');
 const {formattedCPF} = require('./formatCpf.service')
 
-// TODO: Criar teste
-
 module.exports = {
   checkUserExists: async (user_name, user_email, cpf) => {
     const requestCPF = await formattedCPF(cpf)
